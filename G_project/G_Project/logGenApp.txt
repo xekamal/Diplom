@@ -1,0 +1,1786 @@
+Algorithm start M_main_func:: 
+ Population count 10 Decoder 0 Selection 0 Crossover 0 Generation coefficient 50 Rectangles count 10 Max width 300 Generation count 3
+Generating first population...
+Generation number 1
+Priority list 0
+  id 9  w   52  h   99 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 10  w   68  h   36 isOrient True
+  id 6  w   49  h   9 isOrient False
+  id 1  w   13  h   82 isOrient True
+  id 4  w   65  h   50 isOrient True
+  id 5  w   41  h   58 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 7  w   9  h   20 isOrient False
+  id 8  w   92  h   43 isOrient True
+Priority list 1
+  id 5  w   41  h   58 isOrient True
+  id 9  w   52  h   99 isOrient False
+  id 6  w   49  h   9 isOrient False
+  id 10  w   68  h   36 isOrient True
+  id 7  w   9  h   20 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 1  w   13  h   82 isOrient True
+  id 8  w   92  h   43 isOrient True
+  id 3  w   52  h   80 isOrient False
+Priority list 2
+  id 7  w   9  h   20 isOrient False
+  id 6  w   49  h   9 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 9  w   52  h   99 isOrient False
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 3  w   52  h   80 isOrient False
+  id 5  w   41  h   58 isOrient True
+Priority list 3
+  id 4  w   65  h   50 isOrient True
+  id 5  w   41  h   58 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 6  w   49  h   9 isOrient False
+  id 7  w   9  h   20 isOrient False
+  id 10  w   68  h   36 isOrient True
+  id 8  w   92  h   43 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 3  w   52  h   80 isOrient False
+  id 9  w   52  h   99 isOrient False
+Priority list 4
+  id 1  w   13  h   82 isOrient True
+  id 5  w   41  h   58 isOrient True
+  id 6  w   49  h   9 isOrient False
+  id 9  w   52  h   99 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 7  w   9  h   20 isOrient False
+  id 10  w   68  h   36 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 8  w   92  h   43 isOrient True
+Priority list 5
+  id 6  w   49  h   9 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 2  w   39  h   89 isOrient False
+  id 10  w   68  h   36 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 7  w   9  h   20 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 8  w   92  h   43 isOrient True
+Priority list 6
+  id 7  w   9  h   20 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 5  w   41  h   58 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 6  w   49  h   9 isOrient False
+  id 9  w   52  h   99 isOrient False
+Priority list 7
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 6  w   49  h   9 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 8  w   92  h   43 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 7  w   9  h   20 isOrient False
+Priority list 8
+  id 7  w   9  h   20 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 3  w   52  h   80 isOrient False
+  id 6  w   49  h   9 isOrient False
+  id 2  w   39  h   89 isOrient False
+  id 1  w   13  h   82 isOrient True
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 5  w   41  h   58 isOrient True
+  id 9  w   52  h   99 isOrient False
+Priority list 9
+  id 6  w   49  h   9 isOrient False
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 7  w   9  h   20 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 1  w   13  h   82 isOrient True
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+Coordinates: 
+Priority list 0
+  x   0  y   0
+  x   52  y   0
+  x   104  y   0
+  x   172  y   0
+  x   221  y   0
+  x   234  y   0
+  x   234  y   50
+  x   0  y   99
+  x   275  y   50
+  x   39  y   99
+Priority list 1
+  x   0  y   0
+  x   41  y   0
+  x   93  y   0
+  x   142  y   0
+  x   210  y   0
+  x   219  y   0
+  x   93  y   9
+  x   284  y   0
+  x   132  y   50
+  x   224  y   50
+Priority list 2
+  x   0  y   0
+  x   9  y   0
+  x   58  y   0
+  x   123  y   0
+  x   162  y   0
+  x   0  y   50
+  x   214  y   0
+  x   282  y   0
+  x   214  y   36
+  x   0  y   93
+Priority list 3
+  x   0  y   0
+  x   65  y   0
+  x   106  y   0
+  x   145  y   0
+  x   194  y   0
+  x   203  y   0
+  x   145  y   36
+  x   271  y   0
+  x   145  y   79
+  x   197  y   79
+Priority list 4
+  x   0  y   0
+  x   13  y   0
+  x   54  y   0
+  x   103  y   0
+  x   155  y   0
+  x   207  y   0
+  x   272  y   0
+  x   207  y   50
+  x   155  y   80
+  x   194  y   86
+Priority list 5
+  x   0  y   0
+  x   49  y   0
+  x   101  y   0
+  x   140  y   0
+  x   208  y   0
+  x   221  y   0
+  x   0  y   9
+  x   273  y   0
+  x   0  y   80
+  x   65  y   89
+Priority list 6
+  x   0  y   0
+  x   9  y   0
+  x   61  y   0
+  x   126  y   0
+  x   167  y   0
+  x   180  y   0
+  x   0  y   80
+  x   219  y   0
+  x   219  y   36
+  x   219  y   45
+Priority list 7
+  x   0  y   0
+  x   52  y   0
+  x   93  y   0
+  x   161  y   0
+  x   210  y   0
+  x   52  y   58
+  x   117  y   36
+  x   156  y   80
+  x   262  y   0
+  x   275  y   0
+Priority list 8
+  x   0  y   0
+  x   9  y   0
+  x   74  y   0
+  x   126  y   0
+  x   175  y   0
+  x   214  y   0
+  x   0  y   80
+  x   227  y   0
+  x   227  y   36
+  x   92  y   80
+Priority list 9
+  x   0  y   0
+  x   49  y   0
+  x   101  y   0
+  x   142  y   0
+  x   151  y   0
+  x   203  y   0
+  x   203  y   50
+  x   268  y   0
+  x   0  y   99
+  x   92  y   99
+Fitness Function 
+0,471394008396784
+0,686298886298886
+0,594859131215625
+0,524173128659598
+0,548226921007986
+0,711852568235547
+0,641163375919473
+0,746422535211268
+0,501808540857873
+0,664076988622124
+Selection started... 
+1 parent index 5 2 parent index 4
+1 parent index 6 2 parent index 5
+1 parent index 7 2 parent index 6
+1 parent index 8 2 parent index 7
+1 parent index 9 2 parent index 8
+1 parent index 0 2 parent index 9
+1 parent index 1 2 parent index 0
+1 parent index 2 2 parent index 1
+1 parent index 3 2 parent index 2
+1 parent index 4 2 parent index 3
+Crossover on pair 0 processed, parents:
+First:
+  ID  6  x   0  y   0
+  ID  3  x   49  y   0
+  ID  2  x   101  y   0
+  ID  10  x   140  y   0
+  ID  1  x   208  y   0
+  ID  9  x   221  y   0
+  ID  5  x   0  y   9
+  ID  7  x   273  y   0
+  ID  4  x   0  y   80
+  ID  8  x   65  y   89
+Second
+  ID  1  x   0  y   0
+  ID  5  x   13  y   0
+  ID  6  x   54  y   0
+  ID  9  x   103  y   0
+  ID  3  x   155  y   0
+  ID  4  x   207  y   0
+  ID  7  x   272  y   0
+  ID  10  x   207  y   50
+  ID  2  x   155  y   80
+  ID  8  x   194  y   86
+Crossover at one point of 3
+Crossover at one point of 3
+Checking for identity v1= 0,6481521
+Mutation with v1 0,07437361 v2 0,2702414
+Mutation in order of rectangles. changed 8 and 3rectangles
+Got a child:
+  ID  1  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  9  x   -1  y   32000
+  ID  7  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  8  x   -1  y   32000
+Continue next step
+Crossover on pair 1 processed, parents:
+First:
+  ID  7  x   0  y   0
+  ID  3  x   9  y   0
+  ID  4  x   61  y   0
+  ID  5  x   126  y   0
+  ID  1  x   167  y   0
+  ID  2  x   180  y   0
+  ID  8  x   0  y   80
+  ID  10  x   219  y   0
+  ID  6  x   219  y   36
+  ID  9  x   219  y   45
+Second
+  ID  6  x   0  y   0
+  ID  3  x   49  y   0
+  ID  2  x   101  y   0
+  ID  10  x   140  y   0
+  ID  1  x   208  y   0
+  ID  9  x   221  y   0
+  ID  5  x   0  y   9
+  ID  7  x   273  y   0
+  ID  4  x   0  y   80
+  ID  8  x   65  y   89
+Crossover at one point of 7
+Crossover at one point of 7
+Checking for identity v1= 0,8283334
+Mutation with v1 0,3818781 v2 0,2610553
+Mutation in order of rectangles. changed 1 and 8rectangles
+Got a child:
+  ID  6  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  9  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  7  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  8  x   -1  y   32000
+Continue next step
+Crossover on pair 2 processed, parents:
+First:
+  ID  9  x   0  y   0
+  ID  5  x   52  y   0
+  ID  10  x   93  y   0
+  ID  6  x   161  y   0
+  ID  3  x   210  y   0
+  ID  4  x   52  y   58
+  ID  2  x   117  y   36
+  ID  8  x   156  y   80
+  ID  1  x   262  y   0
+  ID  7  x   275  y   0
+Second
+  ID  7  x   0  y   0
+  ID  3  x   9  y   0
+  ID  4  x   61  y   0
+  ID  5  x   126  y   0
+  ID  1  x   167  y   0
+  ID  2  x   180  y   0
+  ID  8  x   0  y   80
+  ID  10  x   219  y   0
+  ID  6  x   219  y   36
+  ID  9  x   219  y   45
+Crossover at one point of 3
+Crossover at one point of 3
+Checking for identity v1= 0,3698843
+Mutation with v1 0,5642262 v2 0,7700735
+Got a child:
+  ID  9  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  7  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  8  x   -1  y   32000
+  ID  6  x   -1  y   32000
+Continue next step
+Crossover on pair 3 processed, parents:
+First:
+  ID  7  x   0  y   0
+  ID  4  x   9  y   0
+  ID  3  x   74  y   0
+  ID  6  x   126  y   0
+  ID  2  x   175  y   0
+  ID  1  x   214  y   0
+  ID  8  x   0  y   80
+  ID  10  x   227  y   0
+  ID  5  x   227  y   36
+  ID  9  x   92  y   80
+Second
+  ID  9  x   0  y   0
+  ID  5  x   52  y   0
+  ID  10  x   93  y   0
+  ID  6  x   161  y   0
+  ID  3  x   210  y   0
+  ID  4  x   52  y   58
+  ID  2  x   117  y   36
+  ID  8  x   156  y   80
+  ID  1  x   262  y   0
+  ID  7  x   275  y   0
+Crossover at one point of 5
+Crossover at one point of 5
+Checking for identity v1= 0,2728049
+Mutation with v1 0,6213874 v2 0,797296
+Got a child:
+  ID  7  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  9  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  8  x   -1  y   32000
+  ID  1  x   -1  y   32000
+Continue next step
+Crossover on pair 4 processed, parents:
+First:
+  ID  6  x   0  y   0
+  ID  9  x   49  y   0
+  ID  5  x   101  y   0
+  ID  7  x   142  y   0
+  ID  3  x   151  y   0
+  ID  4  x   203  y   0
+  ID  2  x   203  y   50
+  ID  1  x   268  y   0
+  ID  8  x   0  y   99
+  ID  10  x   92  y   99
+Second
+  ID  7  x   0  y   0
+  ID  4  x   9  y   0
+  ID  3  x   74  y   0
+  ID  6  x   126  y   0
+  ID  2  x   175  y   0
+  ID  1  x   214  y   0
+  ID  8  x   0  y   80
+  ID  10  x   227  y   0
+  ID  5  x   227  y   36
+  ID  9  x   92  y   80
+Crossover at one point of 5
+Crossover at one point of 5
+Checking for identity v1= 0,1757256
+WARNING: Identity found
+Mutation with v1 0,6785485 v2 0,8245186
+Got a child:
+  ID  7  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  9  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  8  x   -1  y   32000
+  ID  10  x   -1  y   32000
+Continue next step
+Crossover on pair 5 processed, parents:
+First:
+  ID  9  x   0  y   0
+  ID  3  x   52  y   0
+  ID  10  x   104  y   0
+  ID  6  x   172  y   0
+  ID  1  x   221  y   0
+  ID  4  x   234  y   0
+  ID  5  x   234  y   50
+  ID  2  x   0  y   99
+  ID  7  x   275  y   50
+  ID  8  x   39  y   99
+Second
+  ID  6  x   0  y   0
+  ID  9  x   49  y   0
+  ID  5  x   101  y   0
+  ID  7  x   142  y   0
+  ID  3  x   151  y   0
+  ID  4  x   203  y   0
+  ID  2  x   203  y   50
+  ID  1  x   268  y   0
+  ID  8  x   0  y   99
+  ID  10  x   92  y   99
+Crossover at one point of 4
+Crossover at one point of 4
+Checking for identity v1= 0,985229
+Mutation with v1 0,3449202 v2 0,6847438
+Got a child:
+  ID  6  x   -1  y   32000
+  ID  9  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  7  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  8  x   -1  y   32000
+Continue next step
+Crossover on pair 6 processed, parents:
+First:
+  ID  5  x   0  y   0
+  ID  9  x   41  y   0
+  ID  6  x   93  y   0
+  ID  10  x   142  y   0
+  ID  7  x   210  y   0
+  ID  4  x   219  y   0
+  ID  2  x   93  y   9
+  ID  1  x   284  y   0
+  ID  8  x   132  y   50
+  ID  3  x   224  y   50
+Second
+  ID  9  x   0  y   0
+  ID  3  x   52  y   0
+  ID  10  x   104  y   0
+  ID  6  x   172  y   0
+  ID  1  x   221  y   0
+  ID  4  x   234  y   0
+  ID  5  x   234  y   50
+  ID  2  x   0  y   99
+  ID  7  x   275  y   50
+  ID  8  x   39  y   99
+Crossover at one point of 4
+Crossover at one point of 4
+Checking for identity v1= 0,06567583
+Mutation with v1 0,4174016 v2 0,4335765
+Got a child:
+  ID  5  x   -1  y   32000
+  ID  9  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  7  x   -1  y   32000
+  ID  8  x   -1  y   32000
+Continue next step
+Crossover on pair 7 processed, parents:
+First:
+  ID  7  x   0  y   0
+  ID  6  x   9  y   0
+  ID  4  x   58  y   0
+  ID  2  x   123  y   0
+  ID  9  x   162  y   0
+  ID  8  x   0  y   50
+  ID  10  x   214  y   0
+  ID  1  x   282  y   0
+  ID  3  x   214  y   36
+  ID  5  x   0  y   93
+Second
+  ID  5  x   0  y   0
+  ID  9  x   41  y   0
+  ID  6  x   93  y   0
+  ID  10  x   142  y   0
+  ID  7  x   210  y   0
+  ID  4  x   219  y   0
+  ID  2  x   93  y   9
+  ID  1  x   284  y   0
+  ID  8  x   132  y   50
+  ID  3  x   224  y   50
+Crossover at one point of 2
+Crossover at one point of 2
+Checking for identity v1= 0,6010315
+Mutation with v1 0,7555162 v2 0,8676717
+Got a child:
+  ID  5  x   -1  y   32000
+  ID  9  x   -1  y   32000
+  ID  7  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  8  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  3  x   -1  y   32000
+Continue next step
+Crossover on pair 8 processed, parents:
+First:
+  ID  4  x   0  y   0
+  ID  5  x   65  y   0
+  ID  2  x   106  y   0
+  ID  6  x   145  y   0
+  ID  7  x   194  y   0
+  ID  10  x   203  y   0
+  ID  8  x   145  y   36
+  ID  1  x   271  y   0
+  ID  3  x   145  y   79
+  ID  9  x   197  y   79
+Second
+  ID  7  x   0  y   0
+  ID  6  x   9  y   0
+  ID  4  x   58  y   0
+  ID  2  x   123  y   0
+  ID  9  x   162  y   0
+  ID  8  x   0  y   50
+  ID  10  x   214  y   0
+  ID  1  x   282  y   0
+  ID  3  x   214  y   36
+  ID  5  x   0  y   93
+Crossover at one point of 2
+Crossover at one point of 2
+Checking for identity v1= 0,6784264
+Mutation with v1 0,9059114 v2 0,07904294
+Orient mutation w h 92 43
+Got a child:
+  ID  7  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  8  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  9  x   -1  y   32000
+Continue next step
+Crossover on pair 9 processed, parents:
+First:
+  ID  1  x   0  y   0
+  ID  5  x   13  y   0
+  ID  6  x   54  y   0
+  ID  9  x   103  y   0
+  ID  3  x   155  y   0
+  ID  4  x   207  y   0
+  ID  7  x   272  y   0
+  ID  10  x   207  y   50
+  ID  2  x   155  y   80
+  ID  8  x   194  y   86
+Second
+  ID  4  x   0  y   0
+  ID  5  x   65  y   0
+  ID  2  x   106  y   0
+  ID  6  x   145  y   0
+  ID  7  x   194  y   0
+  ID  10  x   203  y   0
+  ID  8  x   145  y   36
+  ID  1  x   271  y   0
+  ID  3  x   145  y   79
+  ID  9  x   197  y   79
+Crossover at one point of 4
+Crossover at one point of 4
+Checking for identity v1= 0,02679525
+Mutation with v1 0,4623859 v2 0,1791131
+Got a child:
+  ID  1  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  9  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  7  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  8  x   -1  y   32000
+  ID  3  x   -1  y   32000
+Continue next step
+childsCount in new gen : 5
+Children Coordinates: 
+Priority list 0
+ID 1  x   0  y   0
+ID 5  x   13  y   0
+ID 6  x   54  y   0
+ID 4  x   103  y   0
+ID 2  x   168  y   0
+ID 10  x   207  y   0
+ID 9  x   207  y   36
+ID 7  x   275  y   0
+ID 3  x   0  y   82
+ID 8  x   52  y   58
+Priority list 1
+ID 6  x   0  y   0
+ID 4  x   49  y   0
+ID 2  x   114  y   0
+ID 10  x   153  y   0
+ID 1  x   221  y   0
+ID 9  x   234  y   0
+ID 5  x   0  y   9
+ID 7  x   286  y   0
+ID 3  x   0  y   67
+ID 8  x   52  y   89
+Priority list 2
+ID 9  x   0  y   0
+ID 5  x   52  y   0
+ID 10  x   93  y   0
+ID 7  x   161  y   0
+ID 3  x   170  y   0
+ID 4  x   222  y   0
+ID 1  x   287  y   0
+ID 2  x   52  y   58
+ID 8  x   91  y   80
+ID 6  x   183  y   80
+Priority list 3
+ID 7  x   0  y   0
+ID 4  x   9  y   0
+ID 3  x   74  y   0
+ID 6  x   126  y   0
+ID 2  x   175  y   0
+ID 9  x   214  y   0
+ID 5  x   0  y   50
+ID 10  x   41  y   80
+ID 8  x   109  y   89
+ID 1  x   266  y   0
+Priority list 4
+ID 7  x   0  y   0
+ID 4  x   9  y   0
+ID 3  x   74  y   0
+ID 6  x   126  y   0
+ID 2  x   175  y   0
+ID 9  x   214  y   0
+ID 5  x   0  y   50
+ID 1  x   266  y   0
+ID 8  x   41  y   80
+ID 10  x   133  y   89
+Priority list 5
+ID 6  x   0  y   0
+ID 9  x   49  y   0
+ID 5  x   101  y   0
+ID 7  x   142  y   0
+ID 3  x   151  y   0
+ID 10  x   203  y   0
+ID 1  x   271  y   0
+ID 4  x   101  y   80
+ID 2  x   166  y   80
+ID 8  x   205  y   82
+Priority list 6
+ID 5  x   0  y   0
+ID 9  x   41  y   0
+ID 6  x   93  y   0
+ID 10  x   142  y   0
+ID 3  x   210  y   0
+ID 1  x   262  y   0
+ID 4  x   93  y   36
+ID 2  x   158  y   36
+ID 7  x   275  y   0
+ID 8  x   197  y   82
+Priority list 7
+ID 5  x   0  y   0
+ID 9  x   41  y   0
+ID 7  x   93  y   0
+ID 6  x   102  y   0
+ID 4  x   151  y   0
+ID 2  x   216  y   0
+ID 8  x   93  y   50
+ID 10  x   185  y   89
+ID 1  x   255  y   0
+ID 3  x   0  y   99
+Priority list 8
+ID 7  x   0  y   0
+ID 6  x   9  y   0
+ID 4  x   58  y   0
+ID 5  x   123  y   0
+ID 2  x   164  y   0
+ID 10  x   203  y   0
+ID 8  x   203  y   36
+ID 1  x   271  y   0
+ID 3  x   246  y   82
+ID 9  x   0  y   20
+Priority list 9
+ID 1  x   0  y   0
+ID 5  x   13  y   0
+ID 6  x   54  y   0
+ID 9  x   103  y   0
+ID 4  x   155  y   0
+ID 2  x   220  y   0
+ID 7  x   259  y   0
+ID 10  x   155  y   89
+ID 8  x   0  y   82
+ID 3  x   223  y   89
+Children Fitness Function 
+0,575943314206225
+0,6110457742419
+0,600861678004535
+0,719506896926252
+0,759799283154122
+0,527922220229913
+0,733508650519031
+0,552363878929375
+0,548885574612644
+0,570155997848306
+getting 0 best child 
+added child # 4
+getting 1 best child 
+added child # 6
+getting 2 best child 
+added child # 3
+getting 3 best child 
+added child # 1
+getting 4 best child 
+added child # 2
+get child # 1
+get child # 2
+get child # 3
+get child # 4
+get child # 6
+Generation number 2
+Priority list 0
+  id 6  w   49  h   9 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 10  w   68  h   36 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 7  w   9  h   20 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 8  w   92  h   43 isOrient True
+Priority list 1
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 7  w   9  h   20 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 8  w   92  h   43 isOrient True
+  id 6  w   49  h   9 isOrient False
+Priority list 2
+  id 7  w   9  h   20 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 3  w   52  h   80 isOrient False
+  id 6  w   49  h   9 isOrient False
+  id 2  w   39  h   89 isOrient False
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 8  w   92  h   43 isOrient True
+  id 1  w   13  h   82 isOrient True
+Priority list 3
+  id 7  w   9  h   20 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 3  w   52  h   80 isOrient False
+  id 6  w   49  h   9 isOrient False
+  id 2  w   39  h   89 isOrient False
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+Priority list 4
+  id 5  w   41  h   58 isOrient True
+  id 9  w   52  h   99 isOrient False
+  id 6  w   49  h   9 isOrient False
+  id 10  w   68  h   36 isOrient True
+  id 3  w   52  h   80 isOrient False
+  id 1  w   13  h   82 isOrient True
+  id 4  w   65  h   50 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 7  w   9  h   20 isOrient False
+  id 8  w   92  h   43 isOrient True
+Priority list 5
+  id 6  w   49  h   9 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 2  w   39  h   89 isOrient False
+  id 10  w   68  h   36 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 7  w   9  h   20 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 8  w   92  h   43 isOrient True
+Priority list 6
+  id 7  w   9  h   20 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 5  w   41  h   58 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 6  w   49  h   9 isOrient False
+  id 9  w   52  h   99 isOrient False
+Priority list 7
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 6  w   49  h   9 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 8  w   92  h   43 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 7  w   9  h   20 isOrient False
+Priority list 8
+  id 7  w   9  h   20 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 3  w   52  h   80 isOrient False
+  id 6  w   49  h   9 isOrient False
+  id 2  w   39  h   89 isOrient False
+  id 1  w   13  h   82 isOrient True
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 5  w   41  h   58 isOrient True
+  id 9  w   52  h   99 isOrient False
+Priority list 9
+  id 6  w   49  h   9 isOrient False
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 7  w   9  h   20 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 1  w   13  h   82 isOrient True
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+Coordinates: 
+Priority list 0
+  x   0  y   0
+  x   52  y   0
+  x   104  y   0
+  x   172  y   0
+  x   221  y   0
+  x   234  y   0
+  x   234  y   50
+  x   0  y   99
+  x   275  y   50
+  x   39  y   99
+Priority list 1
+  x   0  y   0
+  x   41  y   0
+  x   93  y   0
+  x   142  y   0
+  x   210  y   0
+  x   219  y   0
+  x   93  y   9
+  x   284  y   0
+  x   132  y   50
+  x   224  y   50
+Priority list 2
+  x   0  y   0
+  x   9  y   0
+  x   58  y   0
+  x   123  y   0
+  x   162  y   0
+  x   0  y   50
+  x   214  y   0
+  x   282  y   0
+  x   214  y   36
+  x   0  y   93
+Priority list 3
+  x   0  y   0
+  x   65  y   0
+  x   106  y   0
+  x   145  y   0
+  x   194  y   0
+  x   203  y   0
+  x   145  y   36
+  x   271  y   0
+  x   145  y   79
+  x   197  y   79
+Priority list 4
+  x   0  y   0
+  x   13  y   0
+  x   54  y   0
+  x   103  y   0
+  x   155  y   0
+  x   207  y   0
+  x   272  y   0
+  x   207  y   50
+  x   155  y   80
+  x   194  y   86
+Priority list 5
+  x   0  y   0
+  x   49  y   0
+  x   101  y   0
+  x   140  y   0
+  x   208  y   0
+  x   221  y   0
+  x   0  y   9
+  x   273  y   0
+  x   0  y   80
+  x   65  y   89
+Priority list 6
+  x   0  y   0
+  x   9  y   0
+  x   61  y   0
+  x   126  y   0
+  x   167  y   0
+  x   180  y   0
+  x   0  y   80
+  x   219  y   0
+  x   219  y   36
+  x   219  y   45
+Priority list 7
+  x   0  y   0
+  x   52  y   0
+  x   93  y   0
+  x   161  y   0
+  x   210  y   0
+  x   52  y   58
+  x   117  y   36
+  x   156  y   80
+  x   262  y   0
+  x   275  y   0
+Priority list 8
+  x   0  y   0
+  x   9  y   0
+  x   74  y   0
+  x   126  y   0
+  x   175  y   0
+  x   214  y   0
+  x   0  y   80
+  x   227  y   0
+  x   227  y   36
+  x   92  y   80
+Priority list 9
+  x   0  y   0
+  x   49  y   0
+  x   101  y   0
+  x   142  y   0
+  x   151  y   0
+  x   203  y   0
+  x   203  y   50
+  x   268  y   0
+  x   0  y   99
+  x   92  y   99
+Fitness Function 
+0,6110457742419
+0,600861678004535
+0,719506896926252
+0,759799283154122
+0,733508650519031
+0,711852568235547
+0,641163375919473
+0,746422535211268
+0,501808540857873
+0,664076988622124
+Selection started... 
+1 parent index 7 2 parent index 6
+1 parent index 8 2 parent index 7
+1 parent index 9 2 parent index 8
+1 parent index 0 2 parent index 9
+1 parent index 1 2 parent index 0
+1 parent index 2 2 parent index 1
+1 parent index 3 2 parent index 2
+1 parent index 4 2 parent index 3
+1 parent index 5 2 parent index 4
+1 parent index 6 2 parent index 5
+Crossover on pair 0 processed, parents:
+First:
+  ID  9  x   0  y   0
+  ID  5  x   52  y   0
+  ID  10  x   93  y   0
+  ID  6  x   161  y   0
+  ID  3  x   210  y   0
+  ID  4  x   52  y   58
+  ID  2  x   117  y   36
+  ID  8  x   156  y   80
+  ID  1  x   262  y   0
+  ID  7  x   275  y   0
+Second
+  ID  7  x   0  y   0
+  ID  3  x   9  y   0
+  ID  4  x   61  y   0
+  ID  5  x   126  y   0
+  ID  1  x   167  y   0
+  ID  2  x   180  y   0
+  ID  8  x   0  y   80
+  ID  10  x   219  y   0
+  ID  6  x   219  y   36
+  ID  9  x   219  y   45
+Crossover at one point of 3
+Crossover at one point of 3
+Checking for identity v1= 0,6481521
+Mutation with v1 0,07437361 v2 0,2702414
+Mutation in order of rectangles. changed 9 and 3rectangles
+Got a child:
+  ID  7  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  8  x   -1  y   32000
+  ID  9  x   -1  y   32000
+Continue next step
+Crossover on pair 1 processed, parents:
+First:
+  ID  7  x   0  y   0
+  ID  4  x   9  y   0
+  ID  3  x   74  y   0
+  ID  6  x   126  y   0
+  ID  2  x   175  y   0
+  ID  1  x   214  y   0
+  ID  8  x   0  y   80
+  ID  10  x   227  y   0
+  ID  5  x   227  y   36
+  ID  9  x   92  y   80
+Second
+  ID  9  x   0  y   0
+  ID  5  x   52  y   0
+  ID  10  x   93  y   0
+  ID  6  x   161  y   0
+  ID  3  x   210  y   0
+  ID  4  x   52  y   58
+  ID  2  x   117  y   36
+  ID  8  x   156  y   80
+  ID  1  x   262  y   0
+  ID  7  x   275  y   0
+Crossover at one point of 2
+Crossover at one point of 2
+Checking for identity v1= 0,529252
+Mutation with v1 0,676809 v2 0,5352031
+Got a child:
+  ID  9  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  7  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  8  x   -1  y   32000
+  ID  10  x   -1  y   32000
+Continue next step
+Crossover on pair 2 processed, parents:
+First:
+  ID  6  x   0  y   0
+  ID  9  x   49  y   0
+  ID  5  x   101  y   0
+  ID  7  x   142  y   0
+  ID  3  x   151  y   0
+  ID  4  x   203  y   0
+  ID  2  x   203  y   50
+  ID  1  x   268  y   0
+  ID  8  x   0  y   99
+  ID  10  x   92  y   99
+Second
+  ID  7  x   0  y   0
+  ID  4  x   9  y   0
+  ID  3  x   74  y   0
+  ID  6  x   126  y   0
+  ID  2  x   175  y   0
+  ID  1  x   214  y   0
+  ID  8  x   0  y   80
+  ID  10  x   227  y   0
+  ID  5  x   227  y   36
+  ID  9  x   92  y   80
+Crossover at one point of 1
+Crossover at one point of 1
+Checking for identity v1= 0,6813868
+Mutation with v1 0,6853542 v2 0,6888333
+Got a child:
+  ID  7  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  9  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  8  x   -1  y   32000
+  ID  10  x   -1  y   32000
+Continue next step
+Crossover on pair 3 processed, parents:
+First:
+  ID  6  x   0  y   0
+  ID  4  x   49  y   0
+  ID  2  x   114  y   0
+  ID  10  x   153  y   0
+  ID  1  x   221  y   0
+  ID  9  x   234  y   0
+  ID  5  x   0  y   9
+  ID  7  x   286  y   0
+  ID  3  x   0  y   67
+  ID  8  x   52  y   89
+Second
+  ID  6  x   0  y   0
+  ID  9  x   49  y   0
+  ID  5  x   101  y   0
+  ID  7  x   142  y   0
+  ID  3  x   151  y   0
+  ID  4  x   203  y   0
+  ID  2  x   203  y   50
+  ID  1  x   268  y   0
+  ID  8  x   0  y   99
+  ID  10  x   92  y   99
+Crossover at one point of 4
+Crossover at one point of 4
+Checking for identity v1= 0,7400739
+Mutation with v1 0,3031098 v2 0,6754357
+Got a child:
+  ID  6  x   -1  y   32000
+  ID  9  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  7  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  8  x   -1  y   32000
+Continue next step
+Crossover on pair 4 processed, parents:
+First:
+  ID  9  x   0  y   0
+  ID  5  x   52  y   0
+  ID  10  x   93  y   0
+  ID  7  x   161  y   0
+  ID  3  x   170  y   0
+  ID  4  x   222  y   0
+  ID  1  x   287  y   0
+  ID  2  x   52  y   58
+  ID  8  x   91  y   80
+  ID  6  x   183  y   80
+Second
+  ID  6  x   0  y   0
+  ID  4  x   49  y   0
+  ID  2  x   114  y   0
+  ID  10  x   153  y   0
+  ID  1  x   221  y   0
+  ID  9  x   234  y   0
+  ID  5  x   0  y   9
+  ID  7  x   286  y   0
+  ID  3  x   0  y   67
+  ID  8  x   52  y   89
+Crossover at one point of 4
+Crossover at one point of 4
+Checking for identity v1= 0,1601306
+Mutation with v1 0,7956786 v2 0,1802118
+Got a child:
+  ID  9  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  7  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  8  x   -1  y   32000
+Continue next step
+Crossover on pair 5 processed, parents:
+First:
+  ID  7  x   0  y   0
+  ID  4  x   9  y   0
+  ID  3  x   74  y   0
+  ID  6  x   126  y   0
+  ID  2  x   175  y   0
+  ID  9  x   214  y   0
+  ID  5  x   0  y   50
+  ID  10  x   41  y   80
+  ID  8  x   109  y   89
+  ID  1  x   266  y   0
+Second
+  ID  9  x   0  y   0
+  ID  5  x   52  y   0
+  ID  10  x   93  y   0
+  ID  7  x   161  y   0
+  ID  3  x   170  y   0
+  ID  4  x   222  y   0
+  ID  1  x   287  y   0
+  ID  2  x   52  y   58
+  ID  8  x   91  y   80
+  ID  6  x   183  y   80
+Crossover at one point of 6
+Crossover at one point of 6
+Checking for identity v1= 0,941557
+Mutation with v1 0,1630909 v2 0,2032228
+Got a child:
+  ID  9  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  7  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  8  x   -1  y   32000
+  ID  1  x   -1  y   32000
+Continue next step
+Crossover on pair 6 processed, parents:
+First:
+  ID  7  x   0  y   0
+  ID  4  x   9  y   0
+  ID  3  x   74  y   0
+  ID  6  x   126  y   0
+  ID  2  x   175  y   0
+  ID  9  x   214  y   0
+  ID  5  x   0  y   50
+  ID  1  x   266  y   0
+  ID  8  x   41  y   80
+  ID  10  x   133  y   89
+Second
+  ID  7  x   0  y   0
+  ID  4  x   9  y   0
+  ID  3  x   74  y   0
+  ID  6  x   126  y   0
+  ID  2  x   175  y   0
+  ID  9  x   214  y   0
+  ID  5  x   0  y   50
+  ID  10  x   41  y   80
+  ID  8  x   109  y   89
+  ID  1  x   266  y   0
+Crossover at one point of 4
+Crossover at one point of 4
+Checking for identity v1= 0,08432264
+Mutation with v1 0,4053163 v2 0,7444685
+Mutation in order of rectangles. changed 7 and 4rectangles
+Got a child:
+  ID  7  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  9  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  8  x   -1  y   32000
+  ID  10  x   -1  y   32000
+Continue next step
+Crossover on pair 7 processed, parents:
+First:
+  ID  5  x   0  y   0
+  ID  9  x   41  y   0
+  ID  6  x   93  y   0
+  ID  10  x   142  y   0
+  ID  3  x   210  y   0
+  ID  1  x   262  y   0
+  ID  4  x   93  y   36
+  ID  2  x   158  y   36
+  ID  7  x   275  y   0
+  ID  8  x   197  y   82
+Second
+  ID  7  x   0  y   0
+  ID  4  x   9  y   0
+  ID  3  x   74  y   0
+  ID  6  x   126  y   0
+  ID  2  x   175  y   0
+  ID  9  x   214  y   0
+  ID  5  x   0  y   50
+  ID  1  x   266  y   0
+  ID  8  x   41  y   80
+  ID  10  x   133  y   89
+Crossover at one point of 6
+Crossover at one point of 6
+Checking for identity v1= 0,5885189
+Mutation with v1 0,5224158 v2 0,8038881
+Got a child:
+  ID  7  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  6  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  9  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  8  x   -1  y   32000
+Continue next step
+Crossover on pair 8 processed, parents:
+First:
+  ID  6  x   0  y   0
+  ID  3  x   49  y   0
+  ID  2  x   101  y   0
+  ID  10  x   140  y   0
+  ID  1  x   208  y   0
+  ID  9  x   221  y   0
+  ID  5  x   0  y   9
+  ID  7  x   273  y   0
+  ID  4  x   0  y   80
+  ID  8  x   65  y   89
+Second
+  ID  5  x   0  y   0
+  ID  9  x   41  y   0
+  ID  6  x   93  y   0
+  ID  10  x   142  y   0
+  ID  3  x   210  y   0
+  ID  1  x   262  y   0
+  ID  4  x   93  y   36
+  ID  2  x   158  y   36
+  ID  7  x   275  y   0
+  ID  8  x   197  y   82
+Crossover at one point of 1
+Crossover at one point of 1
+Checking for identity v1= 0,0926542
+Mutation with v1 0,6394848 v2 0,8633381
+Got a child:
+  ID  6  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  9  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  7  x   -1  y   32000
+  ID  8  x   -1  y   32000
+Continue next step
+Crossover on pair 9 processed, parents:
+First:
+  ID  7  x   0  y   0
+  ID  3  x   9  y   0
+  ID  4  x   61  y   0
+  ID  5  x   126  y   0
+  ID  1  x   167  y   0
+  ID  2  x   180  y   0
+  ID  8  x   0  y   80
+  ID  10  x   219  y   0
+  ID  6  x   219  y   36
+  ID  9  x   219  y   45
+Second
+  ID  6  x   0  y   0
+  ID  3  x   49  y   0
+  ID  2  x   101  y   0
+  ID  10  x   140  y   0
+  ID  1  x   208  y   0
+  ID  9  x   221  y   0
+  ID  5  x   0  y   9
+  ID  7  x   273  y   0
+  ID  4  x   0  y   80
+  ID  8  x   65  y   89
+Crossover at one point of 1
+Crossover at one point of 1
+Checking for identity v1= 0,680929
+Mutation with v1 0,3810541 v2 0,4773705
+Got a child:
+  ID  6  x   -1  y   32000
+  ID  7  x   -1  y   32000
+  ID  3  x   -1  y   32000
+  ID  4  x   -1  y   32000
+  ID  5  x   -1  y   32000
+  ID  1  x   -1  y   32000
+  ID  2  x   -1  y   32000
+  ID  8  x   -1  y   32000
+  ID  10  x   -1  y   32000
+  ID  9  x   -1  y   32000
+Continue next step
+childsCount in new gen : 5
+Children Coordinates: 
+Priority list 0
+ID 7  x   0  y   0
+ID 3  x   9  y   0
+ID 4  x   61  y   0
+ID 1  x   126  y   0
+ID 5  x   139  y   0
+ID 10  x   180  y   0
+ID 6  x   248  y   0
+ID 2  x   248  y   9
+ID 8  x   0  y   80
+ID 9  x   92  y   82
+Priority list 1
+ID 9  x   0  y   0
+ID 5  x   52  y   0
+ID 7  x   93  y   0
+ID 4  x   102  y   0
+ID 3  x   167  y   0
+ID 6  x   219  y   0
+ID 2  x   219  y   9
+ID 1  x   268  y   0
+ID 8  x   52  y   58
+ID 10  x   144  y   80
+Priority list 2
+ID 7  x   0  y   0
+ID 6  x   9  y   0
+ID 9  x   58  y   0
+ID 5  x   110  y   0
+ID 3  x   151  y   0
+ID 4  x   203  y   0
+ID 2  x   203  y   50
+ID 1  x   268  y   0
+ID 8  x   0  y   99
+ID 10  x   92  y   99
+Priority list 3
+ID 6  x   0  y   0
+ID 9  x   49  y   0
+ID 5  x   101  y   0
+ID 7  x   142  y   0
+ID 4  x   151  y   0
+ID 2  x   216  y   0
+ID 10  x   101  y   58
+ID 1  x   255  y   0
+ID 3  x   169  y   89
+ID 8  x   0  y   99
+Priority list 4
+ID 9  x   0  y   0
+ID 5  x   52  y   0
+ID 10  x   93  y   0
+ID 7  x   161  y   0
+ID 6  x   170  y   0
+ID 4  x   219  y   0
+ID 2  x   93  y   36
+ID 1  x   284  y   0
+ID 3  x   132  y   36
+ID 8  x   184  y   50
+Priority list 5
+ID 9  x   0  y   0
+ID 5  x   52  y   0
+ID 10  x   93  y   0
+ID 7  x   161  y   0
+ID 3  x   170  y   0
+ID 4  x   222  y   0
+ID 6  x   222  y   50
+ID 2  x   222  y   59
+ID 8  x   0  y   99
+ID 1  x   287  y   0
+Priority list 6
+ID 7  x   0  y   0
+ID 4  x   9  y   0
+ID 3  x   74  y   0
+ID 6  x   126  y   0
+ID 1  x   175  y   0
+ID 9  x   188  y   0
+ID 5  x   240  y   0
+ID 2  x   240  y   58
+ID 8  x   0  y   80
+ID 10  x   0  y   123
+Priority list 7
+ID 7  x   0  y   0
+ID 4  x   9  y   0
+ID 3  x   74  y   0
+ID 6  x   126  y   0
+ID 2  x   175  y   0
+ID 9  x   214  y   0
+ID 5  x   0  y   50
+ID 10  x   41  y   80
+ID 1  x   266  y   0
+ID 8  x   109  y   89
+Priority list 8
+ID 6  x   0  y   0
+ID 5  x   49  y   0
+ID 9  x   90  y   0
+ID 10  x   142  y   0
+ID 3  x   210  y   0
+ID 1  x   262  y   0
+ID 4  x   142  y   36
+ID 2  x   207  y   80
+ID 7  x   275  y   0
+ID 8  x   0  y   99
+Priority list 9
+ID 6  x   0  y   0
+ID 7  x   49  y   0
+ID 3  x   58  y   0
+ID 4  x   110  y   0
+ID 5  x   175  y   0
+ID 1  x   216  y   0
+ID 2  x   229  y   0
+ID 8  x   0  y   80
+ID 10  x   92  y   80
+ID 9  x   160  y   58
+Children Fitness Function 
+0,492921852037874
+0,812921830899497
+0,664076988622124
+0,585048132120463
+0,713750841750842
+0,596801801801802
+0,5930750464424
+0,719506896926252
+0,552087673972831
+0,629765186804829
+getting 0 best child 
+added child # 1
+getting 1 best child 
+added child # 7
+getting 2 best child 
+added child # 4
+getting 3 best child 
+added child # 2
+getting 4 best child 
+added child # 9
+get child # 1
+get child # 2
+get child # 4
+get child # 7
+get child # 9
+Generation number 3
+Priority list 0
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 7  w   9  h   20 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 3  w   52  h   80 isOrient False
+  id 6  w   49  h   9 isOrient False
+  id 2  w   39  h   89 isOrient False
+  id 1  w   13  h   82 isOrient True
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+Priority list 1
+  id 7  w   9  h   20 isOrient False
+  id 6  w   49  h   9 isOrient False
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 3  w   52  h   80 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 1  w   13  h   82 isOrient True
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+Priority list 2
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 7  w   9  h   20 isOrient False
+  id 6  w   49  h   9 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 1  w   13  h   82 isOrient True
+  id 3  w   52  h   80 isOrient False
+  id 8  w   92  h   43 isOrient True
+Priority list 3
+  id 7  w   9  h   20 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 3  w   52  h   80 isOrient False
+  id 6  w   49  h   9 isOrient False
+  id 2  w   39  h   89 isOrient False
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 8  w   92  h   43 isOrient True
+Priority list 4
+  id 6  w   49  h   9 isOrient False
+  id 7  w   9  h   20 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 5  w   41  h   58 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 9  w   52  h   99 isOrient False
+Priority list 5
+  id 6  w   49  h   9 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 2  w   39  h   89 isOrient False
+  id 10  w   68  h   36 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 7  w   9  h   20 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 8  w   92  h   43 isOrient True
+Priority list 6
+  id 7  w   9  h   20 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 5  w   41  h   58 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 6  w   49  h   9 isOrient False
+  id 9  w   52  h   99 isOrient False
+Priority list 7
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 6  w   49  h   9 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 8  w   92  h   43 isOrient True
+  id 1  w   13  h   82 isOrient True
+  id 7  w   9  h   20 isOrient False
+Priority list 8
+  id 7  w   9  h   20 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 3  w   52  h   80 isOrient False
+  id 6  w   49  h   9 isOrient False
+  id 2  w   39  h   89 isOrient False
+  id 1  w   13  h   82 isOrient True
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+  id 5  w   41  h   58 isOrient True
+  id 9  w   52  h   99 isOrient False
+Priority list 9
+  id 6  w   49  h   9 isOrient False
+  id 9  w   52  h   99 isOrient False
+  id 5  w   41  h   58 isOrient True
+  id 7  w   9  h   20 isOrient False
+  id 3  w   52  h   80 isOrient False
+  id 4  w   65  h   50 isOrient True
+  id 2  w   39  h   89 isOrient False
+  id 1  w   13  h   82 isOrient True
+  id 8  w   92  h   43 isOrient True
+  id 10  w   68  h   36 isOrient True
+Coordinates: 
+Priority list 0
+  x   0  y   0
+  x   52  y   0
+  x   104  y   0
+  x   172  y   0
+  x   221  y   0
+  x   234  y   0
+  x   234  y   50
+  x   0  y   99
+  x   275  y   50
+  x   39  y   99
+Priority list 1
+  x   0  y   0
+  x   41  y   0
+  x   93  y   0
+  x   142  y   0
+  x   210  y   0
+  x   219  y   0
+  x   93  y   9
+  x   284  y   0
+  x   132  y   50
+  x   224  y   50
+Priority list 2
+  x   0  y   0
+  x   9  y   0
+  x   58  y   0
+  x   123  y   0
+  x   162  y   0
+  x   0  y   50
+  x   214  y   0
+  x   282  y   0
+  x   214  y   36
+  x   0  y   93
+Priority list 3
+  x   0  y   0
+  x   65  y   0
+  x   106  y   0
+  x   145  y   0
+  x   194  y   0
+  x   203  y   0
+  x   145  y   36
+  x   271  y   0
+  x   145  y   79
+  x   197  y   79
+Priority list 4
+  x   0  y   0
+  x   13  y   0
+  x   54  y   0
+  x   103  y   0
+  x   155  y   0
+  x   207  y   0
+  x   272  y   0
+  x   207  y   50
+  x   155  y   80
+  x   194  y   86
+Priority list 5
+  x   0  y   0
+  x   49  y   0
+  x   101  y   0
+  x   140  y   0
+  x   208  y   0
+  x   221  y   0
+  x   0  y   9
+  x   273  y   0
+  x   0  y   80
+  x   65  y   89
+Priority list 6
+  x   0  y   0
+  x   9  y   0
+  x   61  y   0
+  x   126  y   0
+  x   167  y   0
+  x   180  y   0
+  x   0  y   80
+  x   219  y   0
+  x   219  y   36
+  x   219  y   45
+Priority list 7
+  x   0  y   0
+  x   52  y   0
+  x   93  y   0
+  x   161  y   0
+  x   210  y   0
+  x   52  y   58
+  x   117  y   36
+  x   156  y   80
+  x   262  y   0
+  x   275  y   0
+Priority list 8
+  x   0  y   0
+  x   9  y   0
+  x   74  y   0
+  x   126  y   0
+  x   175  y   0
+  x   214  y   0
+  x   0  y   80
+  x   227  y   0
+  x   227  y   36
+  x   92  y   80
+Priority list 9
+  x   0  y   0
+  x   49  y   0
+  x   101  y   0
+  x   142  y   0
+  x   151  y   0
+  x   203  y   0
+  x   203  y   50
+  x   268  y   0
+  x   0  y   99
+  x   92  y   99
+Fitness Function 
+0,812921830899497
+0,664076988622124
+0,713750841750842
+0,719506896926252
+0,629765186804829
+0,711852568235547
+0,641163375919473
+0,746422535211268
+0,501808540857873
+0,664076988622124
