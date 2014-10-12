@@ -1,32 +1,46 @@
-﻿Построение начато 09.10.2014 15:28:16.
-     1>Проект "D:\Study\Programs\VCProjects\CrossroadApp\CrossroadApp\CrossroadApp.vcxproj" в узле 2 (целевые объекты build).
+﻿Build started 12.10.2014 14:29:33.
+     1>Project "D:\Git\Diplom\CrossroadApp\CrossroadApp\CrossroadApp.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Создание "Debug\CrossroadApp.unsuccessfulbuild", так как было задано "AlwaysCreate".
+         Creating "Debug\CrossroadApp.unsuccessfulbuild" because "AlwaysCreate" was specified.
        GenerateTargetFrameworkMonikerAttribute:
-       Целевой объект "GenerateTargetFrameworkMonikerAttribute" пропускается, так как все выходные файлы актуальны по отношению к входным.
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
        ClCompile:
-         Для всех выходных данных обновления не требуется.
-         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\CrossroadApp.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt CrossroadApp.cpp /clr:nostdlib 
-         CrossroadApp.cpp
-         Для всех выходных данных обновления не требуется.
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+       ManagedIncrementalBuildPostProcessDependencyGraph:
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES\MICROSOFT VISUAL STUDIO 10.0\VC\BIN\1049\CLUI.DLL' or one of its dependencies. Не удается найти указанный файл.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES\MICROSOFT VISUAL STUDIO 10.0\COMMON7\IDE\MSPDBSRV.EXE' or one of its dependencies. Не удается найти указанный файл.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\MSCORLIB.DLL' or one of its dependencies. Не удается найти указанный файл.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\SYSTEM.CORE.DLL' or one of its dependencies. Не удается найти указанный файл.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\SYSTEM.DATA.DLL' or one of its dependencies. Не удается найти указанный файл.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\SYSTEM.DLL' or one of its dependencies. Не удается найти указанный файл.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\SYSTEM.DRAWING.DLL' or one of its dependencies. Не удается найти указанный файл.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\SYSTEM.WINDOWS.FORMS.DLL' or one of its dependencies. Не удается найти указанный файл.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\SYSTEM.XML.DLL' or one of its dependencies. Не удается найти указанный файл.
+         To improve incremental build performance for managed components, please make sure that the 'VC++ Directories->Reference Directories' points to all the paths which contain the referenced managed assemblies.
+         Could not load file or assembly 'file:///C:\PROGRAM FILES\REFERENCE ASSEMBLIES\MICROSOFT\FRAMEWORK\.NETFRAMEWORK\V4.0\MICROSOFT.VISUALC.DLL' or one of its dependencies. Не удается найти указанный файл.
        CoreResGen:
-         "C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\resgen.exe" /useSourcePath /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /r:"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /compile Form1.resX,Debug\CrossroadApp.Form1.resources
-         Обрабатывается файл ресурсов "Form1.resX", результирующий объект: "Debug\CrossroadApp.Form1.resources".
+         No resources are out of date with respect to their source files. Skipping resource generation.
        Link:
-         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Study\Programs\VCProjects\CrossroadApp\Debug\CrossroadApp.exe" /INCREMENTAL /NOLOGO /ASSEMBLYRESOURCE:Debug\CrossroadApp.Form1.resources /ASSEMBLYRESOURCE:Debug\CrossroadApp.ResultForm.resources /MANIFEST /ManifestFile:"Debug\CrossroadApp.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\Study\Programs\VCProjects\CrossroadApp\Debug\CrossroadApp.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\AssemblyInfo.obj
-         Debug\CrossroadApp.obj
-         Debug\lib.obj
-         Debug\ResultForm.obj
-         Debug\stdafx.obj
-         "Debug\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
-         CrossroadApp.vcxproj -> D:\Study\Programs\VCProjects\CrossroadApp\Debug\CrossroadApp.exe
-       Manifest:
-         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"D:\Study\Programs\VCProjects\CrossroadApp\Debug\CrossroadApp.exe;#1" /manifest Debug\CrossroadApp.exe.intermediate.manifest
+         All outputs are up-to-date.
+         CrossroadApp.vcxproj -> D:\Git\Diplom\CrossroadApp\Debug\CrossroadApp.exe
+       MetaGen:
+       Skipping target "MetaGen" because all output files are up-to-date with respect to the input files.
        FinalizeBuildStatus:
-         Файл "Debug\CrossroadApp.unsuccessfulbuild" удаляется.
-         Обращение к "Debug\CrossroadApp.lastbuildstate".
-     1>Построение проекта "D:\Study\Programs\VCProjects\CrossroadApp\CrossroadApp\CrossroadApp.vcxproj" завершено (целевые объекты build).
+         Deleting file "Debug\CrossroadApp.unsuccessfulbuild".
+         Touching "Debug\CrossroadApp.lastbuildstate".
+     1>Done Building Project "D:\Git\Diplom\CrossroadApp\CrossroadApp\CrossroadApp.vcxproj" (build target(s)).
 
-Построение успешно завершено.
+Build succeeded.
 
-Затраченное время: 00:00:07.61
+Time Elapsed 00:00:00.09

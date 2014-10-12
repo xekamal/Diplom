@@ -41,7 +41,6 @@ namespace CrossroadApp {
 		Form1(void)
 		{
 			InitializeComponent();
-
 			CrossroadArray = new Neuro_crossRoad ** [Nx];
 			RoadArray = new int * [Nx];
 			for (int i=0; i<Nx; i++) {
@@ -59,8 +58,9 @@ namespace CrossroadApp {
 			errno_t err;
 			err = fopen_s(&Test, file_test, "rt");
 
-			printWindow();
-			//
+		printWindow();
+
+	//
 			//TODO: добавьте код конструктора
 			//
 		}
@@ -718,21 +718,27 @@ void printRoad(int X0, int Y0, int roadType, Graphics^ g) {
 }
 
 void printWindow() {
-	//прорисовка клеток рабочего окна
-	Graphics^ g = pictureBox1->CreateGraphics();
+	 //прорисовка клеток рабочего окна
+	Bitmap ^imageForWorkField = gcnew Bitmap(pictureBox1->Width, pictureBox1->Height);
+	Graphics^ g = System::Drawing::Graphics::FromImage(imageForWorkField);
 	g->Clear(Color::White);
 	printCells(0, 0, Nx, Ny, g);
+	
 		
 	//прорисовка клеток окна макетов перекрестков
-	Graphics^ gCrTypes = pictureBoxCrTypes->CreateGraphics();
+	Bitmap ^imageCrTypes= gcnew Bitmap(pictureBoxCrTypes->Width, pictureBoxCrTypes->Height);
+	Graphics^ gCrTypes = System::Drawing::Graphics::FromImage(imageCrTypes);
 	gCrTypes->Clear(Color::White);
 	printCells(0, 0, 4, 1, gCrTypes);
 	printCrossroad(0, 0, gCrTypes);
+	
 
 	//прорисовка клеток окна макетов дорог
-	Graphics^ gRTypes = pictureBoxRTypes->CreateGraphics();
+	Bitmap ^imageRTypes= gcnew Bitmap(pictureBoxRTypes->Width, pictureBoxRTypes->Height);
+	Graphics^ gRTypes = System::Drawing::Graphics::FromImage(imageRTypes);
 	gRTypes->Clear(Color::White);
 	printCells(0, 0, 4, 2, gRTypes);
+	
 
 	// прорисовка макетов дорог
 	for(int h=0; h<6; h++) {
@@ -751,6 +757,9 @@ void printWindow() {
 			}
 		}
 	}
+	pictureBox1->Image = imageForWorkField;
+	pictureBoxCrTypes->Image =imageCrTypes;
+	pictureBoxRTypes->Image =imageRTypes;
 }
 
 
