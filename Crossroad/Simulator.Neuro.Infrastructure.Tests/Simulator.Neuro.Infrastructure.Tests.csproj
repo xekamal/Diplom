@@ -31,17 +31,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="CrossroadControllerReinforcementTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\Dependencies\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Simulator.Map.Infrastructure\Simulator.Map.Infrastructure.csproj">
+      <Project>{4239C88B-CDAA-4F0E-A924-E1DA9CBB0042}</Project>
+      <Name>Simulator.Map.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator.Map\Simulator.Map.Domain.csproj">
+      <Project>{F918843F-2A93-4DB5-AA6C-45DEEE03C011}</Project>
+      <Name>Simulator.Map.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

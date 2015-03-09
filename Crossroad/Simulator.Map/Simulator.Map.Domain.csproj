@@ -42,6 +42,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrafficLightState.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Simulator.Neuro.Domain\Simulator.Neuro.Domain.csproj">
+      <Project>{6D5EE7C9-251B-4DF8-BF1D-B700368FAC27}</Project>
+      <Name>Simulator.Neuro.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

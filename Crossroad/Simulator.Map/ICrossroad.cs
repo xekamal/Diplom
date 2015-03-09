@@ -1,4 +1,6 @@
-﻿namespace Simulator.Map
+﻿using Simulator.Neuro.Domain;
+
+namespace Simulator.Map
 {
     public interface ICrossroad : IMapElement
     {
@@ -33,5 +35,7 @@
         ITrafficData DownToLeftTrafficData { get; set; }
         ITrafficData DownToUpTrafficData { get; set; }
         ITrafficData DownToRightTrafficData { get; set; }
+
+        ICrossroadController CrossroadController { get; set; }
     }
 }

@@ -5,11 +5,9 @@ namespace Simulator.Map.Infrastructure
 {
     public class Crossroad : ICrossroad
     {
-        private ICrossroadController controller;
-
         public Crossroad()
         {
-            controller = new CrossroadControllerReinforcement(this);
+            CrossroadController = new CrossroadControllerReinforcement(this);
 
             SetAllTrafficLights(TrafficLightState.Red);
         }
@@ -39,6 +37,7 @@ namespace Simulator.Map.Infrastructure
         public ITrafficData DownToLeftTrafficData { get; set; }
         public ITrafficData DownToUpTrafficData { get; set; }
         public ITrafficData DownToRightTrafficData { get; set; }
+        public ICrossroadController CrossroadController { get; set; }
 
         private void SetAllTrafficLights(TrafficLightState state)
         {

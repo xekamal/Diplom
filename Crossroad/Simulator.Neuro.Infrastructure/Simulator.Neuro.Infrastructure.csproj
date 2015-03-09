@@ -32,7 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CrossroadControllerReinforcement.cs" />
+    <Compile Include="HNeuron.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RNeuron.cs" />
+    <Compile Include="SNeuron.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Simulator.Map\Simulator.Map.Domain.csproj">
