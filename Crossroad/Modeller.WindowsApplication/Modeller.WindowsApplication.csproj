@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A731F8CD-379D-4947-BA0E-F428CD09BE6E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Modeller.WindowsApplication</RootNamespace>
+    <AssemblyName>Modeller.WindowsApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CurrentMapElementType.cs" />
+    <Compile Include="ModellerWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModellerWindow.Designer.cs">
+      <DependentUpon>ModellerWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ModellerWindow.resx">
+      <DependentUpon>ModellerWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modeller.CustomControls\Modeller.CustomControls.csproj">
+      <Project>{3284018A-DAC4-49E1-A2D5-94C2CBB3F561}</Project>
+      <Name>Modeller.CustomControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator.Map.Infrastructure\Simulator.Map.Infrastructure.csproj">
+      <Project>{4239C88B-CDAA-4F0E-A924-E1DA9CBB0042}</Project>
+      <Name>Simulator.Map.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator.Map\Simulator.Map.Domain.csproj">
+      <Project>{F918843F-2A93-4DB5-AA6C-45DEEE03C011}</Project>
+      <Name>Simulator.Map.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator.Traffic.Domain\Simulator.Traffic.Domain.csproj">
+      <Project>{0ED1EFBD-943A-4E22-8124-A752D47D07BA}</Project>
+      <Name>Simulator.Traffic.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator.Traffic.Infrastructure\Simulator.Traffic.Infrastructure.csproj">
+      <Project>{ED676357-A76D-4800-9839-2761E885E24C}</Project>
+      <Name>Simulator.Traffic.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
