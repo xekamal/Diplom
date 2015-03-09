@@ -42,25 +42,29 @@ namespace Modeller.WindowsApplication
             this._currentMapElementVerticalRoad = new Modeller.CustomControls.Road();
             this._currentMapElementCrossroad = new Modeller.CustomControls.Crossroad();
             this._workField = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._lblTrafficFlowSpeed = new System.Windows.Forms.Label();
+            this._lblTrafficFlowDensity = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // _trafficFlowDensity
             // 
-            this._trafficFlowDensity.Location = new System.Drawing.Point(669, 348);
+            this._trafficFlowDensity.Location = new System.Drawing.Point(632, 359);
             this._trafficFlowDensity.Name = "_trafficFlowDensity";
             this._trafficFlowDensity.Size = new System.Drawing.Size(100, 20);
             this._trafficFlowDensity.TabIndex = 11;
             // 
             // _trafficFlowSpeed
             // 
-            this._trafficFlowSpeed.Location = new System.Drawing.Point(669, 319);
+            this._trafficFlowSpeed.Location = new System.Drawing.Point(632, 330);
             this._trafficFlowSpeed.Name = "_trafficFlowSpeed";
             this._trafficFlowSpeed.Size = new System.Drawing.Size(100, 20);
             this._trafficFlowSpeed.TabIndex = 10;
             // 
             // _endTrafficFlow
             // 
-            this._endTrafficFlow.Location = new System.Drawing.Point(632, 234);
+            this._endTrafficFlow.Location = new System.Drawing.Point(660, 278);
             this._endTrafficFlow.Name = "_endTrafficFlow";
             this._endTrafficFlow.Size = new System.Drawing.Size(114, 23);
             this._endTrafficFlow.TabIndex = 9;
@@ -70,7 +74,7 @@ namespace Modeller.WindowsApplication
             // 
             // _startTrafficFlow
             // 
-            this._startTrafficFlow.Location = new System.Drawing.Point(632, 205);
+            this._startTrafficFlow.Location = new System.Drawing.Point(660, 249);
             this._startTrafficFlow.Name = "_startTrafficFlow";
             this._startTrafficFlow.Size = new System.Drawing.Size(114, 23);
             this._startTrafficFlow.TabIndex = 8;
@@ -81,7 +85,7 @@ namespace Modeller.WindowsApplication
             // _currentMapElementDownToLeftTurn
             // 
             this._currentMapElementDownToLeftTurn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._currentMapElementDownToLeftTurn.Location = new System.Drawing.Point(752, 68);
+            this._currentMapElementDownToLeftTurn.Location = new System.Drawing.Point(179, 74);
             this._currentMapElementDownToLeftTurn.Name = "_currentMapElementDownToLeftTurn";
             this._currentMapElementDownToLeftTurn.Size = new System.Drawing.Size(50, 50);
             this._currentMapElementDownToLeftTurn.TabIndex = 7;
@@ -91,7 +95,7 @@ namespace Modeller.WindowsApplication
             // _currentMapElementRightToDownTurn
             // 
             this._currentMapElementRightToDownTurn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._currentMapElementRightToDownTurn.Location = new System.Drawing.Point(696, 68);
+            this._currentMapElementRightToDownTurn.Location = new System.Drawing.Point(123, 74);
             this._currentMapElementRightToDownTurn.Name = "_currentMapElementRightToDownTurn";
             this._currentMapElementRightToDownTurn.Size = new System.Drawing.Size(50, 50);
             this._currentMapElementRightToDownTurn.TabIndex = 6;
@@ -101,7 +105,7 @@ namespace Modeller.WindowsApplication
             // _currentMapElementUpToRightTurn
             // 
             this._currentMapElementUpToRightTurn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._currentMapElementUpToRightTurn.Location = new System.Drawing.Point(640, 68);
+            this._currentMapElementUpToRightTurn.Location = new System.Drawing.Point(67, 74);
             this._currentMapElementUpToRightTurn.Name = "_currentMapElementUpToRightTurn";
             this._currentMapElementUpToRightTurn.Size = new System.Drawing.Size(50, 50);
             this._currentMapElementUpToRightTurn.TabIndex = 5;
@@ -111,7 +115,7 @@ namespace Modeller.WindowsApplication
             // _currentMapElementLeftToUpTurn
             // 
             this._currentMapElementLeftToUpTurn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._currentMapElementLeftToUpTurn.Location = new System.Drawing.Point(584, 68);
+            this._currentMapElementLeftToUpTurn.Location = new System.Drawing.Point(11, 74);
             this._currentMapElementLeftToUpTurn.Name = "_currentMapElementLeftToUpTurn";
             this._currentMapElementLeftToUpTurn.Size = new System.Drawing.Size(50, 50);
             this._currentMapElementLeftToUpTurn.TabIndex = 4;
@@ -121,7 +125,7 @@ namespace Modeller.WindowsApplication
             // _currentMapElementHorizontalRoad
             // 
             this._currentMapElementHorizontalRoad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._currentMapElementHorizontalRoad.Location = new System.Drawing.Point(640, 12);
+            this._currentMapElementHorizontalRoad.Location = new System.Drawing.Point(67, 18);
             this._currentMapElementHorizontalRoad.Name = "_currentMapElementHorizontalRoad";
             this._currentMapElementHorizontalRoad.Size = new System.Drawing.Size(50, 50);
             this._currentMapElementHorizontalRoad.TabIndex = 3;
@@ -131,7 +135,7 @@ namespace Modeller.WindowsApplication
             // _currentMapElementVerticalRoad
             // 
             this._currentMapElementVerticalRoad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._currentMapElementVerticalRoad.Location = new System.Drawing.Point(696, 12);
+            this._currentMapElementVerticalRoad.Location = new System.Drawing.Point(123, 18);
             this._currentMapElementVerticalRoad.Name = "_currentMapElementVerticalRoad";
             this._currentMapElementVerticalRoad.Size = new System.Drawing.Size(50, 50);
             this._currentMapElementVerticalRoad.TabIndex = 2;
@@ -141,7 +145,7 @@ namespace Modeller.WindowsApplication
             // _currentMapElementCrossroad
             // 
             this._currentMapElementCrossroad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._currentMapElementCrossroad.Location = new System.Drawing.Point(584, 12);
+            this._currentMapElementCrossroad.Location = new System.Drawing.Point(11, 18);
             this._currentMapElementCrossroad.Name = "_currentMapElementCrossroad";
             this._currentMapElementCrossroad.Size = new System.Drawing.Size(50, 50);
             this._currentMapElementCrossroad.TabIndex = 1;
@@ -156,29 +160,60 @@ namespace Modeller.WindowsApplication
             this._workField.TabIndex = 0;
             this._workField.MouseClick += new System.Windows.Forms.MouseEventHandler(this._workField_MouseClick);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this._currentMapElementRightToDownTurn);
+            this.groupBox1.Controls.Add(this._currentMapElementLeftToUpTurn);
+            this.groupBox1.Controls.Add(this._currentMapElementCrossroad);
+            this.groupBox1.Controls.Add(this._currentMapElementHorizontalRoad);
+            this.groupBox1.Controls.Add(this._currentMapElementVerticalRoad);
+            this.groupBox1.Controls.Add(this._currentMapElementUpToRightTurn);
+            this.groupBox1.Controls.Add(this._currentMapElementDownToLeftTurn);
+            this.groupBox1.Location = new System.Drawing.Point(527, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(240, 133);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Map configuration";
+            // 
+            // _lblTrafficFlowSpeed
+            // 
+            this._lblTrafficFlowSpeed.AutoSize = true;
+            this._lblTrafficFlowSpeed.Location = new System.Drawing.Point(581, 333);
+            this._lblTrafficFlowSpeed.Name = "_lblTrafficFlowSpeed";
+            this._lblTrafficFlowSpeed.Size = new System.Drawing.Size(41, 13);
+            this._lblTrafficFlowSpeed.TabIndex = 13;
+            this._lblTrafficFlowSpeed.Text = "Speed:";
+            // 
+            // _lblTrafficFlowDensity
+            // 
+            this._lblTrafficFlowDensity.AutoSize = true;
+            this._lblTrafficFlowDensity.Location = new System.Drawing.Point(581, 362);
+            this._lblTrafficFlowDensity.Name = "_lblTrafficFlowDensity";
+            this._lblTrafficFlowDensity.Size = new System.Drawing.Size(45, 13);
+            this._lblTrafficFlowDensity.TabIndex = 14;
+            this._lblTrafficFlowDensity.Text = "Density:";
+            // 
             // ModellerWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1198, 599);
+            this.Controls.Add(this._lblTrafficFlowDensity);
+            this.Controls.Add(this._lblTrafficFlowSpeed);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._workField);
             this.Controls.Add(this._endTrafficFlow);
             this.Controls.Add(this._startTrafficFlow);
             this.Controls.Add(this._trafficFlowDensity);
             this.Controls.Add(this._trafficFlowSpeed);
-            this.Controls.Add(this._currentMapElementDownToLeftTurn);
-            this.Controls.Add(this._currentMapElementRightToDownTurn);
-            this.Controls.Add(this._currentMapElementUpToRightTurn);
-            this.Controls.Add(this._currentMapElementVerticalRoad);
-            this.Controls.Add(this._currentMapElementHorizontalRoad);
-            this.Controls.Add(this._currentMapElementCrossroad);
-            this.Controls.Add(this._currentMapElementLeftToUpTurn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ModellerWindow";
             this.Text = "Crossroad modeller";
             this.Load += new System.EventHandler(this.Modeller_Load);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,6 +233,9 @@ namespace Modeller.WindowsApplication
         private System.Windows.Forms.TextBox _trafficFlowSpeed;
         private System.Windows.Forms.Button _endTrafficFlow;
         private System.Windows.Forms.Button _startTrafficFlow;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label _lblTrafficFlowSpeed;
+        private System.Windows.Forms.Label _lblTrafficFlowDensity;
     }
 }
 

@@ -104,6 +104,16 @@ namespace Simulator.Map.Infrastructure
             return paths[LocationToNumber(to)].ToArray();
         }
 
+        public int NofRows
+        {
+            get { return _nofRows; }
+        }
+
+        public int NofColumns
+        {
+            get { return _nofColumns; }
+        }
+
         private ILocation NumberToLocation(int number)
         {
             int row = number/_nofColumns;

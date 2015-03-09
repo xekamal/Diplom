@@ -3,5 +3,6 @@
     public interface ITrafficManager
     {
         void AddTrafficFlow(ITrafficFlow trafficFlow);
+        void CalculateTrafficData();
     }
 }

@@ -9,5 +9,7 @@
         bool IsConnected(ILocation first, ILocation second);
         void SetConnected(ILocation first, ILocation second);
         ILocation[] FindShortestPath(ILocation from, ILocation to);
+        int NofRows { get; }
+        int NofColumns { get; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.Windows.Forms;
 using Modeller.CustomControls;
 using Simulator.Map;
@@ -10,6 +11,7 @@ using Simulator.Traffic.Domain;
 using Simulator.Traffic.Infrastructure;
 using Crossroad = Modeller.CustomControls.Crossroad;
 using Road = Modeller.CustomControls.Road;
+using Turn = Modeller.CustomControls.Turn;
 
 namespace Modeller.WindowsApplication
 {
@@ -23,11 +25,11 @@ namespace Modeller.WindowsApplication
 
         private readonly IMap _map;
         private readonly Dictionary<ITrafficFlow, RoadLine> _trafficFlowToRoadLineDictionary;
+        private readonly ITrafficManager _trafficManager;
         private CurrentMapElementType _currentMapElementType;
         private ITrafficFlow _currentTrafficFlow;
         private int _customControlSize = 50;
         private bool _isTrafficFlowConfigure;
-        private ITrafficManager _trafficManager;
         private int _workingFieldNofColumns = 10;
         private int _workingFieldNofRows = 10;
 
@@ -423,6 +425,23 @@ namespace Modeller.WindowsApplication
 
         private void _endTrafficFlow_Click(object sender, EventArgs e)
         {
+            double speed = 0.0;
+            double density = 0.0;
+
+            try
+            {
+                speed = double.Parse(_trafficFlowSpeed.Text, CultureInfo.InvariantCulture);
+                density = double.Parse(_trafficFlowDensity.Text, CultureInfo.InvariantCulture);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(@"Invalid traffic flow speed or density", @"Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            _currentTrafficFlow.TrafficSpeed = speed;
+            _currentTrafficFlow.TrafficDensity = density;
             _trafficManager.AddTrafficFlow(_currentTrafficFlow);
         }
     }

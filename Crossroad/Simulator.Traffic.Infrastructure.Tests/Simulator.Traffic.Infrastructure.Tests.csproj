@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{ED676357-A76D-4800-9839-2761E885E24C}</ProjectGuid>
+    <ProjectGuid>{93DC0347-174D-4C04-A8F7-347516FFBF2D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simulator.Traffic.Infrastructure</RootNamespace>
-    <AssemblyName>Simulator.Traffic.Infrastructure</AssemblyName>
+    <RootNamespace>Simulator.Traffic.Infrastructure.Tests</RootNamespace>
+    <AssemblyName>Simulator.Traffic.Infrastructure.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,8 +32,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrafficFlow.cs" />
-    <Compile Include="TrafficManager.cs" />
+    <Compile Include="TrafficManagerTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\Dependencies\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Simulator.Map.Infrastructure\Simulator.Map.Infrastructure.csproj">
@@ -47,6 +51,10 @@
     <ProjectReference Include="..\Simulator.Traffic.Domain\Simulator.Traffic.Domain.csproj">
       <Project>{0ED1EFBD-943A-4E22-8124-A752D47D07BA}</Project>
       <Name>Simulator.Traffic.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator.Traffic.Infrastructure\Simulator.Traffic.Infrastructure.csproj">
+      <Project>{ED676357-A76D-4800-9839-2761E885E24C}</Project>
+      <Name>Simulator.Traffic.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
