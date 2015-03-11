@@ -35,6 +35,7 @@ namespace Simulator.Traffic.Infrastructure
 
                     var crossroadLocation = new Location(row, column);
                     var crossroad = roadElement as ICrossroad;
+                    ZeroCrossroadTrafficData(crossroad);
 
                     foreach (ITrafficFlow trafficFlow in _trafficFlows)
                     {
@@ -168,6 +169,34 @@ namespace Simulator.Traffic.Infrastructure
 
             trafficData.TrafficDensity += trafficFlow.TrafficDensity;
             trafficData.TrafficSpeed += trafficFlow.TrafficSpeed;
+        }
+
+        public void ZeroCrossroadTrafficData(ICrossroad crossroad)
+        {
+            crossroad.LeftToUpTrafficData.TrafficDensity = 0;
+            crossroad.LeftToUpTrafficData.TrafficSpeed = 0;
+            crossroad.LeftToRightTrafficData.TrafficDensity = 0;
+            crossroad.LeftToRightTrafficData.TrafficSpeed = 0;
+            crossroad.LeftToDownTrafficData.TrafficDensity = 0;
+            crossroad.LeftToDownTrafficData.TrafficSpeed = 0;
+            crossroad.UpToLeftTrafficData.TrafficDensity = 0;
+            crossroad.UpToLeftTrafficData.TrafficSpeed = 0;
+            crossroad.UpToDownTrafficData.TrafficDensity = 0;
+            crossroad.UpToDownTrafficData.TrafficSpeed = 0;
+            crossroad.UpToRightTrafficData.TrafficDensity = 0;
+            crossroad.UpToRightTrafficData.TrafficSpeed = 0;
+            crossroad.RightToUpTrafficData.TrafficDensity = 0;
+            crossroad.RightToUpTrafficData.TrafficSpeed = 0;
+            crossroad.RightToLeftTrafficData.TrafficDensity = 0;
+            crossroad.RightToLeftTrafficData.TrafficSpeed = 0;
+            crossroad.RightToDownTrafficData.TrafficDensity = 0;
+            crossroad.RightToDownTrafficData.TrafficSpeed = 0;
+            crossroad.DownToLeftTrafficData.TrafficDensity = 0;
+            crossroad.DownToLeftTrafficData.TrafficSpeed = 0;
+            crossroad.DownToUpTrafficData.TrafficDensity = 0;
+            crossroad.DownToUpTrafficData.TrafficSpeed = 0;
+            crossroad.DownToRightTrafficData.TrafficDensity = 0;
+            crossroad.DownToRightTrafficData.TrafficSpeed = 0;
         }
 
         public bool IsPathOpen(ILocation prev, ILocation crossroadLocation, ILocation next, ICrossroad crossroad)
