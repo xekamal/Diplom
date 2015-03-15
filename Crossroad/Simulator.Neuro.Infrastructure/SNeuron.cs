@@ -1,4 +1,5 @@
-﻿using Simulator.Map;
+﻿using System;
+using Simulator.Map;
 using Simulator.Neuro.Domain;
 
 namespace Simulator.Neuro.Infrastructure
@@ -6,17 +7,17 @@ namespace Simulator.Neuro.Infrastructure
 
     public class SNeuron : ANeuron
     {
-        private double _maxNofCars = 25;
         public ITrafficData TrafficData { get; set; }
 
         public override void Activation()
         {
             _memAxon = axon;
-            if (TrafficData.TrafficDensity > _maxNofCars)
+            double speed = 0;
+            if (Math.Abs(TrafficData.TrafficSpeed) > 0.0001 )
             {
-                _maxNofCars = TrafficData.TrafficDensity;
+                speed = 1 / (TrafficData.TrafficSpeed / 100);
             }
-            axon = TrafficData.TrafficDensity/25;
+            axon = TrafficData.TrafficDensity+speed;
         }
     }
 }

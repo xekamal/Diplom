@@ -5,7 +5,6 @@ namespace Simulator.Neuro.Infrastructure
 {
     public class HNeuron : ANeuron
     {
-        private double[] dendrits;
         private int _nOfDendrits;
 
         public HNeuron(int nOfDendrits)

@@ -48,6 +48,10 @@
       <Project>{F918843F-2A93-4DB5-AA6C-45DEEE03C011}</Project>
       <Name>Simulator.Map.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Simulator.Neuro.Domain\Simulator.Neuro.Domain.csproj">
+      <Project>{6D5EE7C9-251B-4DF8-BF1D-B700368FAC27}</Project>
+      <Name>Simulator.Neuro.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

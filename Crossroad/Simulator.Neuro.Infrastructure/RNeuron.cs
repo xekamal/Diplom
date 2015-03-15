@@ -1,11 +1,12 @@
-﻿using Simulator.Neuro.Domain;
+﻿using Simulator.Map;
+using Simulator.Neuro.Domain;
 
 namespace Simulator.Neuro.Infrastructure
 {
     public class RNeuron : ANeuron
     {
         private int _nOfDendrits;
-
+        public TrafficLightState axonState;
         public RNeuron(int nOfDendrits)
         {
             _nOfDendrits = nOfDendrits;
@@ -19,11 +20,8 @@ namespace Simulator.Neuro.Infrastructure
             {
                 x += dendrits[i];
             };
-            const double T = 0.3;
-            if (x < T)
-                axon = 0;
-            else
-                axon = 1;
+            axonState = TrafficLightState.Red;
+            axon = x;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Simulator.Neuro.Infrastructure
         private const string educationFileName = "d:\\Kate\\Education_example.txt";
         private const string fileW0 = "d:\\Kate\\W0.txt";
         private const string fileWtek = "d:\\Kate\\Wtek.txt";
+        private const string fileState = "d:\\Kate\\states.txt";
         const int nOftarfficLigths = 12;
         const int nOfStates = 4;
         private readonly ICrossroad _crossroad;
@@ -19,7 +20,6 @@ namespace Simulator.Neuro.Infrastructure
         private RNeuron[] RNeurons;
         private double[,] W0;
         private double[,] W1;
-
         private void setTrafficData()
         {
             SNeurons[0].TrafficData = _crossroad.UpToLeftTrafficData;
@@ -171,7 +171,7 @@ namespace Simulator.Neuro.Infrastructure
                 {
                     for (int j = 0; j < nOftarfficLigths; j++)
                     {
-                        sw.Write(string.Format("{0} ", W0[i,j]));
+                        sw.Write(string.Format("{0} ", W0[i,j].ToString(CultureInfo.InvariantCulture)));
                     }
                     sw.WriteLine();
                 }
@@ -179,7 +179,7 @@ namespace Simulator.Neuro.Infrastructure
                 {
                     for (int j = 0; j < nOfStates; j++)
                     {
-                        sw.Write(string.Format("{0} ", W1[i,j]));
+                        sw.Write(string.Format("{0} ", W1[i,j].ToString(CultureInfo.InvariantCulture)));
                     }
                     sw.WriteLine();
                 }
@@ -189,12 +189,91 @@ namespace Simulator.Neuro.Infrastructure
         }
         public void Step()
         {
-            throw new System.NotImplementedException();
+            for (int i = 0; i < nOftarfficLigths; i++)
+            {
+                SNeurons[i].Activation();
+            }
+            for (int i = 0; i < nOftarfficLigths; i++)
+            {
+                for (int j = 0; j < nOftarfficLigths; j++)
+                {
+                    HNeurons[i].dendrits[j] = W0[i, j] * SNeurons[j].axon;
+                }
+                
+                HNeurons[i].Activation();
+            }
+            for (int i = 0; i < nOfStates; i++)
+            {
+                for (int j = 0; j < nOftarfficLigths; j++)
+                {
+                    RNeurons[i].dendrits[j] = W1[j, i]*HNeurons[j].axon;
+                }
+                RNeurons[i].Activation();
+            }
+            SetTrafficLights();
         }
 
         public void Reinforce(double value)
         {
             throw new System.NotImplementedException();
+        }
+
+        private void SetTrafficLights()
+        {
+            double x = 0;
+            for (int i = 0; i < nOfStates; i++)
+            {
+                x+=RNeurons[i].axon;
+            }
+            double T = x/nOfStates;
+            for (int i = 0; i <nOfStates; i++)
+            {
+                if (x < T)
+                {
+                    RNeurons[i].axonState = TrafficLightState.Red;
+                }
+                else
+                {
+                    RNeurons[i].axonState = TrafficLightState.Green;
+                    break;
+                }
+            }
+
+            StreamReader sr = File.OpenText(fileState);
+            for (int i = 0; i < nOfStates; i++)
+            {
+                string s = "";
+                s = sr.ReadLine();
+                var v = s.Split(' ');
+                TrafficLightState[] mas = new TrafficLightState[nOftarfficLigths];
+                if (RNeurons[i].axonState == TrafficLightState.Green && Math.Abs(double.Parse(v[i], CultureInfo.InvariantCulture) - 1) < 0.0001)
+                    {
+                        for (int j = 0; j < nOftarfficLigths; j++)
+                        {
+                            if (int.Parse(v[j+nOfStates-1]) != 0)
+                            {
+                                mas[j+nOfStates-1] = TrafficLightState.Green;
+                            }
+                            else
+                            {
+                                mas[j+nOfStates-1] = TrafficLightState.Red;
+                            }
+                        }
+                        _crossroad.UpToLeftTrafficLight.State = mas[0];
+                        _crossroad.RightToLeftTrafficLight.State = mas[1];
+                        _crossroad.DownToLeftTrafficLight.State = mas[2];
+                        _crossroad.LeftToDownTrafficLight.State = mas[3];
+                        _crossroad.UpToDownTrafficLight.State = mas[4];
+                        _crossroad.RightToDownTrafficLight.State = mas[5];
+                        _crossroad.DownToRightTrafficLight.State = mas[6];
+                        _crossroad.LeftToRightTrafficLight.State = mas[7];
+                        _crossroad.UpToRightTrafficLight.State = mas[8];
+                        _crossroad.RightToDownTrafficLight.State = mas[9];
+                        _crossroad.DownToUpTrafficLight.State = mas[10];
+                        _crossroad.LeftToUpTrafficLight.State = mas[11];
+                    }
+            }
+            sr.Close();
         }
     }
 }
