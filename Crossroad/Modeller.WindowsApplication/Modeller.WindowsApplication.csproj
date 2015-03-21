@@ -70,6 +70,14 @@
       <Project>{3284018A-DAC4-49E1-A2D5-94C2CBB3F561}</Project>
       <Name>Modeller.CustomControls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Simulator.Engine.Domain\Simulator.Engine.Domain.csproj">
+      <Project>{E7BA5885-4FCE-4072-ACC1-5B29B349C2BD}</Project>
+      <Name>Simulator.Engine.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator.Engine.Infrastructure\Simulator.Engine.Infrastructure.csproj">
+      <Project>{6AB297A0-80DA-4502-AD0A-C553B686F909}</Project>
+      <Name>Simulator.Engine.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Simulator.Map.Infrastructure\Simulator.Map.Infrastructure.csproj">
       <Project>{4239C88B-CDAA-4F0E-A924-E1DA9CBB0042}</Project>
       <Name>Simulator.Map.Infrastructure</Name>

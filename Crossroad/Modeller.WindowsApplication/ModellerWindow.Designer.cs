@@ -45,6 +45,7 @@ namespace Modeller.WindowsApplication
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._lblTrafficFlowSpeed = new System.Windows.Forms.Label();
             this._lblTrafficFlowDensity = new System.Windows.Forms.Label();
+            this._btnStep = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -194,11 +195,22 @@ namespace Modeller.WindowsApplication
             this._lblTrafficFlowDensity.TabIndex = 14;
             this._lblTrafficFlowDensity.Text = "Density:";
             // 
+            // _btnStep
+            // 
+            this._btnStep.Location = new System.Drawing.Point(644, 451);
+            this._btnStep.Name = "_btnStep";
+            this._btnStep.Size = new System.Drawing.Size(101, 95);
+            this._btnStep.TabIndex = 15;
+            this._btnStep.Text = "Step";
+            this._btnStep.UseVisualStyleBackColor = true;
+            this._btnStep.Click += new System.EventHandler(this._btnStep_Click);
+            // 
             // ModellerWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1198, 599);
+            this.Controls.Add(this._btnStep);
             this.Controls.Add(this._lblTrafficFlowDensity);
             this.Controls.Add(this._lblTrafficFlowSpeed);
             this.Controls.Add(this.groupBox1);
@@ -236,6 +248,7 @@ namespace Modeller.WindowsApplication
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label _lblTrafficFlowSpeed;
         private System.Windows.Forms.Label _lblTrafficFlowDensity;
+        private System.Windows.Forms.Button _btnStep;
     }
 }
 

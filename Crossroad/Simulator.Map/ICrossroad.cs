@@ -36,6 +36,22 @@ namespace Simulator.Map
         ITrafficData DownToUpTrafficData { get; set; }
         ITrafficData DownToRightTrafficData { get; set; }
 
+        double LeftToUpNofPassedCars { get; set; }
+        double LeftToRightNofPassedCars { get; set; }
+        double LeftToDownNofPassedCars { get; set; }
+
+        double UpToLeftNofPassedCars { get; set; }
+        double UpToDownNofPassedCars { get; set; }
+        double UpToRightNofPassedCars { get; set; }
+
+        double RightToUpNofPassedCars { get; set; }
+        double RightToLeftNofPassedCars { get; set; }
+        double RightToDownNofPassedCars { get; set; }
+
+        double DownToLeftNofPassedCars { get; set; }
+        double DownToUpNofPassedCars { get; set; }
+        double DownToRightNofPassedCars { get; set; }
+
         ICrossroadController CrossroadController { get; set; }
     }
 }

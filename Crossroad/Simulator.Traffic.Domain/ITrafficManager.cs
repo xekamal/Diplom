@@ -4,5 +4,7 @@
     {
         void AddTrafficFlow(ITrafficFlow trafficFlow);
         void CalculateTrafficData();
+        void CalculateNofPassedCars(double seconds);
+        void SwitchTrafficLights();
     }
 }

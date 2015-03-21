@@ -5,6 +5,8 @@ using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Windows.Forms;
 using Modeller.CustomControls;
+using Simulator.Engine.Domain;
+using Simulator.Engine.Infrastructure;
 using Simulator.Map;
 using Simulator.Map.Infrastructure;
 using Simulator.Traffic.Domain;
@@ -32,6 +34,7 @@ namespace Modeller.WindowsApplication
         private bool _isTrafficFlowConfigure;
         private int _workingFieldNofColumns = 10;
         private int _workingFieldNofRows = 10;
+        private ISimulatorEngine _simulatorEngine;
 
         public ModellerWindow()
         {
@@ -443,6 +446,16 @@ namespace Modeller.WindowsApplication
             _currentTrafficFlow.TrafficSpeed = speed;
             _currentTrafficFlow.TrafficDensity = density;
             _trafficManager.AddTrafficFlow(_currentTrafficFlow);
+        }
+
+        private void _btnStep_Click(object sender, EventArgs e)
+        {
+            if (_simulatorEngine == null)
+            {
+                _simulatorEngine = new SimulatorEngine(_trafficManager);
+            }
+
+            _simulatorEngine.Step(30);
         }
     }
 }

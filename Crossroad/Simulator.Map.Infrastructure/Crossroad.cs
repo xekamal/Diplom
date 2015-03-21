@@ -63,6 +63,18 @@ namespace Simulator.Map.Infrastructure
         public ITrafficData DownToLeftTrafficData { get; set; }
         public ITrafficData DownToUpTrafficData { get; set; }
         public ITrafficData DownToRightTrafficData { get; set; }
+        public double LeftToUpNofPassedCars { get; set; }
+        public double LeftToRightNofPassedCars { get; set; }
+        public double LeftToDownNofPassedCars { get; set; }
+        public double UpToLeftNofPassedCars { get; set; }
+        public double UpToDownNofPassedCars { get; set; }
+        public double UpToRightNofPassedCars { get; set; }
+        public double RightToUpNofPassedCars { get; set; }
+        public double RightToLeftNofPassedCars { get; set; }
+        public double RightToDownNofPassedCars { get; set; }
+        public double DownToLeftNofPassedCars { get; set; }
+        public double DownToUpNofPassedCars { get; set; }
+        public double DownToRightNofPassedCars { get; set; }
         public ICrossroadController CrossroadController { get; set; }
 
         private void SetAllTrafficLights(TrafficLightState state)
