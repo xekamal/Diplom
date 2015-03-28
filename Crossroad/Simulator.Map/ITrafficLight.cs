@@ -1,6 +1,8 @@
-﻿namespace Simulator.Map
+﻿using System;
+
+namespace Simulator.Map
 {
-    public interface ITrafficLight
+    public interface ITrafficLight : ICloneable
     {
          TrafficLightState State { get; set; }
     }

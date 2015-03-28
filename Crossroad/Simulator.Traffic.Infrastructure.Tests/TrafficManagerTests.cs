@@ -97,7 +97,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
         [Test]
         public void CalculateTrafficDataAddsDifferentTrafficFlows()
         {
-            double density1 = 1;
+            double density1 = 0.1;
             double speed1 = 10;
             var trafficFlow1 = new TrafficFlow {TrafficDensity = density1, TrafficSpeed = speed1};
             trafficFlow1.Path.Add(new Location(1, 0));
@@ -105,7 +105,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             trafficFlow1.Path.Add(new Location(1, 2));
             _trafficManager.AddTrafficFlow(trafficFlow1);
 
-            double density2 = 2;
+            double density2 = 0.2;
             double speed2 = 12;
             var trafficFlow2 = new TrafficFlow {TrafficDensity = density2, TrafficSpeed = speed2};
             trafficFlow2.Path.Add(new Location(2, 0));
@@ -121,7 +121,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             Assert.AreEqual(0, crossroad.LeftToUpTrafficData.TrafficDensity, Epsilon);
             Assert.AreEqual(0, crossroad.LeftToUpTrafficData.TrafficSpeed, Epsilon);
             Assert.AreEqual(density1 + density2, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
-            Assert.AreEqual(speed1 + speed2, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual((speed1 + speed2) / 2, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
             Assert.AreEqual(0, crossroad.LeftToDownTrafficData.TrafficDensity, Epsilon);
             Assert.AreEqual(0, crossroad.LeftToDownTrafficData.TrafficSpeed, Epsilon);
 
@@ -150,7 +150,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
         [Test]
         public void CalculateTrafficDataDoNotAddIfRedTrafficLight()
         {
-            double density1 = 2;
+            double density1 = 0.2;
             double speed1 = 3;
             var trafficFlow1 = new TrafficFlow {TrafficDensity = density1, TrafficSpeed = speed1};
             trafficFlow1.Path.Add(new Location(1, 0));
@@ -160,7 +160,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             trafficFlow1.Path.Add(new Location(1, 4));
             _trafficManager.AddTrafficFlow(trafficFlow1);
 
-            double density2 = 4;
+            double density2 = 0.4;
             double speed2 = 7;
             var trafficFlow2 = new TrafficFlow {TrafficDensity = density2, TrafficSpeed = speed2};
             trafficFlow2.Path.Add(new Location(1, 2));
@@ -227,7 +227,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
         [Test]
         public void CheckAllLinesAndRecalculate()
         {
-            double leftToUpDensity = 1;
+            double leftToUpDensity = 0.1;
             double leftToUpSpeed = 2;
             var leftToUpTrafficFlow = new TrafficFlow {TrafficDensity = leftToUpDensity, TrafficSpeed = leftToUpSpeed};
             leftToUpTrafficFlow.Path.Add(new Location(1, 0));
@@ -235,7 +235,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             leftToUpTrafficFlow.Path.Add(new Location(0, 1));
             _trafficManager.AddTrafficFlow(leftToUpTrafficFlow);
 
-            double leftToRightDensity = 3;
+            double leftToRightDensity = 0.3;
             double leftToRightSpeed = 4;
             var leftToRightTrafficFlow = new TrafficFlow
             {
@@ -247,7 +247,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             leftToRightTrafficFlow.Path.Add(new Location(1, 2));
             _trafficManager.AddTrafficFlow(leftToRightTrafficFlow);
 
-            double leftToDownDensity = 5;
+            double leftToDownDensity = 0.5;
             double leftToDownSpeed = 6;
             var leftToDownTrafficFlow = new TrafficFlow
             {
@@ -259,7 +259,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             leftToDownTrafficFlow.Path.Add(new Location(2, 1));
             _trafficManager.AddTrafficFlow(leftToDownTrafficFlow);
 
-            double rightToDownDensity = 7;
+            double rightToDownDensity = 0.7;
             double rightToDownSpeed = 8;
             var rightToDownTrafficFlow = new TrafficFlow
             {
@@ -271,7 +271,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             rightToDownTrafficFlow.Path.Add(new Location(2, 1));
             _trafficManager.AddTrafficFlow(rightToDownTrafficFlow);
 
-            double rightToLeftDensity = 9;
+            double rightToLeftDensity = 0.9;
             double rightToLeftSpeed = 10;
             var rightToLeftTrafficFlow = new TrafficFlow
             {
@@ -283,7 +283,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             rightToLeftTrafficFlow.Path.Add(new Location(1, 0));
             _trafficManager.AddTrafficFlow(rightToLeftTrafficFlow);
 
-            double rightToUpDensity = 11;
+            double rightToUpDensity = 0.11;
             double rightToUpSpeed = 12;
             var rightToUpTrafficFlow = new TrafficFlow
             {
@@ -295,7 +295,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             rightToUpTrafficFlow.Path.Add(new Location(0, 1));
             _trafficManager.AddTrafficFlow(rightToUpTrafficFlow);
 
-            double upToLeftDensity = 13;
+            double upToLeftDensity = 0.13;
             double upToLeftSpeed = 14;
             var upToLeftTrafficFlow = new TrafficFlow {TrafficDensity = upToLeftDensity, TrafficSpeed = upToLeftSpeed};
             upToLeftTrafficFlow.Path.Add(new Location(0, 1));
@@ -303,7 +303,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             upToLeftTrafficFlow.Path.Add(new Location(1, 0));
             _trafficManager.AddTrafficFlow(upToLeftTrafficFlow);
 
-            double upToDownDensity = 15;
+            double upToDownDensity = 0.15;
             double upToDownSpeed = 16;
             var upToDownTrafficFlow = new TrafficFlow {TrafficDensity = upToDownDensity, TrafficSpeed = upToDownSpeed};
             upToDownTrafficFlow.Path.Add(new Location(0, 1));
@@ -311,7 +311,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             upToDownTrafficFlow.Path.Add(new Location(2, 1));
             _trafficManager.AddTrafficFlow(upToDownTrafficFlow);
 
-            double upToRightDensity = 17;
+            double upToRightDensity = 0.17;
             double upToRightSpeed = 18;
             var upToRightTrafficFlow = new TrafficFlow
             {
@@ -323,7 +323,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             upToRightTrafficFlow.Path.Add(new Location(1, 2));
             _trafficManager.AddTrafficFlow(upToRightTrafficFlow);
 
-            double downToLeftDensity = 19;
+            double downToLeftDensity = 0.19;
             double downToLeftSpeed = 20;
             var downToLeftTrafficFlow = new TrafficFlow
             {
@@ -335,7 +335,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             downToLeftTrafficFlow.Path.Add(new Location(1, 0));
             _trafficManager.AddTrafficFlow(downToLeftTrafficFlow);
 
-            double downToUpDensity = 21;
+            double downToUpDensity = 0.21;
             double downToUpSpeed = 22;
             var downToUpTrafficFlow = new TrafficFlow {TrafficDensity = downToUpDensity, TrafficSpeed = downToUpSpeed};
             downToUpTrafficFlow.Path.Add(new Location(2, 1));
@@ -343,7 +343,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             downToUpTrafficFlow.Path.Add(new Location(0, 1));
             _trafficManager.AddTrafficFlow(downToUpTrafficFlow);
 
-            double downToRightDensity = 23;
+            double downToRightDensity = 0.23;
             double downToRightSpeed = 24;
             var downToRightTrafficFlow = new TrafficFlow
             {
@@ -482,6 +482,242 @@ namespace Simulator.Traffic.Infrastructure.Tests
             _trafficManager.CalculateNofPassedCars(60);
 
             Assert.AreEqual(41.6666, crossroad.LeftToRightNofPassedCars, Epsilon);
+        }
+
+        [Test]
+        public void DensityCannotBeMoreThanOneTest()
+        {
+            double density1 = 0.9;
+            double speed1 = 10;
+            var trafficFlow1 = new TrafficFlow { TrafficDensity = density1, TrafficSpeed = speed1 };
+            trafficFlow1.Path.Add(new Location(1, 0));
+            trafficFlow1.Path.Add(new Location(1, 1));
+            trafficFlow1.Path.Add(new Location(1, 2));
+            _trafficManager.AddTrafficFlow(trafficFlow1);
+
+            double density2 = 0.2;
+            double speed2 = 12;
+            var trafficFlow2 = new TrafficFlow { TrafficDensity = density2, TrafficSpeed = speed2 };
+            trafficFlow2.Path.Add(new Location(2, 0));
+            trafficFlow2.Path.Add(new Location(1, 0));
+            trafficFlow2.Path.Add(new Location(1, 1));
+            trafficFlow2.Path.Add(new Location(1, 2));
+            _trafficManager.AddTrafficFlow(trafficFlow2);
+
+            _trafficManager.CalculateTrafficData();
+
+            var crossroad = (ICrossroad)_map.GetElement(1, 1);
+
+            Assert.AreEqual(1.0, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
+        }
+
+        [Test]
+        public void AverageSpeedTest()
+        {
+            double density1 = 0.1;
+            double speed1 = 10;
+            var trafficFlow1 = new TrafficFlow { TrafficDensity = density1, TrafficSpeed = speed1 };
+            trafficFlow1.Path.Add(new Location(0, 1));
+            trafficFlow1.Path.Add(new Location(1, 1));
+            trafficFlow1.Path.Add(new Location(1, 2));
+            trafficFlow1.Path.Add(new Location(1, 3));
+            trafficFlow1.Path.Add(new Location(1, 4));
+            _trafficManager.AddTrafficFlow(trafficFlow1);
+
+            double density2 = 0.2;
+            double speed2 = 11;
+            var trafficFlow2 = new TrafficFlow { TrafficDensity = density2, TrafficSpeed = speed2 };
+            trafficFlow2.Path.Add(new Location(1, 0));
+            trafficFlow2.Path.Add(new Location(1, 1));
+            trafficFlow2.Path.Add(new Location(1, 2));
+            trafficFlow2.Path.Add(new Location(1, 3));
+            trafficFlow2.Path.Add(new Location(1, 4));
+            _trafficManager.AddTrafficFlow(trafficFlow2);
+
+            double density3 = 0.3;
+            double speed3 = 11;
+            var trafficFlow3 = new TrafficFlow { TrafficDensity = density3, TrafficSpeed = speed3 };
+            trafficFlow3.Path.Add(new Location(2, 1));
+            trafficFlow3.Path.Add(new Location(1, 1));
+            trafficFlow3.Path.Add(new Location(1, 2));
+            trafficFlow3.Path.Add(new Location(1, 3));
+            trafficFlow3.Path.Add(new Location(1, 4));
+            _trafficManager.AddTrafficFlow(trafficFlow3);
+
+            var crossroad = (ICrossroad)_map.GetElement(1, 1);
+            crossroad.UpToRightTrafficLight.State = TrafficLightState.Green;
+            crossroad.LeftToRightTrafficLight.State = TrafficLightState.Red;
+            crossroad.DownToRightTrafficLight.State = TrafficLightState.Green;
+
+            _trafficManager.CalculateTrafficData();
+
+            var crossroadToCheck = (ICrossroad)_map.GetElement(1, 3);
+            Assert.AreEqual(density1 + density3, crossroadToCheck.LeftToRightTrafficData.TrafficDensity, Epsilon);
+            Assert.AreEqual((speed1 + speed3) / 2, crossroadToCheck.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(2, crossroadToCheck.LeftToRightTrafficData.NofPassingTrafficFlows, Epsilon);
+        }
+
+        [Test]
+        public void CheckThatSpeedIsZeroAndDensityIsIncrementingIfTrafficLightIsRedTest()
+        {
+            double density = 0.1;
+            double speed = 10;
+            var trafficFlow = new TrafficFlow { TrafficDensity = density, TrafficSpeed = speed };
+            trafficFlow.Path.Add(new Location(1, 0));
+            trafficFlow.Path.Add(new Location(1, 1));
+            trafficFlow.Path.Add(new Location(1, 2));
+            _trafficManager.AddTrafficFlow(trafficFlow);
+
+            _trafficManager.CalculateTrafficData();
+            var crossroad = (ICrossroad)_map.GetElement(1, 1);
+
+            Assert.AreEqual(speed, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(density, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
+
+            _trafficManager.CalculateTrafficData(60);
+
+            Assert.AreEqual(0.0, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(0.2666, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
+        }
+
+        [Test]
+        public void CheckThatSpeedIsNotZeroAndDensityIsDecreasingIfTrafficLightIsGreenTest()
+        {
+            double density = 0.1;
+            double speed = 10;
+            var trafficFlow = new TrafficFlow { TrafficDensity = density, TrafficSpeed = speed };
+            trafficFlow.Path.Add(new Location(1, 0));
+            trafficFlow.Path.Add(new Location(1, 1));
+            trafficFlow.Path.Add(new Location(1, 2));
+            _trafficManager.AddTrafficFlow(trafficFlow);
+
+            _trafficManager.CalculateTrafficData();
+            var crossroad = (ICrossroad)_map.GetElement(1, 1);
+
+            _trafficManager.CalculateTrafficData(60);
+
+            Assert.AreEqual(0.0, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(0.2666, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
+
+            _trafficManager.CalculateTrafficData(60);
+
+            Assert.AreEqual(0.0, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(0.4333, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
+
+            crossroad.LeftToRightTrafficLight.State = TrafficLightState.Green;
+
+            _trafficManager.CalculateTrafficData(60);
+
+            Assert.AreEqual(speed, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(0.2666, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
+        }
+
+        [Test]
+        public void DesnsityCannotBeIncreasedMoreThanOneTest()
+        {
+            double density = 0.9;
+            double speed = 10;
+            var trafficFlow = new TrafficFlow { TrafficDensity = density, TrafficSpeed = speed };
+            trafficFlow.Path.Add(new Location(1, 0));
+            trafficFlow.Path.Add(new Location(1, 1));
+            trafficFlow.Path.Add(new Location(1, 2));
+            _trafficManager.AddTrafficFlow(trafficFlow);
+
+            _trafficManager.CalculateTrafficData();
+            var crossroad = (ICrossroad)_map.GetElement(1, 1);
+
+            _trafficManager.CalculateTrafficData(60);
+
+            Assert.AreEqual(0.0, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(1.0, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
+        }
+
+        [Test]
+        public void DesnsityCannotBeDecreasedMoreThanCurrentTest()
+        {
+            double density = 0.1;
+            double speed = 10;
+            var trafficFlow = new TrafficFlow { TrafficDensity = density, TrafficSpeed = speed };
+            trafficFlow.Path.Add(new Location(1, 0));
+            trafficFlow.Path.Add(new Location(1, 1));
+            trafficFlow.Path.Add(new Location(1, 2));
+            _trafficManager.AddTrafficFlow(trafficFlow);
+
+            _trafficManager.CalculateTrafficData();
+            var crossroad = (ICrossroad)_map.GetElement(1, 1);
+
+            _trafficManager.CalculateTrafficData(60);
+
+            Assert.AreEqual(0.0, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(0.2666, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
+
+            crossroad.LeftToRightTrafficLight.State = TrafficLightState.Green;
+
+            _trafficManager.CalculateTrafficData(60);
+
+            Assert.AreEqual(speed, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(density, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
+
+            _trafficManager.CalculateTrafficData(60);
+
+            Assert.AreEqual(speed, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(density, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
+        }
+
+        [Test]
+        public void CheckIncreaseDecreaseDensityWitchTrafficFlowChangeTest()
+        {
+            double density1 = 0.1;
+            double speed1 = 5;
+            var trafficFlow1 = new TrafficFlow { TrafficDensity = density1, TrafficSpeed = speed1 };
+            trafficFlow1.Path.Add(new Location(0, 1));
+            trafficFlow1.Path.Add(new Location(1, 1));
+            trafficFlow1.Path.Add(new Location(1, 2));
+            trafficFlow1.Path.Add(new Location(1, 3));
+            trafficFlow1.Path.Add(new Location(1, 4));
+            _trafficManager.AddTrafficFlow(trafficFlow1);
+            
+            double density2 = 0.2;
+            double speed2 = 10;
+            var trafficFlow2 = new TrafficFlow { TrafficDensity = density2, TrafficSpeed = speed2 };
+            trafficFlow2.Path.Add(new Location(1, 0));
+            trafficFlow2.Path.Add(new Location(1, 1));
+            trafficFlow2.Path.Add(new Location(1, 2));
+            trafficFlow2.Path.Add(new Location(1, 3));
+            trafficFlow2.Path.Add(new Location(1, 4));
+            _trafficManager.AddTrafficFlow(trafficFlow2);
+
+            var crossroadToSwitch = (ICrossroad)_map.GetElement(1, 1);
+            crossroadToSwitch.UpToRightTrafficLight.State = TrafficLightState.Green;
+            crossroadToSwitch.LeftToRightTrafficLight.State = TrafficLightState.Green;
+
+            _trafficManager.CalculateTrafficData();
+            var crossroad = (ICrossroad)_map.GetElement(1, 3);
+
+            _trafficManager.CalculateTrafficData(30);
+            _trafficManager.CalculateTrafficData(30);
+
+            Assert.AreEqual(0.0, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(0.675, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
+
+            crossroadToSwitch.UpToRightTrafficLight.State = TrafficLightState.Red;
+
+            _trafficManager.CalculateTrafficData(30);
+
+            Assert.AreEqual(0.0, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(0.8416, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
+
+            crossroad.LeftToRightTrafficLight.State = TrafficLightState.Green;
+
+            _trafficManager.CalculateTrafficData(30);
+
+            Assert.AreEqual(speed2, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(0.675, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
+
+            _trafficManager.CalculateTrafficData(120);
+
+            Assert.AreEqual(speed2, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
+            Assert.AreEqual(density2, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
         }
     }
 }

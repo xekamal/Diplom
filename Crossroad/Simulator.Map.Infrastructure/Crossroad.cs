@@ -38,6 +38,7 @@ namespace Simulator.Map.Infrastructure
             CrossroadController = new CrossroadControllerReinforcement(this);
         }
 
+
         public double Length { get; set; }
         public ITrafficLight LeftToUpTrafficLight { get; set; }
         public ITrafficLight LeftToRightTrafficLight { get; set; }
@@ -76,6 +77,52 @@ namespace Simulator.Map.Infrastructure
         public double DownToUpNofPassedCars { get; set; }
         public double DownToRightNofPassedCars { get; set; }
         public ICrossroadController CrossroadController { get; set; }
+
+        public object Clone()
+        {
+            ICrossroad copy = new Crossroad();
+
+            copy.Length = Length;
+            copy.LeftToUpTrafficLight = LeftToUpTrafficLight.Clone() as ITrafficLight;
+            copy.LeftToRightTrafficLight = LeftToRightTrafficLight.Clone() as ITrafficLight;
+            copy.LeftToDownTrafficLight = LeftToDownTrafficLight.Clone() as ITrafficLight;
+            copy.UpToLeftTrafficLight = UpToLeftTrafficLight.Clone() as ITrafficLight;
+            copy.UpToDownTrafficLight = UpToDownTrafficLight.Clone() as ITrafficLight;
+            copy.UpToRightTrafficLight = UpToRightTrafficLight.Clone() as ITrafficLight;
+            copy.RightToUpTrafficLight = RightToUpTrafficLight.Clone() as ITrafficLight;
+            copy.RightToLeftTrafficLight = RightToLeftTrafficLight.Clone() as ITrafficLight;
+            copy.RightToDownTrafficLight = RightToDownTrafficLight.Clone() as ITrafficLight;
+            copy.DownToLeftTrafficLight = DownToLeftTrafficLight.Clone() as ITrafficLight;
+            copy.DownToUpTrafficLight = DownToUpTrafficLight.Clone() as ITrafficLight;
+            copy.DownToRightTrafficLight = DownToRightTrafficLight.Clone() as ITrafficLight;
+            copy.LeftToUpTrafficData = LeftToUpTrafficData.Clone() as ITrafficData;
+            copy.LeftToRightTrafficData = LeftToRightTrafficData.Clone() as ITrafficData;
+            copy.LeftToDownTrafficData = LeftToDownTrafficData.Clone() as ITrafficData;
+            copy.UpToLeftTrafficData = UpToLeftTrafficData.Clone() as ITrafficData;
+            copy.UpToDownTrafficData = UpToDownTrafficData.Clone() as ITrafficData;
+            copy.UpToRightTrafficData = UpToRightTrafficData.Clone() as ITrafficData;
+            copy.RightToUpTrafficData = RightToUpTrafficData.Clone() as ITrafficData;
+            copy.RightToLeftTrafficData = RightToLeftTrafficData.Clone() as ITrafficData;
+            copy.RightToDownTrafficData = RightToDownTrafficData.Clone() as ITrafficData;
+            copy.DownToLeftTrafficData = DownToLeftTrafficData.Clone() as ITrafficData;
+            copy.DownToUpTrafficData = DownToUpTrafficData.Clone() as ITrafficData;
+            copy.DownToRightTrafficData = DownToRightTrafficData.Clone() as ITrafficData;
+            copy.LeftToUpNofPassedCars = LeftToUpNofPassedCars;
+            copy.LeftToRightNofPassedCars = LeftToRightNofPassedCars;
+            copy.LeftToDownNofPassedCars = LeftToDownNofPassedCars;
+            copy.UpToLeftNofPassedCars = UpToLeftNofPassedCars;
+            copy.UpToDownNofPassedCars = UpToDownNofPassedCars;
+            copy.UpToRightNofPassedCars = UpToRightNofPassedCars;
+            copy.RightToUpNofPassedCars = RightToUpNofPassedCars;
+            copy.RightToLeftNofPassedCars = RightToLeftNofPassedCars;
+            copy.RightToDownNofPassedCars = RightToDownNofPassedCars;
+            copy.DownToLeftNofPassedCars = DownToLeftNofPassedCars;
+            copy.DownToUpNofPassedCars = DownToUpNofPassedCars;
+            copy.DownToRightNofPassedCars = DownToRightNofPassedCars;
+            copy.CrossroadController = CrossroadController;
+
+            return copy;
+        }
 
         private void SetAllTrafficLights(TrafficLightState state)
         {

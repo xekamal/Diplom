@@ -1,8 +1,9 @@
-﻿using Simulator.Neuro.Domain;
+﻿using System;
+using Simulator.Neuro.Domain;
 
 namespace Simulator.Map
 {
-    public interface ICrossroad : IMapElement
+    public interface ICrossroad : IMapElement, ICloneable
     {
         ITrafficLight LeftToUpTrafficLight { get; set; }
         ITrafficLight LeftToRightTrafficLight { get; set; }

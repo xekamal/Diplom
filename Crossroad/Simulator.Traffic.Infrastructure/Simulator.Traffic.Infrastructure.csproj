@@ -44,6 +44,10 @@
       <Project>{F918843F-2A93-4DB5-AA6C-45DEEE03C011}</Project>
       <Name>Simulator.Map.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Simulator.Neuro.Domain\Simulator.Neuro.Domain.csproj">
+      <Project>{6D5EE7C9-251B-4DF8-BF1D-B700368FAC27}</Project>
+      <Name>Simulator.Neuro.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Simulator.Traffic.Domain\Simulator.Traffic.Domain.csproj">
       <Project>{0ED1EFBD-943A-4E22-8124-A752D47D07BA}</Project>
       <Name>Simulator.Traffic.Domain</Name>
