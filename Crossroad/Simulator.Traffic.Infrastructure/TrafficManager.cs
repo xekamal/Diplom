@@ -11,11 +11,13 @@ namespace Simulator.Traffic.Infrastructure
         private const double Epsilon = 0.000001;
         private readonly IMap _map;
         private readonly IList<ITrafficFlow> _trafficFlows;
+        private double[,] marks;
 
         public TrafficManager(IMap map)
         {
             _map = map;
             _trafficFlows = new List<ITrafficFlow>();
+            marks = new double[_map.NofRows, _map.NofColumns];
         }
 
         public void AddTrafficFlow(ITrafficFlow trafficFlow)
@@ -189,7 +191,7 @@ namespace Simulator.Traffic.Infrastructure
             }
         }
 
-        public void SwitchTrafficLights()
+        public void BeginSwitchTrafficLights()
         {
             for (int row = 0; row < _map.NofRows; row++)
             {
@@ -202,11 +204,27 @@ namespace Simulator.Traffic.Infrastructure
                     }
 
                     var crossroad = roadElement as ICrossroad;
-
+                    marks[row, column] = crossroad.GetMark();
                     crossroad.CrossroadController.Step();
-                    // calculate nagradu
-                    double nagrada = 0.0;
-                    crossroad.CrossroadController.Reinforce(nagrada);
+                }
+            }
+        }
+
+        public void EndSwitchTrafficLights()
+        {
+            for (int row = 0; row < _map.NofRows; row++)
+            {
+                for (int column = 0; column < _map.NofColumns; column++)
+                {
+                    IMapElement roadElement = _map.GetElement(row, column);
+                    if (roadElement == null || !(roadElement is ICrossroad))
+                    {
+                        continue;
+                    }
+
+                    var crossroad = roadElement as ICrossroad;
+                    double mark = crossroad.GetMark();
+                    crossroad.CrossroadController.Reinforce(mark - marks[row, column]);
                 }
             }
         }

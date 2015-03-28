@@ -6,6 +6,7 @@
         void CalculateTrafficData();
         void CalculateTrafficData(double seconds);
         void CalculateNofPassedCars(double seconds);
-        void SwitchTrafficLights();
+        void BeginSwitchTrafficLights();
+        void EndSwitchTrafficLights();
     }
 }

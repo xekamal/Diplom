@@ -15,8 +15,9 @@ namespace Simulator.Engine.Infrastructure
 
         public void Step(double seconds)
         {
-            _trafficManager.SwitchTrafficLights();
+            _trafficManager.BeginSwitchTrafficLights();
             _trafficManager.CalculateTrafficData();
+            _trafficManager.EndSwitchTrafficLights();
             _trafficManager.CalculateNofPassedCars(seconds);
         }
 

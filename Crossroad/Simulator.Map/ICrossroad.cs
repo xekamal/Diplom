@@ -54,5 +54,7 @@ namespace Simulator.Map
         double DownToRightNofPassedCars { get; set; }
 
         ICrossroadController CrossroadController { get; set; }
+
+        double GetMark();
     }
 }

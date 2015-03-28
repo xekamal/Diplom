@@ -78,6 +78,36 @@ namespace Simulator.Map.Infrastructure
         public double DownToRightNofPassedCars { get; set; }
         public ICrossroadController CrossroadController { get; set; }
 
+        private double GetTrafficDataMark(ITrafficLight trafficLight, ITrafficData trafficData)
+        {
+            if (trafficLight.State == TrafficLightState.Green)
+            {
+                return trafficData.TrafficDensity + 1 / trafficData.TrafficSpeed;
+            }
+
+            return 0.0;
+        }
+
+        public double GetMark()
+        {
+            double mark = 0.0;
+
+            mark += GetTrafficDataMark(LeftToUpTrafficLight, LeftToUpTrafficData);
+            mark += GetTrafficDataMark(LeftToRightTrafficLight, LeftToRightTrafficData);
+            mark += GetTrafficDataMark(LeftToDownTrafficLight, LeftToDownTrafficData);
+            mark += GetTrafficDataMark(UpToLeftTrafficLight, UpToLeftTrafficData);
+            mark += GetTrafficDataMark(UpToDownTrafficLight, UpToDownTrafficData);
+            mark += GetTrafficDataMark(UpToRightTrafficLight, UpToRightTrafficData);
+            mark += GetTrafficDataMark(RightToUpTrafficLight, RightToUpTrafficData);
+            mark += GetTrafficDataMark(RightToLeftTrafficLight, RightToLeftTrafficData);
+            mark += GetTrafficDataMark(RightToDownTrafficLight, RightToDownTrafficData);
+            mark += GetTrafficDataMark(DownToLeftTrafficLight, DownToLeftTrafficData);
+            mark += GetTrafficDataMark(DownToUpTrafficLight, DownToUpTrafficData);
+            mark += GetTrafficDataMark(DownToRightTrafficLight, DownToRightTrafficData);
+
+            return mark;
+        }
+
         public object Clone()
         {
             ICrossroad copy = new Crossroad();
