@@ -22,18 +22,18 @@ namespace Simulator.Neuro.Infrastructure
         private double[,] W1;
         private void setTrafficData()
         {
-            SNeurons[0].TrafficData = _crossroad.UpToLeftTrafficData;
-            SNeurons[1].TrafficData = _crossroad.RightToLeftTrafficData;
-            SNeurons[2].TrafficData = _crossroad.DownToLeftTrafficData;
-            SNeurons[3].TrafficData = _crossroad.LeftToDownTrafficData;
-            SNeurons[4].TrafficData = _crossroad.UpToDownTrafficData;
-            SNeurons[5].TrafficData = _crossroad.RightToDownTrafficData;
-            SNeurons[6].TrafficData = _crossroad.DownToRightTrafficData;
-            SNeurons[7].TrafficData = _crossroad.LeftToRightTrafficData;
-            SNeurons[8].TrafficData = _crossroad.UpToRightTrafficData;
-            SNeurons[9].TrafficData = _crossroad.RightToUpTrafficData;
-            SNeurons[10].TrafficData = _crossroad.DownToUpTrafficData;
-            SNeurons[11].TrafficData = _crossroad.LeftToUpTrafficData;
+            SNeurons[0].TrafficData = _crossroad.LeftToUpTrafficData;
+            SNeurons[1].TrafficData = _crossroad.LeftToRightTrafficData;
+            SNeurons[2].TrafficData = _crossroad.LeftToDownTrafficData;
+            SNeurons[3].TrafficData = _crossroad.DownToLeftTrafficData;
+            SNeurons[4].TrafficData = _crossroad.DownToUpTrafficData;
+            SNeurons[5].TrafficData = _crossroad.DownToRightTrafficData;
+            SNeurons[6].TrafficData = _crossroad.RightToDownTrafficData;
+            SNeurons[7].TrafficData = _crossroad.RightToLeftTrafficData;
+            SNeurons[8].TrafficData = _crossroad.RightToUpTrafficData;
+            SNeurons[9].TrafficData = _crossroad.UpToRightTrafficData;
+            SNeurons[10].TrafficData = _crossroad.UpToDownTrafficData;
+            SNeurons[11].TrafficData = _crossroad.UpToLeftTrafficData;
         }
 
         public CrossroadControllerReinforcement(ICrossroad crossroad)
@@ -213,9 +213,105 @@ namespace Simulator.Neuro.Infrastructure
             SetTrafficLights();
         }
 
-        public void Reinforce(double value)
+        public void Reinforce(double marck)
         {
-            throw new System.NotImplementedException();
+            if (_crossroad.LeftToUpTrafficLight.State==TrafficLightState.Green)
+            {
+                for (int i = 0; i < nOftarfficLigths; i++)
+                {
+                    W0[i, 0] += marck;
+                }
+                
+            }
+            if (_crossroad.LeftToRightTrafficLight.State == TrafficLightState.Green)
+            {
+                for (int i = 0; i < nOftarfficLigths; i++)
+                {
+                    W0[i, 1] += marck;
+                }
+
+            }
+            if (_crossroad.LeftToDownTrafficLight.State == TrafficLightState.Green)
+            {
+                for (int i = 0; i < nOftarfficLigths; i++)
+                {
+                    W0[i, 2] += marck;
+                }
+
+            }
+            if (_crossroad.DownToLeftTrafficLight.State == TrafficLightState.Green)
+            {
+                for (int i = 0; i < nOftarfficLigths; i++)
+                {
+                    W0[i, 3] += marck;
+                }
+
+            }
+            if (_crossroad.DownToUpTrafficLight.State == TrafficLightState.Green)
+            {
+                for (int i = 0; i < nOftarfficLigths; i++)
+                {
+                    W0[i, 4] += marck;
+                }
+
+            }
+            if (_crossroad.DownToRightTrafficLight.State == TrafficLightState.Green)
+            {
+                for (int i = 0; i < nOftarfficLigths; i++)
+                {
+                    W0[i, 5] += marck;
+                }
+
+            }
+            if (_crossroad.RightToDownTrafficLight.State == TrafficLightState.Green)
+            {
+                for (int i = 0; i < nOftarfficLigths; i++)
+                {
+                    W0[i, 6] += marck;
+                }
+
+            }
+            if (_crossroad.RightToLeftTrafficLight.State == TrafficLightState.Green)
+            {
+                for (int i = 0; i < nOftarfficLigths; i++)
+                {
+                    W0[i, 7] += marck;
+                }
+
+            }
+            if (_crossroad.RightToUpTrafficLight.State == TrafficLightState.Green)
+            {
+                for (int i = 0; i < nOftarfficLigths; i++)
+                {
+                    W0[i, 8] += marck;
+                }
+
+            }
+            if (_crossroad.UpToRightTrafficLight.State == TrafficLightState.Green)
+            {
+                for (int i = 0; i < nOftarfficLigths; i++)
+                {
+                    W0[i, 9] += marck;
+                }
+
+            }
+            if (_crossroad.UpToDownTrafficLight.State == TrafficLightState.Green)
+            {
+                for (int i = 0; i < nOftarfficLigths; i++)
+                {
+                    W0[i, 10] += marck;
+                }
+
+            }
+            if (_crossroad.UpToLeftTrafficLight.State == TrafficLightState.Green)
+            {
+                for (int i = 0; i < nOftarfficLigths; i++)
+                {
+                    W0[i, 11] += marck;
+                }
+
+            }
+
         }
 
         private void SetTrafficLights()
