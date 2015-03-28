@@ -159,7 +159,7 @@ namespace Simulator.Neuro.Infrastructure
                 }
             }
             sr.Close();
-            W_writer(fileW0);
+            W_writer(fileWtek);
         }
 
         private void W_writer(string fileWtek)
@@ -311,7 +311,7 @@ namespace Simulator.Neuro.Infrastructure
                 }
 
             }
-
+            W_writer(fileWtek);
         }
 
         private void SetTrafficLights()
@@ -342,17 +342,17 @@ namespace Simulator.Neuro.Infrastructure
                 s = sr.ReadLine();
                 var v = s.Split(' ');
                 TrafficLightState[] mas = new TrafficLightState[nOftarfficLigths];
-                if (RNeurons[i].axonState == TrafficLightState.Green && Math.Abs(double.Parse(v[i], CultureInfo.InvariantCulture) - 1) < 0.0001)
+                if (RNeurons[i].axonState == TrafficLightState.Green && (double.Parse(v[i], CultureInfo.InvariantCulture) - 1) < 0.0001)
                     {
                         for (int j = 0; j < nOftarfficLigths; j++)
                         {
                             if (int.Parse(v[j+nOfStates-1]) != 0)
                             {
-                                mas[j+nOfStates-1] = TrafficLightState.Green;
+                                mas[j] = TrafficLightState.Green;
                             }
                             else
                             {
-                                mas[j+nOfStates-1] = TrafficLightState.Red;
+                                mas[j] = TrafficLightState.Red;
                             }
                         }
                         _crossroad.UpToLeftTrafficLight.State = mas[0];

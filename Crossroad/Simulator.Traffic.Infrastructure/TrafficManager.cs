@@ -11,7 +11,7 @@ namespace Simulator.Traffic.Infrastructure
         private const double Epsilon = 0.000001;
         private readonly IMap _map;
         private readonly IList<ITrafficFlow> _trafficFlows;
-        private double[,] marks;
+        private readonly double[,] marks;
 
         public TrafficManager(IMap map)
         {
@@ -204,7 +204,7 @@ namespace Simulator.Traffic.Infrastructure
                     }
 
                     var crossroad = roadElement as ICrossroad;
-                    marks[row, column] = crossroad.GetMark();
+                    marks[row, column] = GetMark(crossroad, new Location(row, column));
                     crossroad.CrossroadController.Step();
                 }
             }
@@ -223,10 +223,107 @@ namespace Simulator.Traffic.Infrastructure
                     }
 
                     var crossroad = roadElement as ICrossroad;
-                    double mark = crossroad.GetMark();
+                    double mark = GetMark(crossroad, new Location(row, column));
                     crossroad.CrossroadController.Reinforce(mark - marks[row, column]);
                 }
             }
+        }
+
+        private double GetMark(ICrossroad crossroad, ILocation crossroadLocation)
+        {
+            double mark = 0.0;
+            int crossroadRow = crossroadLocation.Row;
+            int crossroadColumn = crossroadLocation.Column;
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn - 1), crossroadLocation,
+                new Location(crossroadRow - 1, crossroadColumn)))
+            {
+                mark += GetMarkFromTrafficData(crossroad.LeftToUpTrafficLight, crossroad.LeftToUpTrafficData);
+            }
+            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn - 1), crossroadLocation,
+                new Location(crossroadRow, crossroadColumn + 1)))
+            {
+                mark += GetMarkFromTrafficData(crossroad.LeftToRightTrafficLight, crossroad.LeftToRightTrafficData);
+            }
+            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn - 1), crossroadLocation,
+                new Location(crossroadRow + 1, crossroadColumn)))
+            {
+                mark += GetMarkFromTrafficData(crossroad.LeftToDownTrafficLight, crossroad.LeftToDownTrafficData);
+            }
+            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow - 1, crossroadColumn), crossroadLocation,
+                new Location(crossroadRow, crossroadColumn - 1)))
+            {
+                mark += GetMarkFromTrafficData(crossroad.UpToLeftTrafficLight, crossroad.UpToLeftTrafficData);
+            }
+            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow - 1, crossroadColumn), crossroadLocation,
+                new Location(crossroadRow + 1, crossroadColumn)))
+            {
+                mark += GetMarkFromTrafficData(crossroad.UpToDownTrafficLight, crossroad.UpToDownTrafficData);
+            }
+            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow - 1, crossroadColumn), crossroadLocation,
+                new Location(crossroadRow, crossroadColumn + 1)))
+            {
+                mark += GetMarkFromTrafficData(crossroad.UpToRightTrafficLight, crossroad.UpToRightTrafficData);
+            }
+            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn + 1), crossroadLocation,
+                new Location(crossroadRow - 1, crossroadColumn)))
+            {
+                mark += GetMarkFromTrafficData(crossroad.RightToUpTrafficLight, crossroad.RightToUpTrafficData);
+            }
+            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn + 1), crossroadLocation,
+                new Location(crossroadRow, crossroadColumn - 1)))
+            {
+                mark += GetMarkFromTrafficData(crossroad.RightToLeftTrafficLight, crossroad.RightToLeftTrafficData);
+            }
+            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn + 1), crossroadLocation,
+                new Location(crossroadRow + 1, crossroadColumn)))
+            {
+                mark += GetMarkFromTrafficData(crossroad.RightToDownTrafficLight, crossroad.RightToDownTrafficData);
+            }
+            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow + 1, crossroadColumn), crossroadLocation,
+                new Location(crossroadRow, crossroadColumn - 1)))
+            {
+                mark += GetMarkFromTrafficData(crossroad.DownToLeftTrafficLight, crossroad.DownToLeftTrafficData);
+            }
+            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow + 1, crossroadColumn), crossroadLocation,
+                new Location(crossroadRow - 1, crossroadColumn)))
+            {
+                mark += GetMarkFromTrafficData(crossroad.DownToUpTrafficLight, crossroad.DownToUpTrafficData);
+            }
+            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow + 1, crossroadColumn), crossroadLocation,
+                new Location(crossroadRow, crossroadColumn + 1)))
+            {
+                mark += GetMarkFromTrafficData(crossroad.DownToRightTrafficLight, crossroad.DownToRightTrafficData);
+            }
+
+            return mark;
+        }
+
+        private double GetMarkFromTrafficData(ITrafficLight trafficLight, ITrafficData trafficData)
+        {
+            if (trafficLight.State == TrafficLightState.Green)
+            {
+                return trafficData.TrafficDensity + 1/trafficData.TrafficSpeed;
+            }
+
+            return 0.0;
+        }
+
+        private bool IsPartOfTrafficFlowExists(ILocation l1, ILocation l2, ILocation l3)
+        {
+            foreach (ITrafficFlow trafficFlow in _trafficFlows)
+            {
+                for (int i = 0; i < trafficFlow.Path.Count - 2; i++)
+                {
+                    if (trafficFlow.Path[i].Equals(l1) && trafficFlow.Path[i + 1].Equals(l2) &&
+                        trafficFlow.Path[i + 2].Equals(l3))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         private void UpdateDensityAndSpeed(ITrafficLight trafficLight, ITrafficData oldTrafficData,

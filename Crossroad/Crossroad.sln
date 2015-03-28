@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Engine.Domain", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Engine.Infrastructure", "Simulator.Engine.Infrastructure\Simulator.Engine.Infrastructure.csproj", "{6AB297A0-80DA-4502-AD0A-C553B686F909}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Engine.Infrastructure.Tests", "Simulator.Engine.Infrastructure.Tests\Simulator.Engine.Infrastructure.Tests.csproj", "{EB3477C3-5E3C-4A40-A53A-1F8D45644D33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -173,6 +175,16 @@ Global
 		{6AB297A0-80DA-4502-AD0A-C553B686F909}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{6AB297A0-80DA-4502-AD0A-C553B686F909}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{6AB297A0-80DA-4502-AD0A-C553B686F909}.Release|x86.ActiveCfg = Release|Any CPU
+		{EB3477C3-5E3C-4A40-A53A-1F8D45644D33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB3477C3-5E3C-4A40-A53A-1F8D45644D33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB3477C3-5E3C-4A40-A53A-1F8D45644D33}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{EB3477C3-5E3C-4A40-A53A-1F8D45644D33}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EB3477C3-5E3C-4A40-A53A-1F8D45644D33}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EB3477C3-5E3C-4A40-A53A-1F8D45644D33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB3477C3-5E3C-4A40-A53A-1F8D45644D33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB3477C3-5E3C-4A40-A53A-1F8D45644D33}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{EB3477C3-5E3C-4A40-A53A-1F8D45644D33}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{EB3477C3-5E3C-4A40-A53A-1F8D45644D33}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -191,5 +203,6 @@ Global
 		{06A2E211-E2CF-46D9-A25B-C2BBE5582794} = {CB48D128-925B-4DFD-AE65-2384FB713581}
 		{3C1AFA44-7FD1-4B9B-AC09-3D57B395CD63} = {CB48D128-925B-4DFD-AE65-2384FB713581}
 		{93DC0347-174D-4C04-A8F7-347516FFBF2D} = {CB48D128-925B-4DFD-AE65-2384FB713581}
+		{EB3477C3-5E3C-4A40-A53A-1F8D45644D33} = {CB48D128-925B-4DFD-AE65-2384FB713581}
 	EndGlobalSection
 EndGlobal
