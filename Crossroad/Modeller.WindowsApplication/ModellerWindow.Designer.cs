@@ -46,26 +46,33 @@ namespace Modeller.WindowsApplication
             this._lblTrafficFlowSpeed = new System.Windows.Forms.Label();
             this._lblTrafficFlowDensity = new System.Windows.Forms.Label();
             this._btnStep = new System.Windows.Forms.Button();
+            this._tbxLog = new System.Windows.Forms.TextBox();
+            this._tcSimulator = new System.Windows.Forms.TabControl();
+            this._tpSimulation = new System.Windows.Forms.TabPage();
+            this._tpLog = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
+            this._tcSimulator.SuspendLayout();
+            this._tpSimulation.SuspendLayout();
+            this._tpLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // _trafficFlowDensity
             // 
-            this._trafficFlowDensity.Location = new System.Drawing.Point(632, 359);
+            this._trafficFlowDensity.Location = new System.Drawing.Point(628, 309);
             this._trafficFlowDensity.Name = "_trafficFlowDensity";
             this._trafficFlowDensity.Size = new System.Drawing.Size(100, 20);
             this._trafficFlowDensity.TabIndex = 11;
             // 
             // _trafficFlowSpeed
             // 
-            this._trafficFlowSpeed.Location = new System.Drawing.Point(632, 330);
+            this._trafficFlowSpeed.Location = new System.Drawing.Point(628, 280);
             this._trafficFlowSpeed.Name = "_trafficFlowSpeed";
             this._trafficFlowSpeed.Size = new System.Drawing.Size(100, 20);
             this._trafficFlowSpeed.TabIndex = 10;
             // 
             // _endTrafficFlow
             // 
-            this._endTrafficFlow.Location = new System.Drawing.Point(660, 278);
+            this._endTrafficFlow.Location = new System.Drawing.Point(574, 241);
             this._endTrafficFlow.Name = "_endTrafficFlow";
             this._endTrafficFlow.Size = new System.Drawing.Size(114, 23);
             this._endTrafficFlow.TabIndex = 9;
@@ -75,7 +82,7 @@ namespace Modeller.WindowsApplication
             // 
             // _startTrafficFlow
             // 
-            this._startTrafficFlow.Location = new System.Drawing.Point(660, 249);
+            this._startTrafficFlow.Location = new System.Drawing.Point(574, 212);
             this._startTrafficFlow.Name = "_startTrafficFlow";
             this._startTrafficFlow.Size = new System.Drawing.Size(114, 23);
             this._startTrafficFlow.TabIndex = 8;
@@ -155,7 +162,7 @@ namespace Modeller.WindowsApplication
             // _workField
             // 
             this._workField.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._workField.Location = new System.Drawing.Point(12, 12);
+            this._workField.Location = new System.Drawing.Point(6, 6);
             this._workField.Name = "_workField";
             this._workField.Size = new System.Drawing.Size(509, 509);
             this._workField.TabIndex = 0;
@@ -170,7 +177,7 @@ namespace Modeller.WindowsApplication
             this.groupBox1.Controls.Add(this._currentMapElementVerticalRoad);
             this.groupBox1.Controls.Add(this._currentMapElementUpToRightTurn);
             this.groupBox1.Controls.Add(this._currentMapElementDownToLeftTurn);
-            this.groupBox1.Location = new System.Drawing.Point(527, 12);
+            this.groupBox1.Location = new System.Drawing.Point(521, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(240, 133);
             this.groupBox1.TabIndex = 12;
@@ -180,7 +187,7 @@ namespace Modeller.WindowsApplication
             // _lblTrafficFlowSpeed
             // 
             this._lblTrafficFlowSpeed.AutoSize = true;
-            this._lblTrafficFlowSpeed.Location = new System.Drawing.Point(581, 333);
+            this._lblTrafficFlowSpeed.Location = new System.Drawing.Point(577, 283);
             this._lblTrafficFlowSpeed.Name = "_lblTrafficFlowSpeed";
             this._lblTrafficFlowSpeed.Size = new System.Drawing.Size(41, 13);
             this._lblTrafficFlowSpeed.TabIndex = 13;
@@ -189,7 +196,7 @@ namespace Modeller.WindowsApplication
             // _lblTrafficFlowDensity
             // 
             this._lblTrafficFlowDensity.AutoSize = true;
-            this._lblTrafficFlowDensity.Location = new System.Drawing.Point(581, 362);
+            this._lblTrafficFlowDensity.Location = new System.Drawing.Point(577, 312);
             this._lblTrafficFlowDensity.Name = "_lblTrafficFlowDensity";
             this._lblTrafficFlowDensity.Size = new System.Drawing.Size(45, 13);
             this._lblTrafficFlowDensity.TabIndex = 14;
@@ -197,7 +204,7 @@ namespace Modeller.WindowsApplication
             // 
             // _btnStep
             // 
-            this._btnStep.Location = new System.Drawing.Point(644, 451);
+            this._btnStep.Location = new System.Drawing.Point(577, 351);
             this._btnStep.Name = "_btnStep";
             this._btnStep.Size = new System.Drawing.Size(101, 95);
             this._btnStep.TabIndex = 15;
@@ -205,20 +212,63 @@ namespace Modeller.WindowsApplication
             this._btnStep.UseVisualStyleBackColor = true;
             this._btnStep.Click += new System.EventHandler(this._btnStep_Click);
             // 
+            // _tbxLog
+            // 
+            this._tbxLog.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this._tbxLog.Location = new System.Drawing.Point(6, 6);
+            this._tbxLog.Multiline = true;
+            this._tbxLog.Name = "_tbxLog";
+            this._tbxLog.ReadOnly = true;
+            this._tbxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this._tbxLog.Size = new System.Drawing.Size(759, 512);
+            this._tbxLog.TabIndex = 16;
+            // 
+            // _tcSimulator
+            // 
+            this._tcSimulator.Controls.Add(this._tpSimulation);
+            this._tcSimulator.Controls.Add(this._tpLog);
+            this._tcSimulator.Location = new System.Drawing.Point(12, 12);
+            this._tcSimulator.Name = "_tcSimulator";
+            this._tcSimulator.SelectedIndex = 0;
+            this._tcSimulator.Size = new System.Drawing.Size(779, 550);
+            this._tcSimulator.TabIndex = 17;
+            // 
+            // _tpSimulation
+            // 
+            this._tpSimulation.Controls.Add(this.groupBox1);
+            this._tpSimulation.Controls.Add(this._workField);
+            this._tpSimulation.Controls.Add(this._btnStep);
+            this._tpSimulation.Controls.Add(this._lblTrafficFlowDensity);
+            this._tpSimulation.Controls.Add(this._trafficFlowSpeed);
+            this._tpSimulation.Controls.Add(this._lblTrafficFlowSpeed);
+            this._tpSimulation.Controls.Add(this._trafficFlowDensity);
+            this._tpSimulation.Controls.Add(this._endTrafficFlow);
+            this._tpSimulation.Controls.Add(this._startTrafficFlow);
+            this._tpSimulation.Location = new System.Drawing.Point(4, 22);
+            this._tpSimulation.Name = "_tpSimulation";
+            this._tpSimulation.Padding = new System.Windows.Forms.Padding(3);
+            this._tpSimulation.Size = new System.Drawing.Size(771, 524);
+            this._tpSimulation.TabIndex = 0;
+            this._tpSimulation.Text = "tabPage1";
+            this._tpSimulation.UseVisualStyleBackColor = true;
+            // 
+            // _tpLog
+            // 
+            this._tpLog.Controls.Add(this._tbxLog);
+            this._tpLog.Location = new System.Drawing.Point(4, 22);
+            this._tpLog.Name = "_tpLog";
+            this._tpLog.Padding = new System.Windows.Forms.Padding(3);
+            this._tpLog.Size = new System.Drawing.Size(771, 524);
+            this._tpLog.TabIndex = 1;
+            this._tpLog.Text = "tabPage2";
+            this._tpLog.UseVisualStyleBackColor = true;
+            // 
             // ModellerWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1198, 599);
-            this.Controls.Add(this._btnStep);
-            this.Controls.Add(this._lblTrafficFlowDensity);
-            this.Controls.Add(this._lblTrafficFlowSpeed);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this._workField);
-            this.Controls.Add(this._endTrafficFlow);
-            this.Controls.Add(this._startTrafficFlow);
-            this.Controls.Add(this._trafficFlowDensity);
-            this.Controls.Add(this._trafficFlowSpeed);
+            this.ClientSize = new System.Drawing.Size(803, 568);
+            this.Controls.Add(this._tcSimulator);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -226,8 +276,12 @@ namespace Modeller.WindowsApplication
             this.Text = "Crossroad modeller";
             this.Load += new System.EventHandler(this.Modeller_Load);
             this.groupBox1.ResumeLayout(false);
+            this._tcSimulator.ResumeLayout(false);
+            this._tpSimulation.ResumeLayout(false);
+            this._tpSimulation.PerformLayout();
+            this._tpLog.ResumeLayout(false);
+            this._tpLog.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -249,6 +303,10 @@ namespace Modeller.WindowsApplication
         private System.Windows.Forms.Label _lblTrafficFlowSpeed;
         private System.Windows.Forms.Label _lblTrafficFlowDensity;
         private System.Windows.Forms.Button _btnStep;
+        private System.Windows.Forms.TextBox _tbxLog;
+        private System.Windows.Forms.TabControl _tcSimulator;
+        private System.Windows.Forms.TabPage _tpSimulation;
+        private System.Windows.Forms.TabPage _tpLog;
     }
 }
 

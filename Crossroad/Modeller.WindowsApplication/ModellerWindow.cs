@@ -11,6 +11,7 @@ using Simulator.Map;
 using Simulator.Map.Infrastructure;
 using Simulator.Traffic.Domain;
 using Simulator.Traffic.Infrastructure;
+using Simulator.Utils.Infrastructure;
 using Crossroad = Modeller.CustomControls.Crossroad;
 using Road = Modeller.CustomControls.Road;
 using Turn = Modeller.CustomControls.Turn;
@@ -32,9 +33,9 @@ namespace Modeller.WindowsApplication
         private ITrafficFlow _currentTrafficFlow;
         private int _customControlSize = 50;
         private bool _isTrafficFlowConfigure;
+        private ISimulatorEngine _simulatorEngine;
         private int _workingFieldNofColumns = 10;
         private int _workingFieldNofRows = 10;
-        private ISimulatorEngine _simulatorEngine;
 
         public ModellerWindow()
         {
@@ -455,7 +456,55 @@ namespace Modeller.WindowsApplication
                 _simulatorEngine = new SimulatorEngine(_trafficManager);
             }
 
-            _simulatorEngine.Step(30);
+            _simulatorEngine.Step(60);
+
+            WriteLog();
+            UpdateLog();
+        }
+
+        private void UpdateLog()
+        {
+            Logger logger = Logger.Instance;
+            _tbxLog.Text = "";
+            foreach (var message in logger.Messages)
+            {
+                _tbxLog.AppendText(message + "\r\n");
+            }
+        }
+
+        public void WriteLog()
+        {
+            Logger logger = Logger.Instance;
+            logger.WriteMessage("===========================================");
+            logger.WriteMessage("===========================================");
+            logger.WriteMessage("");
+
+            for (int i = 0; i < _workingFieldNofRows; i++)
+            {
+                for (int j = 0; j < _workingFieldNofColumns; j++)
+                {
+                    var element = _map.GetElement(i, j) as ICrossroad;
+                    if (element == null)
+                    {
+                        continue;
+                    }
+
+                    logger.WriteMessage(string.Format("MATRIX FOR CROSSROAD [{0},{1}]:", i, j));
+
+                    double[,] m0 = element.CrossroadController.W0;
+                    for (int k = 0; k < 12; k++)
+                    {
+                        string str =
+                            string.Format(
+                                "{0,7:0.0}  {1,7:0.0}  {2,7:0.0}  {3,7:0.0}  {4,7:0.0}  {5,7:0.0}  {6,7:0.0}  {7,7:0.0}  {8,7:0.0}  {9,7:0.0}  {10,7:0.0}  {11,7:0.0}",
+                                m0[k, 0], m0[k, 1], m0[k, 2], m0[k, 3], m0[k, 4], m0[k, 5], m0[k, 6], m0[k, 7], m0[k, 8],
+                                m0[k, 9], m0[k, 10], m0[k, 11]);
+                        logger.WriteMessage(str);
+                    }
+                }
+            }
+
+            logger.WriteMessage("");
         }
     }
 }
