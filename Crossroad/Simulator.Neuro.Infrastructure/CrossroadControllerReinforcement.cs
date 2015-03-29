@@ -57,7 +57,7 @@ namespace Simulator.Neuro.Infrastructure
             }
             W0= new double[nOftarfficLigths,nOftarfficLigths];
             W1 = new double[nOftarfficLigths, nOfStates];            
-            W_reader(fileW0);
+            W_reader(fileWtek);
 //            EducationWithTeacher(educationFileName);
         }
         public void W_reader(string f_name)
@@ -219,7 +219,7 @@ namespace Simulator.Neuro.Infrastructure
             {
                 for (int i = 0; i < nOftarfficLigths; i++)
                 {
-                    W0[i, 0] += marck;
+                    W0[i, 0] -= marck;
                 }
                 
             }
@@ -227,7 +227,7 @@ namespace Simulator.Neuro.Infrastructure
             {
                 for (int i = 0; i < nOftarfficLigths; i++)
                 {
-                    W0[i, 1] += marck;
+                    W0[i, 1] -= marck;
                 }
 
             }
@@ -235,7 +235,7 @@ namespace Simulator.Neuro.Infrastructure
             {
                 for (int i = 0; i < nOftarfficLigths; i++)
                 {
-                    W0[i, 2] += marck;
+                    W0[i, 2] -= marck;
                 }
 
             }
@@ -243,7 +243,7 @@ namespace Simulator.Neuro.Infrastructure
             {
                 for (int i = 0; i < nOftarfficLigths; i++)
                 {
-                    W0[i, 3] += marck;
+                    W0[i, 3] -= marck;
                 }
 
             }
@@ -251,7 +251,7 @@ namespace Simulator.Neuro.Infrastructure
             {
                 for (int i = 0; i < nOftarfficLigths; i++)
                 {
-                    W0[i, 4] += marck;
+                    W0[i, 4] -= marck;
                 }
 
             }
@@ -259,7 +259,7 @@ namespace Simulator.Neuro.Infrastructure
             {
                 for (int i = 0; i < nOftarfficLigths; i++)
                 {
-                    W0[i, 5] += marck;
+                    W0[i, 5] -= marck;
                 }
 
             }
@@ -267,7 +267,7 @@ namespace Simulator.Neuro.Infrastructure
             {
                 for (int i = 0; i < nOftarfficLigths; i++)
                 {
-                    W0[i, 6] += marck;
+                    W0[i, 6] -= marck;
                 }
 
             }
@@ -275,7 +275,7 @@ namespace Simulator.Neuro.Infrastructure
             {
                 for (int i = 0; i < nOftarfficLigths; i++)
                 {
-                    W0[i, 7] += marck;
+                    W0[i, 7] -= marck;
                 }
 
             }
@@ -283,7 +283,7 @@ namespace Simulator.Neuro.Infrastructure
             {
                 for (int i = 0; i < nOftarfficLigths; i++)
                 {
-                    W0[i, 8] += marck;
+                    W0[i, 8] -= marck;
                 }
 
             }
@@ -291,7 +291,7 @@ namespace Simulator.Neuro.Infrastructure
             {
                 for (int i = 0; i < nOftarfficLigths; i++)
                 {
-                    W0[i, 9] += marck;
+                    W0[i, 9] -= marck;
                 }
 
             }
@@ -299,7 +299,7 @@ namespace Simulator.Neuro.Infrastructure
             {
                 for (int i = 0; i < nOftarfficLigths; i++)
                 {
-                    W0[i, 10] += marck;
+                    W0[i, 10] -= marck;
                 }
 
             }
@@ -307,7 +307,7 @@ namespace Simulator.Neuro.Infrastructure
             {
                 for (int i = 0; i < nOftarfficLigths; i++)
                 {
-                    W0[i, 11] += marck;
+                    W0[i, 11] -= marck;
                 }
 
             }
@@ -355,18 +355,18 @@ namespace Simulator.Neuro.Infrastructure
                                 mas[j] = TrafficLightState.Red;
                             }
                         }
-                        _crossroad.UpToLeftTrafficLight.State = mas[0];
-                        _crossroad.RightToLeftTrafficLight.State = mas[1];
-                        _crossroad.DownToLeftTrafficLight.State = mas[2];
-                        _crossroad.LeftToDownTrafficLight.State = mas[3];
-                        _crossroad.UpToDownTrafficLight.State = mas[4];
-                        _crossroad.RightToDownTrafficLight.State = mas[5];
-                        _crossroad.DownToRightTrafficLight.State = mas[6];
-                        _crossroad.LeftToRightTrafficLight.State = mas[7];
-                        _crossroad.UpToRightTrafficLight.State = mas[8];
-                        _crossroad.RightToDownTrafficLight.State = mas[9];
-                        _crossroad.DownToUpTrafficLight.State = mas[10];
-                        _crossroad.LeftToUpTrafficLight.State = mas[11];
+                        _crossroad.LeftToUpTrafficLight.State = mas[0];
+                        _crossroad.LeftToRightTrafficLight.State = mas[1];
+                        _crossroad.LeftToDownTrafficLight.State = mas[2];
+                        _crossroad.DownToLeftTrafficLight.State = mas[3];
+                        _crossroad.DownToUpTrafficLight.State = mas[4];
+                        _crossroad.DownToRightTrafficLight.State = mas[5];
+                        _crossroad.RightToDownTrafficLight.State = mas[6];
+                        _crossroad.RightToLeftTrafficLight.State = mas[7];
+                        _crossroad.RightToUpTrafficLight.State = mas[8];
+                        _crossroad.UpToRightTrafficLight.State = mas[9];
+                        _crossroad.UpToDownTrafficLight.State = mas[10];
+                        _crossroad.UpToLeftTrafficLight.State = mas[11];
                     }
             }
             sr.Close();

@@ -225,6 +225,7 @@ namespace Simulator.Traffic.Infrastructure
                     var crossroad = roadElement as ICrossroad;
                     double mark = GetMark(crossroad, new Location(row, column));
                     crossroad.CrossroadController.Reinforce(mark - marks[row, column]);
+                    marks[row, column] = 0;
                 }
             }
         }
