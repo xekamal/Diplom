@@ -52,7 +52,10 @@ namespace Simulator.Map
         double DownToLeftNofPassedCars { get; set; }
         double DownToUpNofPassedCars { get; set; }
         double DownToRightNofPassedCars { get; set; }
-
+        
+        int Row { get; set; }
+        int Column { get; set; }
+        
         ICrossroadController CrossroadController { get; set; }
 
         double GetMark();

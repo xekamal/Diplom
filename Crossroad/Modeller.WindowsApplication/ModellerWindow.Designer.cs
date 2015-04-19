@@ -214,13 +214,13 @@ namespace Modeller.WindowsApplication
             // 
             // _tbxLog
             // 
-            this._tbxLog.Font = new System.Drawing.Font("Courier New", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this._tbxLog.Font = new System.Drawing.Font("Courier New", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this._tbxLog.Location = new System.Drawing.Point(6, 6);
             this._tbxLog.Multiline = true;
             this._tbxLog.Name = "_tbxLog";
             this._tbxLog.ReadOnly = true;
             this._tbxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._tbxLog.Size = new System.Drawing.Size(759, 512);
+            this._tbxLog.Size = new System.Drawing.Size(900, 512);
             this._tbxLog.TabIndex = 16;
             // 
             // _tcSimulator
@@ -230,7 +230,7 @@ namespace Modeller.WindowsApplication
             this._tcSimulator.Location = new System.Drawing.Point(12, 12);
             this._tcSimulator.Name = "_tcSimulator";
             this._tcSimulator.SelectedIndex = 0;
-            this._tcSimulator.Size = new System.Drawing.Size(779, 550);
+            this._tcSimulator.Size = new System.Drawing.Size(920, 550);
             this._tcSimulator.TabIndex = 17;
             // 
             // _tpSimulation
@@ -258,7 +258,7 @@ namespace Modeller.WindowsApplication
             this._tpLog.Location = new System.Drawing.Point(4, 22);
             this._tpLog.Name = "_tpLog";
             this._tpLog.Padding = new System.Windows.Forms.Padding(3);
-            this._tpLog.Size = new System.Drawing.Size(771, 524);
+            this._tpLog.Size = new System.Drawing.Size(912, 524);
             this._tpLog.TabIndex = 1;
             this._tpLog.Text = "tabPage2";
             this._tpLog.UseVisualStyleBackColor = true;
@@ -267,7 +267,7 @@ namespace Modeller.WindowsApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(803, 568);
+            this.ClientSize = new System.Drawing.Size(944, 568);
             this.Controls.Add(this._tcSimulator);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

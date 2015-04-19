@@ -37,7 +37,41 @@ namespace Simulator.Map.Infrastructure
 
             CrossroadController = new CrossroadControllerReinforcement(this);
         }
+        public Crossroad(int row, int column)
+        {
+            Row = row;
+            Column = column;
 
+            LeftToUpTrafficLight = new TrafficLight();
+            LeftToRightTrafficLight = new TrafficLight();
+            LeftToDownTrafficLight = new TrafficLight();
+            UpToLeftTrafficLight = new TrafficLight();
+            UpToDownTrafficLight = new TrafficLight();
+            UpToRightTrafficLight = new TrafficLight();
+            RightToUpTrafficLight = new TrafficLight();
+            RightToLeftTrafficLight = new TrafficLight();
+            RightToDownTrafficLight = new TrafficLight();
+            DownToLeftTrafficLight = new TrafficLight();
+            DownToUpTrafficLight = new TrafficLight();
+            DownToRightTrafficLight = new TrafficLight();
+
+            LeftToUpTrafficData = new TrafficData();
+            LeftToRightTrafficData = new TrafficData();
+            LeftToDownTrafficData = new TrafficData();
+            UpToLeftTrafficData = new TrafficData();
+            UpToDownTrafficData = new TrafficData();
+            UpToRightTrafficData = new TrafficData();
+            RightToUpTrafficData = new TrafficData();
+            RightToLeftTrafficData = new TrafficData();
+            RightToDownTrafficData = new TrafficData();
+            DownToLeftTrafficData = new TrafficData();
+            DownToUpTrafficData = new TrafficData();
+            DownToRightTrafficData = new TrafficData();
+
+            SetAllTrafficLights(TrafficLightState.Red);
+
+            CrossroadController = new CrossroadControllerReinforcement(this);
+        }
 
         public double Length { get; set; }
         public ITrafficLight LeftToUpTrafficLight { get; set; }
@@ -76,6 +110,8 @@ namespace Simulator.Map.Infrastructure
         public double DownToLeftNofPassedCars { get; set; }
         public double DownToUpNofPassedCars { get; set; }
         public double DownToRightNofPassedCars { get; set; }
+        public int Row { get; set; }
+        public int Column { get; set; }
         public ICrossroadController CrossroadController { get; set; }
 
         private double GetTrafficDataMark(ITrafficLight trafficLight, ITrafficData trafficData)

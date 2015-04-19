@@ -307,7 +307,7 @@ namespace Modeller.WindowsApplication
             };
             _workField.Controls.Add(crossroad);
 
-            _map.AddElement(row, column, new Simulator.Map.Infrastructure.Crossroad());
+            _map.AddElement(row, column, new Simulator.Map.Infrastructure.Crossroad(row,column));
             if (column - 1 >= 0)
             {
                 _map.SetConnected(row, column - 1, row, column);
@@ -496,7 +496,7 @@ namespace Modeller.WindowsApplication
                     {
                         string str =
                             string.Format(
-                                "{0,7:0.0}  {1,7:0.0}  {2,7:0.0}  {3,7:0.0}  {4,7:0.0}  {5,7:0.0}  {6,7:0.0}  {7,7:0.0}  {8,7:0.0}  {9,7:0.0}  {10,7:0.0}  {11,7:0.0}",
+                                "{0,7:0.0000}  {1,7:0.0000}  {2,7:0.0000}  {3,7:0.0000}  {4,7:0.0000}  {5,7:0.0000}  {6,7:0.0000}  {7,7:0.0000}  {8,7:0.0000}  {9,7:0.0000}  {10,7:0.0000}  {11,7:0.0000}",
                                 m0[k, 0], m0[k, 1], m0[k, 2], m0[k, 3], m0[k, 4], m0[k, 5], m0[k, 6], m0[k, 7], m0[k, 8],
                                 m0[k, 9], m0[k, 10], m0[k, 11]);
                         logger.WriteMessage(str);

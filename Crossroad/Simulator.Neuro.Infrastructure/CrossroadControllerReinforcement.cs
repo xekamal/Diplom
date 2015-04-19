@@ -7,10 +7,10 @@ namespace Simulator.Neuro.Infrastructure
 {
     public class CrossroadControllerReinforcement : ICrossroadController
     {
-        private const string educationFileName = "d:\\Kate\\Education_example.txt";
-        private const string fileW0 = "d:\\Kate\\W0.txt";
-        private const string fileWtek = "d:\\Kate\\Wtek.txt";
-        private const string fileState = "d:\\Kate\\states.txt";
+        private const string educationFileName = "e:\\Kate\\Education_example.txt";
+        private const string fileW0 = "e:\\Kate\\W0.txt";
+//        private const string fileWtek = "e:\\Kate\\Wtek.txt";
+        private const string fileState = "e:\\Kate\\states.txt";
         private const int nOftarfficLigths = 12;
         private const int nOfStates = 4;
         private readonly HNeuron[] HNeurons;
@@ -18,6 +18,7 @@ namespace Simulator.Neuro.Infrastructure
         private readonly SNeuron[] SNeurons;
         private readonly double[,] W1;
         private readonly ICrossroad _crossroad;
+        private string fileWtek;
 
         public CrossroadControllerReinforcement(ICrossroad crossroad)
         {
@@ -38,12 +39,19 @@ namespace Simulator.Neuro.Infrastructure
             {
                 RNeurons[i] = new RNeuron(nOftarfficLigths);
             }
-
+            fileWtek = string.Format("e:\\Kate\\Wtek{0}{1}.txt", crossroad.Row, crossroad.Column);
             W0 = new double[nOftarfficLigths, nOftarfficLigths];
             W1 = new double[nOftarfficLigths, nOfStates];
-            W_reader(fileWtek);
-
-//            EducationWithTeacher(educationFileName);
+            
+            if (File.Exists(fileWtek))
+            {
+                W_reader(fileWtek);
+            }
+            else
+            {
+                W_reader(fileW0);
+                EducationWithTeacher(educationFileName);
+            }
         }
 
         public double[,] W0 { get; set; }
@@ -237,9 +245,9 @@ namespace Simulator.Neuro.Infrastructure
                         input[i] = l;
                         i++;
                     }
-                    if (i >= nOftarfficLigths)
+                    else
                     {
-                        l = double.Parse(v[i + 4], CultureInfo.InvariantCulture);
+                        l = double.Parse(v[i], CultureInfo.InvariantCulture);
                         output[i - nOftarfficLigths] = l;
                         i++;
                     }
@@ -280,8 +288,6 @@ namespace Simulator.Neuro.Infrastructure
 
         private void W_writer(string fileWtek)
         {
-            if (File.Exists(fileWtek))
-            {
                 var sw = new StreamWriter(fileWtek);
                 for (int i = 0; i < nOftarfficLigths; i++)
                 {
@@ -299,8 +305,7 @@ namespace Simulator.Neuro.Infrastructure
                     }
                     sw.WriteLine();
                 }
-                sw.Close();
-            }
+                sw.Close();       
         }
 
         private void SetTrafficLights()
