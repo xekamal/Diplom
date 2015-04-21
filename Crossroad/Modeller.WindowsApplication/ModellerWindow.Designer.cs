@@ -50,10 +50,15 @@ namespace Modeller.WindowsApplication
             this._tcSimulator = new System.Windows.Forms.TabControl();
             this._tpSimulation = new System.Windows.Forms.TabPage();
             this._tpLog = new System.Windows.Forms.TabPage();
+            this._msMenu = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._tsmiSaveConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this._tsmiOpenConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this._tcSimulator.SuspendLayout();
             this._tpSimulation.SuspendLayout();
             this._tpLog.SuspendLayout();
+            this._msMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // _trafficFlowDensity
@@ -227,7 +232,7 @@ namespace Modeller.WindowsApplication
             // 
             this._tcSimulator.Controls.Add(this._tpSimulation);
             this._tcSimulator.Controls.Add(this._tpLog);
-            this._tcSimulator.Location = new System.Drawing.Point(12, 12);
+            this._tcSimulator.Location = new System.Drawing.Point(12, 29);
             this._tcSimulator.Name = "_tcSimulator";
             this._tcSimulator.SelectedIndex = 0;
             this._tcSimulator.Size = new System.Drawing.Size(920, 550);
@@ -247,7 +252,7 @@ namespace Modeller.WindowsApplication
             this._tpSimulation.Location = new System.Drawing.Point(4, 22);
             this._tpSimulation.Name = "_tpSimulation";
             this._tpSimulation.Padding = new System.Windows.Forms.Padding(3);
-            this._tpSimulation.Size = new System.Drawing.Size(771, 524);
+            this._tpSimulation.Size = new System.Drawing.Size(912, 524);
             this._tpSimulation.TabIndex = 0;
             this._tpSimulation.Text = "tabPage1";
             this._tpSimulation.UseVisualStyleBackColor = true;
@@ -263,13 +268,47 @@ namespace Modeller.WindowsApplication
             this._tpLog.Text = "tabPage2";
             this._tpLog.UseVisualStyleBackColor = true;
             // 
+            // _msMenu
+            // 
+            this._msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this._msMenu.Location = new System.Drawing.Point(0, 0);
+            this._msMenu.Name = "_msMenu";
+            this._msMenu.Size = new System.Drawing.Size(944, 24);
+            this._msMenu.TabIndex = 18;
+            this._msMenu.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._tsmiSaveConfig,
+            this._tsmiOpenConfig});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // _tsmiSaveConfig
+            // 
+            this._tsmiSaveConfig.Name = "_tsmiSaveConfig";
+            this._tsmiSaveConfig.Size = new System.Drawing.Size(152, 22);
+            this._tsmiSaveConfig.Text = "Save config";
+            this._tsmiSaveConfig.Click += new System.EventHandler(this._tsmiSaveConfig_Click);
+            // 
+            // _tsmiOpenConfig
+            // 
+            this._tsmiOpenConfig.Name = "_tsmiOpenConfig";
+            this._tsmiOpenConfig.Size = new System.Drawing.Size(152, 22);
+            this._tsmiOpenConfig.Text = "Open config";
+            // 
             // ModellerWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 568);
+            this.ClientSize = new System.Drawing.Size(944, 593);
             this.Controls.Add(this._tcSimulator);
+            this.Controls.Add(this._msMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this._msMenu;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ModellerWindow";
@@ -281,7 +320,10 @@ namespace Modeller.WindowsApplication
             this._tpSimulation.PerformLayout();
             this._tpLog.ResumeLayout(false);
             this._tpLog.PerformLayout();
+            this._msMenu.ResumeLayout(false);
+            this._msMenu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -307,6 +349,10 @@ namespace Modeller.WindowsApplication
         private System.Windows.Forms.TabControl _tcSimulator;
         private System.Windows.Forms.TabPage _tpSimulation;
         private System.Windows.Forms.TabPage _tpLog;
+        private System.Windows.Forms.MenuStrip _msMenu;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _tsmiSaveConfig;
+        private System.Windows.Forms.ToolStripMenuItem _tsmiOpenConfig;
     }
 }
 

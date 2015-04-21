@@ -20,6 +20,11 @@ namespace Simulator.Traffic.Infrastructure
             marks = new double[_map.NofRows, _map.NofColumns];
         }
 
+        public IList<ITrafficFlow> TrafficFlows
+        {
+            get { return _trafficFlows; }
+        }
+
         public void AddTrafficFlow(ITrafficFlow trafficFlow)
         {
             _trafficFlows.Add(trafficFlow);

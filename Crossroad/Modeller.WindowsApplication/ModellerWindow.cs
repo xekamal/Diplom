@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 using Modeller.CustomControls;
 using Simulator.Engine.Domain;
 using Simulator.Engine.Infrastructure;
@@ -179,6 +182,7 @@ namespace Modeller.WindowsApplication
             };
             _workField.Controls.Add(turn);
 
+            _map.AddElement(row, column, new Simulator.Map.Infrastructure.Turn());
             if (row + 1 < _workingFieldNofRows)
             {
                 _map.SetConnected(row + 1, column, row, column);
@@ -200,6 +204,7 @@ namespace Modeller.WindowsApplication
             };
             _workField.Controls.Add(turn);
 
+            _map.AddElement(row, column, new Simulator.Map.Infrastructure.Turn());
             if (column + 1 < _workingFieldNofColumns)
             {
                 _map.SetConnected(row, column + 1, row, column);
@@ -221,6 +226,7 @@ namespace Modeller.WindowsApplication
             };
             _workField.Controls.Add(turn);
 
+            _map.AddElement(row, column, new Simulator.Map.Infrastructure.Turn());
             if (row - 1 >= 0)
             {
                 _map.SetConnected(row - 1, column, row, column);
@@ -242,6 +248,7 @@ namespace Modeller.WindowsApplication
             };
             _workField.Controls.Add(turn);
 
+            _map.AddElement(row, column, new Simulator.Map.Infrastructure.Turn());
             if (column - 1 >= 0)
             {
                 _map.SetConnected(row, column - 1, row, column);
@@ -264,6 +271,7 @@ namespace Modeller.WindowsApplication
             road.PinClick += RoadOnPinClick;
             _workField.Controls.Add(road);
 
+            _map.AddElement(row, column, new Simulator.Map.Infrastructure.Road());
             if (column - 1 >= 0)
             {
                 _map.SetConnected(row, column - 1, row, column);
@@ -307,7 +315,7 @@ namespace Modeller.WindowsApplication
             };
             _workField.Controls.Add(crossroad);
 
-            _map.AddElement(row, column, new Simulator.Map.Infrastructure.Crossroad(row,column));
+            _map.AddElement(row, column, new Simulator.Map.Infrastructure.Crossroad(row, column));
             if (column - 1 >= 0)
             {
                 _map.SetConnected(row, column - 1, row, column);
@@ -466,7 +474,7 @@ namespace Modeller.WindowsApplication
         {
             Logger logger = Logger.Instance;
             _tbxLog.Text = "";
-            foreach (var message in logger.Messages)
+            foreach (string message in logger.Messages)
             {
                 _tbxLog.AppendText(message + "\r\n");
             }
@@ -505,6 +513,109 @@ namespace Modeller.WindowsApplication
             }
 
             logger.WriteMessage("");
+        }
+
+        private void _tsmiSaveConfig_Click(object sender, EventArgs e)
+        {
+            var xmlStream = new MemoryStream();
+            var xmlWriter = new XmlTextWriter(xmlStream, Encoding.ASCII);
+
+            xmlWriter.WriteStartDocument();
+            xmlWriter.WriteStartElement("Config");
+            xmlWriter.WriteStartElement("Map");
+            for (int row = 0; row < _workingFieldNofRows; row++)
+            {
+                for (int column = 0; column < _workingFieldNofColumns; column++)
+                {
+                    IMapElement mapElement = _map.GetElement(row, column);
+                    if (mapElement != null)
+                    {
+                        xmlWriter.WriteStartElement("MapElement");
+                        xmlWriter.WriteAttributeString("Row", row.ToString(CultureInfo.InvariantCulture));
+                        xmlWriter.WriteAttributeString("Column", column.ToString(CultureInfo.InvariantCulture));
+                        if (mapElement is ICrossroad)
+                        {
+                            xmlWriter.WriteAttributeString("Type", "Crossroad");
+                        }
+                        else if (mapElement is IRoad)
+                        {
+                            xmlWriter.WriteAttributeString("Type", "Road");
+                            var roadControl = (Road) LocationToControl(new Location(row, column));
+                            if (roadControl.Type == RoadType.Horizontal)
+                            {
+                                xmlWriter.WriteAttributeString("Orientation", "Horizontal");
+                            }
+                            else if (roadControl.Type == RoadType.Vertical)
+                            {
+                                xmlWriter.WriteAttributeString("Orientation", "Vertical");
+                            }
+                            else
+                            {
+                                throw new ArgumentException("Invalid road orientation");
+                            }
+                        }
+                        else if (mapElement is ITurn)
+                        {
+                            xmlWriter.WriteAttributeString("Type", "Turn");
+                            var turnControl = (Turn) LocationToControl(new Location(row, column));
+                            if (turnControl.Type == TurnType.DownToLeft)
+                            {
+                                xmlWriter.WriteAttributeString("Orientation", "DownToLeft");
+                            }
+                            else if (turnControl.Type == TurnType.LeftToUp)
+                            {
+                                xmlWriter.WriteAttributeString("Orientation", "LeftToUp");
+                            }
+                            else if (turnControl.Type == TurnType.RightToDown)
+                            {
+                                xmlWriter.WriteAttributeString("Orientation", "RightToDown");
+                            }
+                            else if (turnControl.Type == TurnType.UpToRight)
+                            {
+                                xmlWriter.WriteAttributeString("Orientation", "UpToRight");
+                            }
+                            else
+                            {
+                                throw new ArgumentException("Invalid turn orientation");
+                            }
+                        }
+
+                        xmlWriter.WriteEndElement();
+                    }
+                }
+            }
+
+            xmlWriter.WriteEndElement();
+            xmlWriter.WriteStartElement("TrafficFlows");
+
+            foreach (ITrafficFlow trafficFlow in _trafficManager.TrafficFlows)
+            {
+                xmlWriter.WriteStartElement("TrafficFlow");
+                xmlWriter.WriteAttributeString("Density",
+                    trafficFlow.TrafficDensity.ToString(CultureInfo.InvariantCulture));
+                xmlWriter.WriteAttributeString("Speed", trafficFlow.TrafficSpeed.ToString(CultureInfo.InvariantCulture));
+                xmlWriter.WriteStartElement("Path");
+                foreach (ILocation location in trafficFlow.Path)
+                {
+                    xmlWriter.WriteStartElement("Location");
+                    xmlWriter.WriteAttributeString("Row", location.Row.ToString(CultureInfo.InvariantCulture));
+                    xmlWriter.WriteAttributeString("Column", location.Column.ToString(CultureInfo.InvariantCulture));
+                    xmlWriter.WriteEndElement();
+                }
+
+                xmlWriter.WriteEndElement();
+                xmlWriter.WriteEndElement();
+            }
+
+            xmlWriter.WriteEndElement();
+            xmlWriter.WriteEndElement();
+            xmlWriter.WriteEndDocument();
+
+            xmlWriter.Flush();
+            xmlStream.Position = 0;
+            var xmlDocument = new XmlDocument();
+            xmlDocument.Load(xmlStream);
+            xmlDocument.Save("d:/xx.xml");
         }
     }
 }
