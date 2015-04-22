@@ -615,7 +615,166 @@ namespace Modeller.WindowsApplication
             xmlStream.Position = 0;
             var xmlDocument = new XmlDocument();
             xmlDocument.Load(xmlStream);
-            xmlDocument.Save("d:/xx.xml");
+
+            var dialog = new SaveFileDialog
+            {
+                Filter = "XML file (*.xml)|*.xml",
+                RestoreDirectory = true,
+                DereferenceLinks = false,
+                AutoUpgradeEnabled = false
+            };
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                xmlDocument.Save(dialog.FileName);
+            }
+
+            xmlWriter.Close();
+            xmlStream.Close();
+        }
+
+        private void _tsmiOpenConfig_Click(object sender, EventArgs e)
+        {
+            var dialog = new OpenFileDialog
+            {
+                Filter = "XML file (*.xml)|*.xml",
+                RestoreDirectory = true,
+                DereferenceLinks = false,
+                AutoUpgradeEnabled = false
+            };
+
+            if (dialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            _map.ClearElements();
+            _workField.Controls.Clear();
+            _trafficManager.TrafficFlows.Clear();
+
+            var xmlDocument = new XmlDocument();
+            xmlDocument.Load(dialog.FileName);
+
+            XmlNodeList configList = xmlDocument.SelectNodes("Config");
+            if (configList.Count != 1)
+            {
+                throw new Exception("Invalid config file structure");
+            }
+
+            XmlNodeList mapList = configList[0].SelectNodes("Map");
+            if (mapList.Count != 1)
+            {
+                throw new Exception("Invalid config file structure");
+            }
+
+            XmlNodeList elementList = mapList[0].SelectNodes("MapElement");
+            for (int elementIter = 0; elementIter < elementList.Count; elementIter++)
+            {
+                XmlAttributeCollection mapElementAttributes = elementList[elementIter].Attributes;
+                int row = int.Parse(mapElementAttributes["Row"].Value);
+                int column = int.Parse(mapElementAttributes["Column"].Value);
+                string type = mapElementAttributes["Type"].Value;
+
+                if (type == "Crossroad")
+                {
+                    AddCrossroad(row, column);
+                }
+                else if (type == "Road")
+                {
+                    string orientation = mapElementAttributes["Orientation"].Value;
+                    if (orientation == "Horizontal")
+                    {
+                        AddHorizontalRoad(row, column);
+                    }
+                    else if (orientation == "Vertical")
+                    {
+                        AddVerticalRoad(row, column);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Invalid road orientation.");
+                    }
+                }
+                else if (type == "Turn")
+                {
+                    string orientation = mapElementAttributes["Orientation"].Value;
+                    if (orientation == "DownToLeft")
+                    {
+                        AddDownToLeftTurn(row, column);
+                    }
+                    else if (orientation == "LeftToUp")
+                    {
+                        AddLeftToUpTurn(row, column);
+                    }
+                    else if (orientation == "RightToDown")
+                    {
+                        AddRightToDownTurn(row, column);
+                    }
+                    else if (orientation == "UpToRight")
+                    {
+                        AddUpToRightTurn(row, column);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Invalid turn orientation.");
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException("Unknown element type.");
+                }
+            }
+
+            XmlNodeList trafficFlowsList = configList[0].SelectNodes("TrafficFlows");
+            if (trafficFlowsList.Count != 1)
+            {
+                throw new Exception("Invalid config file structure");
+            }
+
+            XmlNodeList trafficFlowList = trafficFlowsList[0].SelectNodes("TrafficFlow");
+            for (int trafficFlowIter = 0; trafficFlowIter < trafficFlowList.Count; trafficFlowIter++)
+            {
+                _currentTrafficFlow = new TrafficFlow();
+                var roadLine = new RoadLine {Color = GetNewPen()};
+                _trafficFlowToRoadLineDictionary.Add(_currentTrafficFlow, roadLine);
+
+                XmlAttributeCollection trafficFlowAttributes = trafficFlowList[trafficFlowIter].Attributes;
+                double density = double.Parse(trafficFlowAttributes["Density"].Value, CultureInfo.InvariantCulture);
+                double speed = double.Parse(trafficFlowAttributes["Speed"].Value, CultureInfo.InvariantCulture);
+
+                XmlNodeList pathList = trafficFlowList[trafficFlowIter].SelectNodes("Path");
+                if (pathList.Count != 1)
+                {
+                    throw new Exception("Invalid config file structure");
+                }
+
+                XmlNodeList locationList = pathList[0].SelectNodes("Location");
+                for (int locationIter = 0; locationIter < locationList.Count; locationIter++)
+                {
+                    XmlAttributeCollection locationAttributes = locationList[locationIter].Attributes;
+                    int locationRow = int.Parse(locationAttributes["Row"].Value, CultureInfo.InvariantCulture);
+                    int locationColumn = int.Parse(locationAttributes["Column"].Value, CultureInfo.InvariantCulture);
+                    _currentTrafficFlow.Path.Add(new Location(locationRow, locationColumn));
+                }
+
+                foreach (ILocation location in _currentTrafficFlow.Path)
+                {
+                    var control = LocationToControl(location) as ACrossroadControl;
+                    if (control == null)
+                    {
+                        throw new Exception("Something went wrong...");
+                    }
+
+                    control.DeleteLine(roadLine);
+                    control.AddLine(roadLine);
+
+                    control.Invalidate();
+                }
+
+                _currentTrafficFlow.TrafficSpeed = speed;
+                _currentTrafficFlow.TrafficDensity = density;
+                _trafficManager.AddTrafficFlow(_currentTrafficFlow);
+            }
         }
     }
 }

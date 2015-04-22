@@ -29,6 +29,25 @@ namespace Simulator.Map.Infrastructure
             return _mapElements[row, column];
         }
 
+        public void ClearElements()
+        {
+            for (int i = 0; i < _nofRows; i++)
+            {
+                for (int j = 0; j < _nofColumns; j++)
+                {
+                    _mapElements[i, j] = null;
+                }
+            }
+
+            for (int i = 0; i < _nofRows*_nofColumns; i++)
+            {
+                for (int j = 0; j < _nofColumns*NofRows; j++)
+                {
+                    _mapConnection[i, j] = false;
+                }
+            }
+        }
+
         public bool IsConnected(int e1Row, int e1Column, int e2Row, int e2Column)
         {
             return _mapConnection[e1Row*_nofColumns + e1Column, e2Row*_nofColumns + e2Column];

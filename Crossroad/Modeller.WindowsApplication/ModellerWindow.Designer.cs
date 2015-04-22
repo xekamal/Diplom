@@ -299,6 +299,7 @@ namespace Modeller.WindowsApplication
             this._tsmiOpenConfig.Name = "_tsmiOpenConfig";
             this._tsmiOpenConfig.Size = new System.Drawing.Size(152, 22);
             this._tsmiOpenConfig.Text = "Open config";
+            this._tsmiOpenConfig.Click += new System.EventHandler(this._tsmiOpenConfig_Click);
             // 
             // ModellerWindow
             // 
