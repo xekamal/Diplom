@@ -246,57 +246,68 @@ namespace Simulator.Traffic.Infrastructure
             {
                 mark += GetMarkFromTrafficData(crossroad.LeftToUpTrafficLight, crossroad.LeftToUpTrafficData);
             }
-            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn - 1), crossroadLocation,
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn - 1), crossroadLocation,
                 new Location(crossroadRow, crossroadColumn + 1)))
             {
                 mark += GetMarkFromTrafficData(crossroad.LeftToRightTrafficLight, crossroad.LeftToRightTrafficData);
             }
-            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn - 1), crossroadLocation,
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn - 1), crossroadLocation,
                 new Location(crossroadRow + 1, crossroadColumn)))
             {
                 mark += GetMarkFromTrafficData(crossroad.LeftToDownTrafficLight, crossroad.LeftToDownTrafficData);
             }
-            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow - 1, crossroadColumn), crossroadLocation,
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow - 1, crossroadColumn), crossroadLocation,
                 new Location(crossroadRow, crossroadColumn - 1)))
             {
                 mark += GetMarkFromTrafficData(crossroad.UpToLeftTrafficLight, crossroad.UpToLeftTrafficData);
             }
-            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow - 1, crossroadColumn), crossroadLocation,
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow - 1, crossroadColumn), crossroadLocation,
                 new Location(crossroadRow + 1, crossroadColumn)))
             {
                 mark += GetMarkFromTrafficData(crossroad.UpToDownTrafficLight, crossroad.UpToDownTrafficData);
             }
-            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow - 1, crossroadColumn), crossroadLocation,
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow - 1, crossroadColumn), crossroadLocation,
                 new Location(crossroadRow, crossroadColumn + 1)))
             {
                 mark += GetMarkFromTrafficData(crossroad.UpToRightTrafficLight, crossroad.UpToRightTrafficData);
             }
-            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn + 1), crossroadLocation,
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn + 1), crossroadLocation,
                 new Location(crossroadRow - 1, crossroadColumn)))
             {
                 mark += GetMarkFromTrafficData(crossroad.RightToUpTrafficLight, crossroad.RightToUpTrafficData);
             }
-            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn + 1), crossroadLocation,
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn + 1), crossroadLocation,
                 new Location(crossroadRow, crossroadColumn - 1)))
             {
                 mark += GetMarkFromTrafficData(crossroad.RightToLeftTrafficLight, crossroad.RightToLeftTrafficData);
             }
-            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn + 1), crossroadLocation,
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn + 1), crossroadLocation,
                 new Location(crossroadRow + 1, crossroadColumn)))
             {
                 mark += GetMarkFromTrafficData(crossroad.RightToDownTrafficLight, crossroad.RightToDownTrafficData);
             }
-            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow + 1, crossroadColumn), crossroadLocation,
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow + 1, crossroadColumn), crossroadLocation,
                 new Location(crossroadRow, crossroadColumn - 1)))
             {
                 mark += GetMarkFromTrafficData(crossroad.DownToLeftTrafficLight, crossroad.DownToLeftTrafficData);
             }
-            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow + 1, crossroadColumn), crossroadLocation,
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow + 1, crossroadColumn), crossroadLocation,
                 new Location(crossroadRow - 1, crossroadColumn)))
             {
                 mark += GetMarkFromTrafficData(crossroad.DownToUpTrafficLight, crossroad.DownToUpTrafficData);
             }
-            else if (IsPartOfTrafficFlowExists(new Location(crossroadRow + 1, crossroadColumn), crossroadLocation,
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow + 1, crossroadColumn), crossroadLocation,
                 new Location(crossroadRow, crossroadColumn + 1)))
             {
                 mark += GetMarkFromTrafficData(crossroad.DownToRightTrafficLight, crossroad.DownToRightTrafficData);

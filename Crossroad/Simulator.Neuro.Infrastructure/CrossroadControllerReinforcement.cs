@@ -341,7 +341,7 @@ namespace Simulator.Neuro.Infrastructure
                 {
                     for (int j = 0; j < nOftarfficLigths; j++)
                     {
-                        if (int.Parse(v[j + nOfStates - 1]) != 0)
+                        if (int.Parse(v[j + nOfStates]) != 0)
                         {
                             mas[j] = TrafficLightState.Green;
                         }

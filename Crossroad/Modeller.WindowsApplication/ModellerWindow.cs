@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using Modeller.CustomControls;
@@ -18,7 +19,6 @@ using Simulator.Utils.Infrastructure;
 using Crossroad = Modeller.CustomControls.Crossroad;
 using Road = Modeller.CustomControls.Road;
 using Turn = Modeller.CustomControls.Turn;
-using System.Threading;
 
 namespace Modeller.WindowsApplication
 {
@@ -30,17 +30,18 @@ namespace Modeller.WindowsApplication
             Pens.Coral, Pens.DarkMagenta, Pens.Fuchsia, Pens.Navy, Pens.Chartreuse
         };
 
+        private readonly int _customControlSize = 50;
         private readonly IMap _map;
         private readonly Dictionary<ITrafficFlow, RoadLine> _trafficFlowToRoadLineDictionary;
         private readonly ITrafficManager _trafficManager;
+        private readonly int _workingFieldNofColumns = 10;
+        private readonly int _workingFieldNofRows = 10;
         private CurrentMapElementType _currentMapElementType;
         private ITrafficFlow _currentTrafficFlow;
-        private int _customControlSize = 50;
         private bool _isTrafficFlowConfigure;
+        private bool _simulationFlag;
         private ISimulatorEngine _simulatorEngine;
-        private int _workingFieldNofColumns = 10;
-        private int _workingFieldNofRows = 10;
-        private bool simFlag;
+
         public ModellerWindow()
         {
             InitializeComponent();
@@ -53,6 +54,11 @@ namespace Modeller.WindowsApplication
             _trafficManager = new TrafficManager(_map);
         }
 
+        private void UpdateLogFromSimulationThread()
+        {
+            UpdateLog();
+        }
+
         private void Modeller_Load(object sender, EventArgs e)
         {
             DrawWorkingGrid();
@@ -61,15 +67,15 @@ namespace Modeller.WindowsApplication
         private void DrawWorkingGrid()
         {
             var bitmap = new Bitmap(_workField.Width, _workField.Height);
-            using (Graphics graphics = Graphics.FromImage(bitmap))
+            using (var graphics = Graphics.FromImage(bitmap))
             {
                 var pen = new Pen(Color.Black) {Width = 1, DashStyle = DashStyle.Dash};
-                for (int i = 1; i < _workingFieldNofRows; i++)
+                for (var i = 1; i < _workingFieldNofRows; i++)
                 {
                     graphics.DrawLine(pen, 0, i*50 + i - 1, _workField.Width, i*50 + i - 1);
                 }
 
-                for (int i = 1; i < _workingFieldNofColumns; i++)
+                for (var i = 1; i < _workingFieldNofColumns; i++)
                 {
                     graphics.DrawLine(pen, i*50 + i - 1, 0, i*50 + i - 1, _workField.Height);
                 }
@@ -80,8 +86,8 @@ namespace Modeller.WindowsApplication
 
         private ILocation CoordinateToLocation(int x, int y)
         {
-            int row = y/_customControlSize;
-            int column = x/_customControlSize;
+            var row = y/_customControlSize;
+            var column = x/_customControlSize;
             return new Location(row, column);
         }
 
@@ -94,7 +100,7 @@ namespace Modeller.WindowsApplication
         {
             foreach (Control control in _workField.Controls)
             {
-                Point locationLeftTopPoint = LocationToPoint(location);
+                var locationLeftTopPoint = LocationToPoint(location);
                 var locationRightBottomPoint = new Point(locationLeftTopPoint.X + _customControlSize,
                     locationLeftTopPoint.Y + _customControlSize);
                 var controlCenter = new Point(control.Location.X + control.Width/2,
@@ -111,7 +117,7 @@ namespace Modeller.WindowsApplication
 
         private Pen GetNewPen()
         {
-            foreach (Pen availableRoadLineColor in _availableRoadLineColors)
+            foreach (var availableRoadLineColor in _availableRoadLineColors)
             {
                 var roadLine = new RoadLine {Color = availableRoadLineColor};
                 if (!_trafficFlowToRoadLineDictionary.ContainsValue(roadLine))
@@ -132,8 +138,8 @@ namespace Modeller.WindowsApplication
                 return;
             }
 
-            int row = e.Y/50;
-            int column = e.X/50;
+            var row = e.Y/50;
+            var column = e.X/50;
 
             switch (_currentMapElementType)
             {
@@ -387,9 +393,9 @@ namespace Modeller.WindowsApplication
             if (_isTrafficFlowConfigure)
             {
                 var road = sender as Road;
-                Point controlPosition = road.Location;
-                int row = (controlPosition.Y + 1)/50;
-                int column = (controlPosition.X + 1)/50;
+                var controlPosition = road.Location;
+                var row = (controlPosition.Y + 1)/50;
+                var column = (controlPosition.X + 1)/50;
 
                 if (_currentTrafficFlow.Path.Count == 0)
                 {
@@ -397,12 +403,12 @@ namespace Modeller.WindowsApplication
                 }
                 else
                 {
-                    ILocation from = _currentTrafficFlow.Path[_currentTrafficFlow.Path.Count - 1];
+                    var from = _currentTrafficFlow.Path[_currentTrafficFlow.Path.Count - 1];
                     var to = new Location(row, column);
 
                     /* Check whether 'to' location already exists in traffic flow
                      * to avoid loop configuration. */
-                    for (int i = 0; i < _currentTrafficFlow.Path.Count; i++)
+                    for (var i = 0; i < _currentTrafficFlow.Path.Count; i++)
                     {
                         if (to.Row == _currentTrafficFlow.Path[i].Row && to.Column == _currentTrafficFlow.Path[i].Column)
                         {
@@ -411,14 +417,14 @@ namespace Modeller.WindowsApplication
                         }
                     }
 
-                    ILocation[] path = _map.FindShortestPath(from, to);
-                    for (int i = 1; i < path.Length; i++)
+                    var path = _map.FindShortestPath(from, to);
+                    for (var i = 1; i < path.Length; i++)
                     {
                         _currentTrafficFlow.Path.Add(path[i]);
                     }
                 }
 
-                foreach (ILocation location in _currentTrafficFlow.Path)
+                foreach (var location in _currentTrafficFlow.Path)
                 {
                     var control = LocationToControl(location) as ACrossroadControl;
                     if (control == null)
@@ -426,7 +432,7 @@ namespace Modeller.WindowsApplication
                         throw new Exception("Something went wrong...");
                     }
 
-                    RoadLine roadLine = _trafficFlowToRoadLineDictionary[_currentTrafficFlow];
+                    var roadLine = _trafficFlowToRoadLineDictionary[_currentTrafficFlow];
                     control.DeleteLine(roadLine);
                     control.AddLine(roadLine);
 
@@ -435,11 +441,10 @@ namespace Modeller.WindowsApplication
             }
         }
 
-
         private void _endTrafficFlow_Click(object sender, EventArgs e)
         {
-            double speed = 0.0;
-            double density = 0.0;
+            var speed = 0.0;
+            var density = 0.0;
 
             try
             {
@@ -473,9 +478,9 @@ namespace Modeller.WindowsApplication
 
         private void UpdateLog()
         {
-            Logger logger = Logger.Instance;
+            var logger = Logger.Instance;
             _tbxLog.Text = "";
-            foreach (string message in logger.Messages)
+            foreach (var message in logger.Messages)
             {
                 _tbxLog.AppendText(message + "\r\n");
             }
@@ -483,14 +488,14 @@ namespace Modeller.WindowsApplication
 
         public void WriteLog()
         {
-            Logger logger = Logger.Instance;
+            var logger = Logger.Instance;
             logger.WriteMessage("===========================================");
             logger.WriteMessage("===========================================");
             logger.WriteMessage("");
 
-            for (int i = 0; i < _workingFieldNofRows; i++)
+            for (var i = 0; i < _workingFieldNofRows; i++)
             {
-                for (int j = 0; j < _workingFieldNofColumns; j++)
+                for (var j = 0; j < _workingFieldNofColumns; j++)
                 {
                     var element = _map.GetElement(i, j) as ICrossroad;
                     if (element == null)
@@ -500,20 +505,40 @@ namespace Modeller.WindowsApplication
 
                     logger.WriteMessage(string.Format("MATRIX FOR CROSSROAD [{0},{1}]:", i, j));
 
-                    double[,] m0 = element.CrossroadController.W0;
-                    for (int k = 0; k < 12; k++)
+                    var m0 = element.CrossroadController.W0;
+                    for (var k = 0; k < 12; k++)
                     {
-                        string str =
+                        var str =
                             string.Format(
                                 "{0,7:0.0000}  {1,7:0.0000}  {2,7:0.0000}  {3,7:0.0000}  {4,7:0.0000}  {5,7:0.0000}  {6,7:0.0000}  {7,7:0.0000}  {8,7:0.0000}  {9,7:0.0000}  {10,7:0.0000}  {11,7:0.0000}",
                                 m0[k, 0], m0[k, 1], m0[k, 2], m0[k, 3], m0[k, 4], m0[k, 5], m0[k, 6], m0[k, 7], m0[k, 8],
                                 m0[k, 9], m0[k, 10], m0[k, 11]);
                         logger.WriteMessage(str);
                     }
+
+                    logger.WriteMessage(string.Format("TRAFFIC LIGHTS STATUSES [{0},{1}]:{2}", i, j, GetCrossroadTrafficLightsStatusesAsString(element)));
                 }
             }
-
+            
             logger.WriteMessage("");
+        }
+
+        private string GetCrossroadTrafficLightsStatusesAsString(ICrossroad crossroad)
+        {
+            string res = String.Empty;
+            res += crossroad.LeftToUpTrafficLight.State == TrafficLightState.Green ? "1" : "0";
+            res += crossroad.LeftToRightTrafficLight.State == TrafficLightState.Green ? "1" : "0";
+            res += crossroad.LeftToDownTrafficLight.State == TrafficLightState.Green ? "1" : "0";
+            res += crossroad.DownToLeftTrafficLight.State == TrafficLightState.Green ? "1" : "0";
+            res += crossroad.DownToUpTrafficLight.State == TrafficLightState.Green ? "1" : "0";
+            res += crossroad.DownToRightTrafficLight.State == TrafficLightState.Green ? "1" : "0";
+            res += crossroad.RightToDownTrafficLight.State == TrafficLightState.Green ? "1" : "0";
+            res += crossroad.RightToLeftTrafficLight.State == TrafficLightState.Green ? "1" : "0";
+            res += crossroad.RightToUpTrafficLight.State == TrafficLightState.Green ? "1" : "0";
+            res += crossroad.UpToRightTrafficLight.State == TrafficLightState.Green ? "1" : "0";
+            res += crossroad.UpToDownTrafficLight.State == TrafficLightState.Green ? "1" : "0";
+            res += crossroad.UpToLeftTrafficLight.State == TrafficLightState.Green ? "1" : "0";
+            return res;
         }
 
         private void _tsmiSaveConfig_Click(object sender, EventArgs e)
@@ -524,11 +549,11 @@ namespace Modeller.WindowsApplication
             xmlWriter.WriteStartDocument();
             xmlWriter.WriteStartElement("Config");
             xmlWriter.WriteStartElement("Map");
-            for (int row = 0; row < _workingFieldNofRows; row++)
+            for (var row = 0; row < _workingFieldNofRows; row++)
             {
-                for (int column = 0; column < _workingFieldNofColumns; column++)
+                for (var column = 0; column < _workingFieldNofColumns; column++)
                 {
-                    IMapElement mapElement = _map.GetElement(row, column);
+                    var mapElement = _map.GetElement(row, column);
                     if (mapElement != null)
                     {
                         xmlWriter.WriteStartElement("MapElement");
@@ -589,14 +614,14 @@ namespace Modeller.WindowsApplication
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("TrafficFlows");
 
-            foreach (ITrafficFlow trafficFlow in _trafficManager.TrafficFlows)
+            foreach (var trafficFlow in _trafficManager.TrafficFlows)
             {
                 xmlWriter.WriteStartElement("TrafficFlow");
                 xmlWriter.WriteAttributeString("Density",
                     trafficFlow.TrafficDensity.ToString(CultureInfo.InvariantCulture));
                 xmlWriter.WriteAttributeString("Speed", trafficFlow.TrafficSpeed.ToString(CultureInfo.InvariantCulture));
                 xmlWriter.WriteStartElement("Path");
-                foreach (ILocation location in trafficFlow.Path)
+                foreach (var location in trafficFlow.Path)
                 {
                     xmlWriter.WriteStartElement("Location");
                     xmlWriter.WriteAttributeString("Row", location.Row.ToString(CultureInfo.InvariantCulture));
@@ -656,25 +681,25 @@ namespace Modeller.WindowsApplication
             var xmlDocument = new XmlDocument();
             xmlDocument.Load(dialog.FileName);
 
-            XmlNodeList configList = xmlDocument.SelectNodes("Config");
+            var configList = xmlDocument.SelectNodes("Config");
             if (configList.Count != 1)
             {
                 throw new Exception("Invalid config file structure");
             }
 
-            XmlNodeList mapList = configList[0].SelectNodes("Map");
+            var mapList = configList[0].SelectNodes("Map");
             if (mapList.Count != 1)
             {
                 throw new Exception("Invalid config file structure");
             }
 
-            XmlNodeList elementList = mapList[0].SelectNodes("MapElement");
-            for (int elementIter = 0; elementIter < elementList.Count; elementIter++)
+            var elementList = mapList[0].SelectNodes("MapElement");
+            for (var elementIter = 0; elementIter < elementList.Count; elementIter++)
             {
-                XmlAttributeCollection mapElementAttributes = elementList[elementIter].Attributes;
-                int row = int.Parse(mapElementAttributes["Row"].Value);
-                int column = int.Parse(mapElementAttributes["Column"].Value);
-                string type = mapElementAttributes["Type"].Value;
+                var mapElementAttributes = elementList[elementIter].Attributes;
+                var row = int.Parse(mapElementAttributes["Row"].Value);
+                var column = int.Parse(mapElementAttributes["Column"].Value);
+                var type = mapElementAttributes["Type"].Value;
 
                 if (type == "Crossroad")
                 {
@@ -682,7 +707,7 @@ namespace Modeller.WindowsApplication
                 }
                 else if (type == "Road")
                 {
-                    string orientation = mapElementAttributes["Orientation"].Value;
+                    var orientation = mapElementAttributes["Orientation"].Value;
                     if (orientation == "Horizontal")
                     {
                         AddHorizontalRoad(row, column);
@@ -698,7 +723,7 @@ namespace Modeller.WindowsApplication
                 }
                 else if (type == "Turn")
                 {
-                    string orientation = mapElementAttributes["Orientation"].Value;
+                    var orientation = mapElementAttributes["Orientation"].Value;
                     if (orientation == "DownToLeft")
                     {
                         AddDownToLeftTurn(row, column);
@@ -726,39 +751,39 @@ namespace Modeller.WindowsApplication
                 }
             }
 
-            XmlNodeList trafficFlowsList = configList[0].SelectNodes("TrafficFlows");
+            var trafficFlowsList = configList[0].SelectNodes("TrafficFlows");
             if (trafficFlowsList.Count != 1)
             {
                 throw new Exception("Invalid config file structure");
             }
 
-            XmlNodeList trafficFlowList = trafficFlowsList[0].SelectNodes("TrafficFlow");
-            for (int trafficFlowIter = 0; trafficFlowIter < trafficFlowList.Count; trafficFlowIter++)
+            var trafficFlowList = trafficFlowsList[0].SelectNodes("TrafficFlow");
+            for (var trafficFlowIter = 0; trafficFlowIter < trafficFlowList.Count; trafficFlowIter++)
             {
                 _currentTrafficFlow = new TrafficFlow();
                 var roadLine = new RoadLine {Color = GetNewPen()};
                 _trafficFlowToRoadLineDictionary.Add(_currentTrafficFlow, roadLine);
 
-                XmlAttributeCollection trafficFlowAttributes = trafficFlowList[trafficFlowIter].Attributes;
-                double density = double.Parse(trafficFlowAttributes["Density"].Value, CultureInfo.InvariantCulture);
-                double speed = double.Parse(trafficFlowAttributes["Speed"].Value, CultureInfo.InvariantCulture);
+                var trafficFlowAttributes = trafficFlowList[trafficFlowIter].Attributes;
+                var density = double.Parse(trafficFlowAttributes["Density"].Value, CultureInfo.InvariantCulture);
+                var speed = double.Parse(trafficFlowAttributes["Speed"].Value, CultureInfo.InvariantCulture);
 
-                XmlNodeList pathList = trafficFlowList[trafficFlowIter].SelectNodes("Path");
+                var pathList = trafficFlowList[trafficFlowIter].SelectNodes("Path");
                 if (pathList.Count != 1)
                 {
                     throw new Exception("Invalid config file structure");
                 }
 
-                XmlNodeList locationList = pathList[0].SelectNodes("Location");
-                for (int locationIter = 0; locationIter < locationList.Count; locationIter++)
+                var locationList = pathList[0].SelectNodes("Location");
+                for (var locationIter = 0; locationIter < locationList.Count; locationIter++)
                 {
-                    XmlAttributeCollection locationAttributes = locationList[locationIter].Attributes;
-                    int locationRow = int.Parse(locationAttributes["Row"].Value, CultureInfo.InvariantCulture);
-                    int locationColumn = int.Parse(locationAttributes["Column"].Value, CultureInfo.InvariantCulture);
+                    var locationAttributes = locationList[locationIter].Attributes;
+                    var locationRow = int.Parse(locationAttributes["Row"].Value, CultureInfo.InvariantCulture);
+                    var locationColumn = int.Parse(locationAttributes["Column"].Value, CultureInfo.InvariantCulture);
                     _currentTrafficFlow.Path.Add(new Location(locationRow, locationColumn));
                 }
 
-                foreach (ILocation location in _currentTrafficFlow.Path)
+                foreach (var location in _currentTrafficFlow.Path)
                 {
                     var control = LocationToControl(location) as ACrossroadControl;
                     if (control == null)
@@ -780,23 +805,36 @@ namespace Modeller.WindowsApplication
 
         private void _btnStartSim_Click(object sender, EventArgs e)
         {
-            simFlag= true;
-            double s=60;
+            const double seconds = 60;
+            var simulationThread = new Thread(SimulationThreadFunc);
+            simulationThread.Start(seconds);
+        }
+
+        private void _btnEndSim_Click(object sender, EventArgs e)
+        {
+            _simulationFlag = false;
+        }
+
+        private void SimulationThreadFunc(object seconds)
+        {
             if (_simulatorEngine == null)
             {
                 _simulatorEngine = new SimulatorEngine(_trafficManager);
             }
 
-            Thread StepCaller = new Thread(_simulatorEngine.ThreadStep);
-            while (simFlag)
+            _simulationFlag = true;
+            while (_simulationFlag)
             {
-                StepCaller.Start();
+                _simulatorEngine.Step((double) seconds);
+
+                WriteLog();
+                //UpdateLog();
+                _tbxLog.Invoke(new UpdateLogFromSimulationThreadDelegate(UpdateLogFromSimulationThread));
+
+                Thread.Sleep(100);
             }
         }
 
-        private void _btnEndSim_Click(object sender, EventArgs e)
-        {
-            simFlag = false;
-        }
+        private delegate void UpdateLogFromSimulationThreadDelegate();
     }
 }
