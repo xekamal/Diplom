@@ -18,6 +18,7 @@ using Simulator.Utils.Infrastructure;
 using Crossroad = Modeller.CustomControls.Crossroad;
 using Road = Modeller.CustomControls.Road;
 using Turn = Modeller.CustomControls.Turn;
+using System.Threading;
 
 namespace Modeller.WindowsApplication
 {
@@ -39,7 +40,7 @@ namespace Modeller.WindowsApplication
         private ISimulatorEngine _simulatorEngine;
         private int _workingFieldNofColumns = 10;
         private int _workingFieldNofRows = 10;
-
+        private bool simFlag;
         public ModellerWindow()
         {
             InitializeComponent();
@@ -775,6 +776,27 @@ namespace Modeller.WindowsApplication
                 _currentTrafficFlow.TrafficDensity = density;
                 _trafficManager.AddTrafficFlow(_currentTrafficFlow);
             }
+        }
+
+        private void _btnStartSim_Click(object sender, EventArgs e)
+        {
+            simFlag= true;
+            double s=60;
+            if (_simulatorEngine == null)
+            {
+                _simulatorEngine = new SimulatorEngine(_trafficManager);
+            }
+
+            Thread StepCaller = new Thread(_simulatorEngine.ThreadStep);
+            while (simFlag)
+            {
+                StepCaller.Start();
+            }
+        }
+
+        private void _btnEndSim_Click(object sender, EventArgs e)
+        {
+            simFlag = false;
         }
     }
 }

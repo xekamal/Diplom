@@ -21,9 +21,13 @@ namespace Simulator.Engine.Infrastructure
             _trafficManager.CalculateNofPassedCars(seconds);
         }
 
-        public void Step(double seconds, int nofSteps)
+/*        public void Step(double seconds, int nofSteps)
         {
             throw new System.NotImplementedException();
+        }*/
+        public void ThreadStep()
+        {
+            Step(60);
         }
     }
 }

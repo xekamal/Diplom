@@ -49,6 +49,8 @@ namespace Modeller.WindowsApplication
             this._tbxLog = new System.Windows.Forms.TextBox();
             this._tcSimulator = new System.Windows.Forms.TabControl();
             this._tpSimulation = new System.Windows.Forms.TabPage();
+            this._btnEndSim = new System.Windows.Forms.Button();
+            this._btnStartSim = new System.Windows.Forms.Button();
             this._tpLog = new System.Windows.Forms.TabPage();
             this._msMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,21 +65,21 @@ namespace Modeller.WindowsApplication
             // 
             // _trafficFlowDensity
             // 
-            this._trafficFlowDensity.Location = new System.Drawing.Point(628, 309);
+            this._trafficFlowDensity.Location = new System.Drawing.Point(578, 254);
             this._trafficFlowDensity.Name = "_trafficFlowDensity";
-            this._trafficFlowDensity.Size = new System.Drawing.Size(100, 20);
+            this._trafficFlowDensity.Size = new System.Drawing.Size(60, 20);
             this._trafficFlowDensity.TabIndex = 11;
             // 
             // _trafficFlowSpeed
             // 
-            this._trafficFlowSpeed.Location = new System.Drawing.Point(628, 280);
+            this._trafficFlowSpeed.Location = new System.Drawing.Point(578, 225);
             this._trafficFlowSpeed.Name = "_trafficFlowSpeed";
-            this._trafficFlowSpeed.Size = new System.Drawing.Size(100, 20);
+            this._trafficFlowSpeed.Size = new System.Drawing.Size(60, 20);
             this._trafficFlowSpeed.TabIndex = 10;
             // 
             // _endTrafficFlow
             // 
-            this._endTrafficFlow.Location = new System.Drawing.Point(574, 241);
+            this._endTrafficFlow.Location = new System.Drawing.Point(524, 186);
             this._endTrafficFlow.Name = "_endTrafficFlow";
             this._endTrafficFlow.Size = new System.Drawing.Size(114, 23);
             this._endTrafficFlow.TabIndex = 9;
@@ -87,7 +89,7 @@ namespace Modeller.WindowsApplication
             // 
             // _startTrafficFlow
             // 
-            this._startTrafficFlow.Location = new System.Drawing.Point(574, 212);
+            this._startTrafficFlow.Location = new System.Drawing.Point(524, 157);
             this._startTrafficFlow.Name = "_startTrafficFlow";
             this._startTrafficFlow.Size = new System.Drawing.Size(114, 23);
             this._startTrafficFlow.TabIndex = 8;
@@ -192,7 +194,7 @@ namespace Modeller.WindowsApplication
             // _lblTrafficFlowSpeed
             // 
             this._lblTrafficFlowSpeed.AutoSize = true;
-            this._lblTrafficFlowSpeed.Location = new System.Drawing.Point(577, 283);
+            this._lblTrafficFlowSpeed.Location = new System.Drawing.Point(527, 228);
             this._lblTrafficFlowSpeed.Name = "_lblTrafficFlowSpeed";
             this._lblTrafficFlowSpeed.Size = new System.Drawing.Size(41, 13);
             this._lblTrafficFlowSpeed.TabIndex = 13;
@@ -201,7 +203,7 @@ namespace Modeller.WindowsApplication
             // _lblTrafficFlowDensity
             // 
             this._lblTrafficFlowDensity.AutoSize = true;
-            this._lblTrafficFlowDensity.Location = new System.Drawing.Point(577, 312);
+            this._lblTrafficFlowDensity.Location = new System.Drawing.Point(527, 257);
             this._lblTrafficFlowDensity.Name = "_lblTrafficFlowDensity";
             this._lblTrafficFlowDensity.Size = new System.Drawing.Size(45, 13);
             this._lblTrafficFlowDensity.TabIndex = 14;
@@ -209,9 +211,9 @@ namespace Modeller.WindowsApplication
             // 
             // _btnStep
             // 
-            this._btnStep.Location = new System.Drawing.Point(577, 351);
+            this._btnStep.Location = new System.Drawing.Point(644, 418);
             this._btnStep.Name = "_btnStep";
-            this._btnStep.Size = new System.Drawing.Size(101, 95);
+            this._btnStep.Size = new System.Drawing.Size(101, 54);
             this._btnStep.TabIndex = 15;
             this._btnStep.Text = "Step";
             this._btnStep.UseVisualStyleBackColor = true;
@@ -240,6 +242,8 @@ namespace Modeller.WindowsApplication
             // 
             // _tpSimulation
             // 
+            this._tpSimulation.Controls.Add(this._btnEndSim);
+            this._tpSimulation.Controls.Add(this._btnStartSim);
             this._tpSimulation.Controls.Add(this.groupBox1);
             this._tpSimulation.Controls.Add(this._workField);
             this._tpSimulation.Controls.Add(this._btnStep);
@@ -254,8 +258,28 @@ namespace Modeller.WindowsApplication
             this._tpSimulation.Padding = new System.Windows.Forms.Padding(3);
             this._tpSimulation.Size = new System.Drawing.Size(912, 524);
             this._tpSimulation.TabIndex = 0;
-            this._tpSimulation.Text = "tabPage1";
+            this._tpSimulation.Text = "Working field";
             this._tpSimulation.UseVisualStyleBackColor = true;
+            // 
+            // _btnEndSim
+            // 
+            this._btnEndSim.Location = new System.Drawing.Point(699, 338);
+            this._btnEndSim.Name = "_btnEndSim";
+            this._btnEndSim.Size = new System.Drawing.Size(116, 62);
+            this._btnEndSim.TabIndex = 17;
+            this._btnEndSim.Text = "End simulation";
+            this._btnEndSim.UseVisualStyleBackColor = true;
+            this._btnEndSim.Click += new System.EventHandler(this._btnEndSim_Click);
+            // 
+            // _btnStartSim
+            // 
+            this._btnStartSim.Location = new System.Drawing.Point(578, 338);
+            this._btnStartSim.Name = "_btnStartSim";
+            this._btnStartSim.Size = new System.Drawing.Size(115, 62);
+            this._btnStartSim.TabIndex = 16;
+            this._btnStartSim.Text = "Start simulation";
+            this._btnStartSim.UseVisualStyleBackColor = true;
+            this._btnStartSim.Click += new System.EventHandler(this._btnStartSim_Click);
             // 
             // _tpLog
             // 
@@ -265,7 +289,7 @@ namespace Modeller.WindowsApplication
             this._tpLog.Padding = new System.Windows.Forms.Padding(3);
             this._tpLog.Size = new System.Drawing.Size(912, 524);
             this._tpLog.TabIndex = 1;
-            this._tpLog.Text = "tabPage2";
+            this._tpLog.Text = "Logging field";
             this._tpLog.UseVisualStyleBackColor = true;
             // 
             // _msMenu
@@ -290,14 +314,14 @@ namespace Modeller.WindowsApplication
             // _tsmiSaveConfig
             // 
             this._tsmiSaveConfig.Name = "_tsmiSaveConfig";
-            this._tsmiSaveConfig.Size = new System.Drawing.Size(152, 22);
+            this._tsmiSaveConfig.Size = new System.Drawing.Size(140, 22);
             this._tsmiSaveConfig.Text = "Save config";
             this._tsmiSaveConfig.Click += new System.EventHandler(this._tsmiSaveConfig_Click);
             // 
             // _tsmiOpenConfig
             // 
             this._tsmiOpenConfig.Name = "_tsmiOpenConfig";
-            this._tsmiOpenConfig.Size = new System.Drawing.Size(152, 22);
+            this._tsmiOpenConfig.Size = new System.Drawing.Size(140, 22);
             this._tsmiOpenConfig.Text = "Open config";
             this._tsmiOpenConfig.Click += new System.EventHandler(this._tsmiOpenConfig_Click);
             // 
@@ -354,6 +378,8 @@ namespace Modeller.WindowsApplication
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _tsmiSaveConfig;
         private System.Windows.Forms.ToolStripMenuItem _tsmiOpenConfig;
+        private System.Windows.Forms.Button _btnEndSim;
+        private System.Windows.Forms.Button _btnStartSim;
     }
 }
 

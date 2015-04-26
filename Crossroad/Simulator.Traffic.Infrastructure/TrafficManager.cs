@@ -309,7 +309,13 @@ namespace Simulator.Traffic.Infrastructure
         {
             if (trafficLight.State == TrafficLightState.Green)
             {
-                return trafficData.TrafficDensity + 1/trafficData.TrafficSpeed;
+                if (Math.Abs(trafficData.TrafficSpeed) > 0.0001)
+                {
+                    return trafficData.TrafficDensity + 1 / trafficData.TrafficSpeed;
+                }
+                else { 
+                    return trafficData.TrafficDensity; 
+                }
             }
 
             return 0.0;

@@ -7,10 +7,10 @@ namespace Simulator.Neuro.Infrastructure
 {
     public class CrossroadControllerReinforcement : ICrossroadController
     {
-        private const string educationFileName = "e:\\Kate\\Education_example.txt";
-        private const string fileW0 = "e:\\Kate\\W0.txt";
+        private const string educationFileName = "d:\\Kate\\Education_example.txt";
+        private const string fileW0 = "d:\\Kate\\W0.txt";
 //        private const string fileWtek = "e:\\Kate\\Wtek.txt";
-        private const string fileState = "e:\\Kate\\states.txt";
+        private const string fileState = "d:\\Kate\\states.txt";
         private const int nOftarfficLigths = 12;
         private const int nOfStates = 4;
         private readonly HNeuron[] HNeurons;
@@ -39,7 +39,7 @@ namespace Simulator.Neuro.Infrastructure
             {
                 RNeurons[i] = new RNeuron(nOftarfficLigths);
             }
-            fileWtek = string.Format("e:\\Kate\\Wtek{0}{1}.txt", crossroad.Row, crossroad.Column);
+            fileWtek = string.Format("d:\\Kate\\Wtek{0}{1}.txt", crossroad.Row, crossroad.Column);
             W0 = new double[nOftarfficLigths, nOftarfficLigths];
             W1 = new double[nOftarfficLigths, nOfStates];
             
@@ -83,7 +83,7 @@ namespace Simulator.Neuro.Infrastructure
         }
 
         public void Reinforce(double marck)
-        {
+         {
             if (_crossroad.LeftToUpTrafficLight.State == TrafficLightState.Green)
             {
                 for (int i = 0; i < nOftarfficLigths; i++)
@@ -318,7 +318,7 @@ namespace Simulator.Neuro.Infrastructure
             double T = x/nOfStates;
             for (int i = 0; i < nOfStates; i++)
             {
-                if (x < T)
+                if (RNeurons[i].axon < T)
                 {
                     RNeurons[i].axonState = TrafficLightState.Red;
                 }

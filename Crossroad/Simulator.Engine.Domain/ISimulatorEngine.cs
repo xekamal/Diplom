@@ -3,6 +3,7 @@
     public interface ISimulatorEngine
     {
         void Step(double seconds);
-        void Step(double seconds, int nofSteps);
+//        void Step(double seconds, int nofSteps);
+        void ThreadStep();
     }
 }
