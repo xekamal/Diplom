@@ -7,18 +7,18 @@ namespace Simulator.Map.Infrastructure
     {
         public Crossroad()
         {
-            LeftToUpTrafficLight = new TrafficLight();
-            LeftToRightTrafficLight = new TrafficLight();
-            LeftToDownTrafficLight = new TrafficLight();
-            UpToLeftTrafficLight = new TrafficLight();
-            UpToDownTrafficLight = new TrafficLight();
-            UpToRightTrafficLight = new TrafficLight();
-            RightToUpTrafficLight = new TrafficLight();
-            RightToLeftTrafficLight = new TrafficLight();
-            RightToDownTrafficLight = new TrafficLight();
-            DownToLeftTrafficLight = new TrafficLight();
-            DownToUpTrafficLight = new TrafficLight();
-            DownToRightTrafficLight = new TrafficLight();
+            LeftToUpTrafficLight = new TrafficLight(TrafficLightState.Red);
+            LeftToRightTrafficLight = new TrafficLight(TrafficLightState.Red);
+            LeftToDownTrafficLight = new TrafficLight(TrafficLightState.Red);
+            UpToLeftTrafficLight = new TrafficLight(TrafficLightState.Red);
+            UpToDownTrafficLight = new TrafficLight(TrafficLightState.Red);
+            UpToRightTrafficLight = new TrafficLight(TrafficLightState.Red);
+            RightToUpTrafficLight = new TrafficLight(TrafficLightState.Red);
+            RightToLeftTrafficLight = new TrafficLight(TrafficLightState.Red);
+            RightToDownTrafficLight = new TrafficLight(TrafficLightState.Red);
+            DownToLeftTrafficLight = new TrafficLight(TrafficLightState.Red);
+            DownToUpTrafficLight = new TrafficLight(TrafficLightState.Red);
+            DownToRightTrafficLight = new TrafficLight(TrafficLightState.Red);
 
             LeftToUpTrafficData = new TrafficData();
             LeftToRightTrafficData = new TrafficData();
@@ -32,8 +32,6 @@ namespace Simulator.Map.Infrastructure
             DownToLeftTrafficData = new TrafficData();
             DownToUpTrafficData = new TrafficData();
             DownToRightTrafficData = new TrafficData();
-
-            SetAllTrafficLights(TrafficLightState.Red);
 
             CrossroadController = new CrossroadControllerReinforcement(this);
         }
@@ -42,18 +40,18 @@ namespace Simulator.Map.Infrastructure
             Row = row;
             Column = column;
 
-            LeftToUpTrafficLight = new TrafficLight();
-            LeftToRightTrafficLight = new TrafficLight();
-            LeftToDownTrafficLight = new TrafficLight();
-            UpToLeftTrafficLight = new TrafficLight();
-            UpToDownTrafficLight = new TrafficLight();
-            UpToRightTrafficLight = new TrafficLight();
-            RightToUpTrafficLight = new TrafficLight();
-            RightToLeftTrafficLight = new TrafficLight();
-            RightToDownTrafficLight = new TrafficLight();
-            DownToLeftTrafficLight = new TrafficLight();
-            DownToUpTrafficLight = new TrafficLight();
-            DownToRightTrafficLight = new TrafficLight();
+            LeftToUpTrafficLight = new TrafficLight(TrafficLightState.Red);
+            LeftToRightTrafficLight = new TrafficLight(TrafficLightState.Red);
+            LeftToDownTrafficLight = new TrafficLight(TrafficLightState.Red);
+            UpToLeftTrafficLight = new TrafficLight(TrafficLightState.Red);
+            UpToDownTrafficLight = new TrafficLight(TrafficLightState.Red);
+            UpToRightTrafficLight = new TrafficLight(TrafficLightState.Red);
+            RightToUpTrafficLight = new TrafficLight(TrafficLightState.Red);
+            RightToLeftTrafficLight = new TrafficLight(TrafficLightState.Red);
+            RightToDownTrafficLight = new TrafficLight(TrafficLightState.Red);
+            DownToLeftTrafficLight = new TrafficLight(TrafficLightState.Red);
+            DownToUpTrafficLight = new TrafficLight(TrafficLightState.Red);
+            DownToRightTrafficLight = new TrafficLight(TrafficLightState.Red);
 
             LeftToUpTrafficData = new TrafficData();
             LeftToRightTrafficData = new TrafficData();
@@ -67,8 +65,6 @@ namespace Simulator.Map.Infrastructure
             DownToLeftTrafficData = new TrafficData();
             DownToUpTrafficData = new TrafficData();
             DownToRightTrafficData = new TrafficData();
-
-            SetAllTrafficLights(TrafficLightState.Red);
 
             CrossroadController = new CrossroadControllerReinforcement(this);
         }
@@ -188,22 +184,6 @@ namespace Simulator.Map.Infrastructure
             copy.CrossroadController = CrossroadController;
 
             return copy;
-        }
-
-        private void SetAllTrafficLights(TrafficLightState state)
-        {
-            LeftToUpTrafficLight.State = state;
-            LeftToRightTrafficLight.State = state;
-            LeftToDownTrafficLight.State = state;
-            UpToLeftTrafficLight.State = state;
-            UpToDownTrafficLight.State = state;
-            UpToRightTrafficLight.State = state;
-            RightToUpTrafficLight.State = state;
-            RightToLeftTrafficLight.State = state;
-            RightToDownTrafficLight.State = state;
-            DownToLeftTrafficLight.State = state;
-            DownToUpTrafficLight.State = state;
-            DownToRightTrafficLight.State = state;
         }
     }
 }

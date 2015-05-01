@@ -30,12 +30,12 @@ namespace Simulator.Map.Infrastructure.Tests
         {
             var crossroad = new Crossroad();
 
-            crossroad.LeftToRightTrafficLight.State = TrafficLightState.Green;
+            crossroad.LeftToRightTrafficLight.SetTrafficLightState(TrafficLightState.Green);
             crossroad.LeftToRightTrafficData.TrafficDensity = 0.3;
             crossroad.LeftToRightTrafficData.TrafficSpeed = 1;
             Assert.AreEqual(1.3, crossroad.GetMark(), Epsilon);
 
-            crossroad.RightToDownTrafficLight.State = TrafficLightState.Green;
+            crossroad.RightToDownTrafficLight.SetTrafficLightState(TrafficLightState.Green);
             crossroad.RightToDownTrafficData.TrafficDensity = 0.1;
             crossroad.RightToDownTrafficData.TrafficSpeed = 10;
             Assert.AreEqual(1.5, crossroad.GetMark(), Epsilon);

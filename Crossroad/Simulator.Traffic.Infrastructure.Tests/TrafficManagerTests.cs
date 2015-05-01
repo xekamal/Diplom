@@ -456,7 +456,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             Assert.AreEqual(0, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
 
             var crossroadToSwitch = (ICrossroad) _map.GetElement(1, 1);
-            crossroadToSwitch.LeftToRightTrafficLight.State = TrafficLightState.Green;
+            crossroadToSwitch.LeftToRightTrafficLight.SetTrafficLightState(TrafficLightState.Green);
 
             _trafficManager.CalculateTrafficData();
 
@@ -476,7 +476,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             _trafficManager.AddTrafficFlow(trafficFlow);
 
             var crossroad = (ICrossroad)_map.GetElement(1, 1);
-            crossroad.LeftToRightTrafficLight.State = TrafficLightState.Green;
+            crossroad.LeftToRightTrafficLight.SetTrafficLightState(TrafficLightState.Green);
 
             _trafficManager.CalculateTrafficData();
             _trafficManager.CalculateNofPassedCars(60);
@@ -545,9 +545,9 @@ namespace Simulator.Traffic.Infrastructure.Tests
             _trafficManager.AddTrafficFlow(trafficFlow3);
 
             var crossroad = (ICrossroad)_map.GetElement(1, 1);
-            crossroad.UpToRightTrafficLight.State = TrafficLightState.Green;
-            crossroad.LeftToRightTrafficLight.State = TrafficLightState.Red;
-            crossroad.DownToRightTrafficLight.State = TrafficLightState.Green;
+            crossroad.UpToRightTrafficLight.SetTrafficLightState(TrafficLightState.Green);
+            crossroad.LeftToRightTrafficLight.SetTrafficLightState(TrafficLightState.Red);
+            crossroad.DownToRightTrafficLight.SetTrafficLightState(TrafficLightState.Green);
 
             _trafficManager.CalculateTrafficData();
 
@@ -604,7 +604,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             Assert.AreEqual(0.0, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
             Assert.AreEqual(0.4333, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
 
-            crossroad.LeftToRightTrafficLight.State = TrafficLightState.Green;
+            crossroad.LeftToRightTrafficLight.SetTrafficLightState(TrafficLightState.Green);
 
             _trafficManager.CalculateTrafficData(60);
 
@@ -651,7 +651,7 @@ namespace Simulator.Traffic.Infrastructure.Tests
             Assert.AreEqual(0.0, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
             Assert.AreEqual(0.2666, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
 
-            crossroad.LeftToRightTrafficLight.State = TrafficLightState.Green;
+            crossroad.LeftToRightTrafficLight.SetTrafficLightState(TrafficLightState.Green);
 
             _trafficManager.CalculateTrafficData(60);
 
@@ -688,8 +688,8 @@ namespace Simulator.Traffic.Infrastructure.Tests
             _trafficManager.AddTrafficFlow(trafficFlow2);
 
             var crossroadToSwitch = (ICrossroad)_map.GetElement(1, 1);
-            crossroadToSwitch.UpToRightTrafficLight.State = TrafficLightState.Green;
-            crossroadToSwitch.LeftToRightTrafficLight.State = TrafficLightState.Green;
+            crossroadToSwitch.UpToRightTrafficLight.SetTrafficLightState(TrafficLightState.Green);
+            crossroadToSwitch.LeftToRightTrafficLight.SetTrafficLightState(TrafficLightState.Green);
 
             _trafficManager.CalculateTrafficData();
             var crossroad = (ICrossroad)_map.GetElement(1, 3);
@@ -700,14 +700,14 @@ namespace Simulator.Traffic.Infrastructure.Tests
             Assert.AreEqual(0.0, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
             Assert.AreEqual(0.675, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
 
-            crossroadToSwitch.UpToRightTrafficLight.State = TrafficLightState.Red;
+            crossroadToSwitch.UpToRightTrafficLight.SetTrafficLightState(TrafficLightState.Red);
 
             _trafficManager.CalculateTrafficData(30);
 
             Assert.AreEqual(0.0, crossroad.LeftToRightTrafficData.TrafficSpeed, Epsilon);
             Assert.AreEqual(0.8416, crossroad.LeftToRightTrafficData.TrafficDensity, Epsilon);
 
-            crossroad.LeftToRightTrafficLight.State = TrafficLightState.Green;
+            crossroad.LeftToRightTrafficLight.SetTrafficLightState(TrafficLightState.Green);
 
             _trafficManager.CalculateTrafficData(30);
 

@@ -21,6 +21,7 @@ namespace Simulator.Neuro.Infrastructure
                 if (dendrits != null) X += dendrits[i];
             };
             //	X=0-X;
+ //           double a = 1.57;
             double a = 1.57;
             double e = 2.71828;
             //	float result = 1/(1+pow(e,X*a));
