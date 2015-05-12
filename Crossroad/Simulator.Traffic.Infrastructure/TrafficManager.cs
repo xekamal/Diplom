@@ -391,10 +391,10 @@ namespace Simulator.Traffic.Infrastructure
                 var length = trafficData.TrafficSpeed*1000.0*hours;
                 var nofCars = length/100.0*25*trafficData.TrafficDensity;
                 var newDensity = oldTrafficData.TrafficDensity + nofCars/25.0;
-                if (newDensity > 1)
+                /*if (newDensity > 1)
                 {
                     newDensity = 1;
-                }
+                }*/
                 trafficData.TrafficDensity = newDensity;
                 trafficData.TrafficSpeed = 0.0;
             }
@@ -520,10 +520,10 @@ namespace Simulator.Traffic.Infrastructure
             }
 
             trafficData.TrafficDensity += trafficFlow.TrafficDensity;
-            if (trafficData.TrafficDensity > 1.0)
+            /*if (trafficData.TrafficDensity > 1.0)
             {
                 trafficData.TrafficDensity = 1.0;
-            }
+            }*/
             trafficData.TrafficSpeed *= trafficData.NofPassingTrafficFlows;
             trafficData.TrafficSpeed += trafficFlow.TrafficSpeed;
             trafficData.NofPassingTrafficFlows++;

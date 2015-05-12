@@ -90,6 +90,10 @@
       <Project>{6D5EE7C9-251B-4DF8-BF1D-B700368FAC27}</Project>
       <Name>Simulator.Neuro.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Simulator.Neuro.Infrastructure\Simulator.Neuro.Infrastructure.csproj">
+      <Project>{D7F53541-7AA0-4610-B5C5-7D250CB7D904}</Project>
+      <Name>Simulator.Neuro.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Simulator.Traffic.Domain\Simulator.Traffic.Domain.csproj">
       <Project>{0ED1EFBD-943A-4E22-8124-A752D47D07BA}</Project>
       <Name>Simulator.Traffic.Domain</Name>

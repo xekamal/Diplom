@@ -4,6 +4,5 @@
     {
         void Step();
         void Reinforce(double value);
-        double[,] W0 { get; set; }
     }
 }

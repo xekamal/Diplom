@@ -13,6 +13,8 @@ using Simulator.Engine.Domain;
 using Simulator.Engine.Infrastructure;
 using Simulator.Map;
 using Simulator.Map.Infrastructure;
+using Simulator.Neuro.Domain;
+using Simulator.Neuro.Infrastructure;
 using Simulator.Traffic.Domain;
 using Simulator.Traffic.Infrastructure;
 using Simulator.Utils.Infrastructure;
@@ -489,9 +491,9 @@ namespace Modeller.WindowsApplication
         public void WriteLog()
         {
             var logger = Logger.Instance;
-            logger.WriteMessage("===========================================");
-            logger.WriteMessage("===========================================");
-            logger.WriteMessage("");
+            logger.WriteMessage("======================================================================");
+            logger.WriteMessage("===============================  STEP  ===============================");
+            logger.WriteMessage("======================================================================");
 
             for (var i = 0; i < _workingFieldNofRows; i++)
             {
@@ -503,29 +505,64 @@ namespace Modeller.WindowsApplication
                         continue;
                     }
 
-                    logger.WriteMessage(string.Format("MATRIX FOR CROSSROAD [{0},{1}]:", i, j));
+                    logger.WriteMessage("");
+                    logger.WriteMessage(string.Format("CROSSROAD [{0},{1}] DATA", i, j));
+                    logger.WriteMessage("");
 
-                    var m0 = element.CrossroadController.W0;
+                    logger.WriteMessage("MATRIX W0:");
+                    logger.WriteMessage("");
+
+                    var m0 = ((CrossroadControllerReinforcement) element.CrossroadController).W0;
+                    var ccr = (CrossroadControllerReinforcement) element.CrossroadController;
                     for (var k = 0; k < 12; k++)
                     {
                         var str =
                             string.Format(
-                                "{0,7:0.0000}  {1,7:0.0000}  {2,7:0.0000}  {3,7:0.0000}  {4,7:0.0000}  {5,7:0.0000}  {6,7:0.0000}  {7,7:0.0000}  {8,7:0.0000}  {9,7:0.0000}  {10,7:0.0000}  {11,7:0.0000}",
+                                "{0,9:0.0000}  {1,9:0.0000}  {2,9:0.0000}  {3,9:0.0000}  {4,9:0.0000}  {5,9:0.0000}  {6,9:0.0000}  {7,9:0.0000}  {8,9:0.0000}  {9,9:0.0000}  {10,9:0.0000}  {11,9:0.0000}",
                                 m0[k, 0], m0[k, 1], m0[k, 2], m0[k, 3], m0[k, 4], m0[k, 5], m0[k, 6], m0[k, 7], m0[k, 8],
                                 m0[k, 9], m0[k, 10], m0[k, 11]);
                         logger.WriteMessage(str);
                     }
 
-                    logger.WriteMessage(string.Format("TRAFFIC LIGHTS STATUSES [{0},{1}]:{2}", i, j, GetCrossroadTrafficLightsStatusesAsString(element)));
+                    logger.WriteMessage("");
+                    logger.WriteMessage(string.Format("TRAFFIC LIGHTS STATUSES [{0},{1}]:{2}", i, j,
+                        GetCrossroadTrafficLightsStatusesAsString(element)));
+                    logger.WriteMessage("");
+
+                    for (var k = 0; k < ccr.HNeurons.Length; k++)
+                    {
+                        var hNeuron = ccr.HNeurons[k];
+                        logger.WriteMessage(string.Format("H NEURON [{0,2}] DENDRITS:{1}", k, GetNeuronDendritsAsString(hNeuron)));
+                        logger.WriteMessage(string.Format("H NEURON [{0,2}] AXON:{1,7:0.0000}", k, hNeuron.axon));
+                    }
+
+                    logger.WriteMessage("");
+
+                    for (int k = 0; k < ccr.RNeurons.Length; k++)
+                    {
+                        RNeuron rNeuron = ccr.RNeurons[k];
+                        logger.WriteMessage(string.Format("R NEURON [{0,2}] DENDRITS:{1}", k, GetNeuronDendritsAsString(rNeuron)));
+                        logger.WriteMessage(string.Format("R NEURON [{0,2}] AXON:{1,7:0.0000}", k, rNeuron.axon));
+                    }
                 }
             }
-            
+
             logger.WriteMessage("");
+        }
+
+        private string GetNeuronDendritsAsString(ANeuron hNeuron)
+        {
+            return
+                string.Format(
+                    "{0,7:0.0000}  {1,7:0.0000}  {2,7:0.0000}  {3,7:0.0000}  {4,7:0.0000}  {5,7:0.0000}  {6,7:0.0000}  {7,7:0.0000}  {8,7:0.0000}  {9,7:0.0000}  {10,7:0.0000}  {11,7:0.0000}",
+                    hNeuron.dendrits[0], hNeuron.dendrits[1], hNeuron.dendrits[2], hNeuron.dendrits[3],
+                    hNeuron.dendrits[4], hNeuron.dendrits[5], hNeuron.dendrits[6], hNeuron.dendrits[7],
+                    hNeuron.dendrits[8], hNeuron.dendrits[9], hNeuron.dendrits[10], hNeuron.dendrits[11]);
         }
 
         private string GetCrossroadTrafficLightsStatusesAsString(ICrossroad crossroad)
         {
-            string res = String.Empty;
+            var res = string.Empty;
             res += crossroad.LeftToUpTrafficLight.State == TrafficLightState.Green ? "1" : "0";
             res += crossroad.LeftToRightTrafficLight.State == TrafficLightState.Green ? "1" : "0";
             res += crossroad.LeftToDownTrafficLight.State == TrafficLightState.Green ? "1" : "0";

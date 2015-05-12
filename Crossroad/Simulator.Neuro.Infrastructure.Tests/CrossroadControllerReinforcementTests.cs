@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 using NUnit.Framework;
 using Simulator.Map;
 using Simulator.Map.Infrastructure;
@@ -8,11 +8,6 @@ namespace Simulator.Neuro.Infrastructure.Tests
     [TestFixture]
     public class CrossroadControllerReinforcementTests
     {
-        [Test]
-        public void CrossroadCreation()
-        {
-            ICrossroad crossroad = new Crossroad();
-        }
         [Test]
         public void CheckStates()
         {
@@ -27,18 +22,42 @@ namespace Simulator.Neuro.Infrastructure.Tests
             crossroad.UpToRightTrafficData.TrafficSpeed = 60;
 
             crossroad.CrossroadController.Step();
-            Assert.AreEqual(TrafficLightState.Green,crossroad.UpToLeftTrafficLight.State);
-            Assert.AreEqual(TrafficLightState.Red,crossroad.RightToLeftTrafficLight.State);
-            Assert.AreEqual(TrafficLightState.Red,crossroad.DownToLeftTrafficLight.State);
-            Assert.AreEqual(TrafficLightState.Green,crossroad.LeftToDownTrafficLight.State);
-            Assert.AreEqual(TrafficLightState.Red,crossroad.UpToDownTrafficLight.State);
-            Assert.AreEqual(TrafficLightState.Red,crossroad.RightToDownTrafficLight.State);
-            Assert.AreEqual(TrafficLightState.Green,crossroad.DownToRightTrafficLight.State);
-            Assert.AreEqual(TrafficLightState.Green,crossroad.LeftToRightTrafficLight.State);
-            Assert.AreEqual(TrafficLightState.Green,crossroad.UpToRightTrafficLight.State);
-            Assert.AreEqual(TrafficLightState.Red,crossroad.RightToUpTrafficLight.State);
-            Assert.AreEqual(TrafficLightState.Red,crossroad.DownToUpTrafficLight.State);
-            Assert.AreEqual(TrafficLightState.Green,crossroad.LeftToUpTrafficLight.State);
+            Assert.AreEqual(TrafficLightState.Green, crossroad.UpToLeftTrafficLight.State);
+            Assert.AreEqual(TrafficLightState.Red, crossroad.RightToLeftTrafficLight.State);
+            Assert.AreEqual(TrafficLightState.Red, crossroad.DownToLeftTrafficLight.State);
+            Assert.AreEqual(TrafficLightState.Green, crossroad.LeftToDownTrafficLight.State);
+            Assert.AreEqual(TrafficLightState.Red, crossroad.UpToDownTrafficLight.State);
+            Assert.AreEqual(TrafficLightState.Red, crossroad.RightToDownTrafficLight.State);
+            Assert.AreEqual(TrafficLightState.Green, crossroad.DownToRightTrafficLight.State);
+            Assert.AreEqual(TrafficLightState.Green, crossroad.LeftToRightTrafficLight.State);
+            Assert.AreEqual(TrafficLightState.Green, crossroad.UpToRightTrafficLight.State);
+            Assert.AreEqual(TrafficLightState.Red, crossroad.RightToUpTrafficLight.State);
+            Assert.AreEqual(TrafficLightState.Red, crossroad.DownToUpTrafficLight.State);
+            Assert.AreEqual(TrafficLightState.Green, crossroad.LeftToUpTrafficLight.State);
+        }
+
+        [Test]
+        public void CrossroadCreation()
+        {
+            ICrossroad crossroad = new Crossroad();
+        }
+
+        [Test]
+        public void EducationWithTeacherTest()
+        {
+            var random = new Random();
+            ICrossroad crossroad = new Crossroad();
+            var crossroadController = (CrossroadControllerReinforcement) crossroad.CrossroadController;
+
+            for (var i = 0; i < crossroadController.NofTrafficLights; i++)
+            {
+                for (var j = 0; j < crossroadController.NofStates; j++)
+                {
+                    crossroadController.W1[i, j] = random.NextDouble();
+                }
+            }
+
+            
         }
     }
 }
