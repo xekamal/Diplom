@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Simulator.Map;
 using Simulator.Map.Infrastructure;
 using Simulator.Traffic.Domain;
@@ -12,12 +13,14 @@ namespace Simulator.Traffic.Infrastructure
         private readonly IMap _map;
         private readonly IList<ITrafficFlow> _trafficFlows;
         private readonly double[,] marks;
+        private readonly double[,,] marks3d;
 
         public TrafficManager(IMap map)
         {
             _map = map;
             _trafficFlows = new List<ITrafficFlow>();
             marks = new double[_map.NofRows, _map.NofColumns];
+            marks3d = new double[_map.NofRows, _map.NofColumns, 12];
         }
 
         public IList<ITrafficFlow> TrafficFlows
@@ -231,7 +234,12 @@ namespace Simulator.Traffic.Infrastructure
                     }
 
                     var crossroad = roadElement as ICrossroad;
-                    marks[row, column] = GetMark(crossroad, new Location(row, column));
+                    //marks[row, column] = GetMark(crossroad, new Location(row, column));
+                    var mark12 = GetMark3d(crossroad, new Location(row, column));
+                    for (var i = 0; i < 12; i++)
+                    {
+                        marks3d[row, column, i] = mark12[i];
+                    }
                     crossroad.CrossroadController.Step();
                 }
             }
@@ -250,11 +258,155 @@ namespace Simulator.Traffic.Infrastructure
                     }
 
                     var crossroad = roadElement as ICrossroad;
-                    var mark = GetMark(crossroad, new Location(row, column));
-                    crossroad.CrossroadController.Reinforce(mark - marks[row, column]);
+                    //var mark = GetMark(crossroad, new Location(row, column));
+                    var mark12 = GetMark3d(crossroad, new Location(row, column));
+                    var diff = new double[12];
+
+                    for (var i = 0; i < 12; i++)
+                    {
+                        diff[i] = mark12[i] - marks3d[row, column, i];
+                        marks3d[row, column, i] = 0;
+                    }
+
+                    /*var maxMark = diff.Max();
+                    for (int i = 0; i < 12; i++)
+                    {
+                        diff[i] /= maxMark;
+                    }*/
+
+                    crossroad.CrossroadController.Reinforce(diff);
                     marks[row, column] = 0;
                 }
             }
+        }
+
+        private double[] GetMark3d(ICrossroad crossroad, ILocation crossroadLocation)
+        {
+            var mark12 = new double[12];
+            var crossroadRow = crossroadLocation.Row;
+            var crossroadColumn = crossroadLocation.Column;
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn - 1), crossroadLocation,
+                new Location(crossroadRow - 1, crossroadColumn)))
+            {
+                mark12[0] = GetMarkFromTrafficData(crossroad.LeftToUpTrafficLight, crossroad.LeftToUpTrafficData);
+            }
+            else
+            {
+                mark12[0] = 0;
+            }
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn - 1), crossroadLocation,
+                new Location(crossroadRow, crossroadColumn + 1)))
+            {
+                mark12[1] = GetMarkFromTrafficData(crossroad.LeftToRightTrafficLight, crossroad.LeftToRightTrafficData);
+            }
+            else
+            {
+                mark12[1] = 0;
+            }
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn - 1), crossroadLocation,
+                new Location(crossroadRow + 1, crossroadColumn)))
+            {
+                mark12[2] = GetMarkFromTrafficData(crossroad.LeftToDownTrafficLight, crossroad.LeftToDownTrafficData);
+            }
+            else
+            {
+                mark12[2] = 0;
+            }
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow - 1, crossroadColumn), crossroadLocation,
+                new Location(crossroadRow, crossroadColumn - 1)))
+            {
+                mark12[3] = GetMarkFromTrafficData(crossroad.UpToLeftTrafficLight, crossroad.UpToLeftTrafficData);
+            }
+            else
+            {
+                mark12[3] = 0;
+            }
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow - 1, crossroadColumn), crossroadLocation,
+                new Location(crossroadRow + 1, crossroadColumn)))
+            {
+                mark12[4] = GetMarkFromTrafficData(crossroad.UpToDownTrafficLight, crossroad.UpToDownTrafficData);
+            }
+            else
+            {
+                mark12[4] = 0;
+            }
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow - 1, crossroadColumn), crossroadLocation,
+                new Location(crossroadRow, crossroadColumn + 1)))
+            {
+                mark12[5] = GetMarkFromTrafficData(crossroad.UpToRightTrafficLight, crossroad.UpToRightTrafficData);
+            }
+            else
+            {
+                mark12[5] = 0;
+            }
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn + 1), crossroadLocation,
+                new Location(crossroadRow - 1, crossroadColumn)))
+            {
+                mark12[6] = GetMarkFromTrafficData(crossroad.RightToUpTrafficLight, crossroad.RightToUpTrafficData);
+            }
+            else
+            {
+                mark12[6] = 0;
+            }
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn + 1), crossroadLocation,
+                new Location(crossroadRow, crossroadColumn - 1)))
+            {
+                mark12[7] = GetMarkFromTrafficData(crossroad.RightToLeftTrafficLight, crossroad.RightToLeftTrafficData);
+            }
+            else
+            {
+                mark12[7] = 0;
+            }
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow, crossroadColumn + 1), crossroadLocation,
+                new Location(crossroadRow + 1, crossroadColumn)))
+            {
+                mark12[8] = GetMarkFromTrafficData(crossroad.RightToDownTrafficLight, crossroad.RightToDownTrafficData);
+            }
+            else
+            {
+                mark12[8] = 0;
+            }
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow + 1, crossroadColumn), crossroadLocation,
+                new Location(crossroadRow, crossroadColumn - 1)))
+            {
+                mark12[9] = GetMarkFromTrafficData(crossroad.DownToLeftTrafficLight, crossroad.DownToLeftTrafficData);
+            }
+            else
+            {
+                mark12[9] = 0;
+            }
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow + 1, crossroadColumn), crossroadLocation,
+                new Location(crossroadRow - 1, crossroadColumn)))
+            {
+                mark12[10] = GetMarkFromTrafficData(crossroad.DownToUpTrafficLight, crossroad.DownToUpTrafficData);
+            }
+            else
+            {
+                mark12[10] = 0;
+            }
+
+            if (IsPartOfTrafficFlowExists(new Location(crossroadRow + 1, crossroadColumn), crossroadLocation,
+                new Location(crossroadRow, crossroadColumn + 1)))
+            {
+                mark12[11] = GetMarkFromTrafficData(crossroad.DownToRightTrafficLight, crossroad.DownToRightTrafficData);
+            }
+            else
+            {
+                mark12[11] = 0;
+            }
+
+            return mark12;
         }
 
         private double GetMark(ICrossroad crossroad, ILocation crossroadLocation)

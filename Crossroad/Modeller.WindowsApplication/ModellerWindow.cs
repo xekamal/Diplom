@@ -472,7 +472,7 @@ namespace Modeller.WindowsApplication
                 _simulatorEngine = new SimulatorEngine(_trafficManager);
             }
 
-            _simulatorEngine.Step(60);
+            _simulatorEngine.Step(10);
 
             WriteLog();
             UpdateLog();
@@ -855,7 +855,7 @@ namespace Modeller.WindowsApplication
 
         private void _btnStartSim_Click(object sender, EventArgs e)
         {
-            const double seconds = 60;
+            const double seconds = 10;
             var simulationThread = new Thread(SimulationThreadFunc);
             simulationThread.Start(seconds);
         }

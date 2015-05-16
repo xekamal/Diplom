@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Runtime.InteropServices;
 using Simulator.Map;
 using Simulator.Neuro.Domain;
 
@@ -12,38 +13,35 @@ namespace Simulator.Neuro.Infrastructure
         private const string fileW0 = "d:\\Kate\\W0.txt";
 //        private const string fileWtek = "e:\\Kate\\Wtek.txt";
         private const string fileState = "d:\\Kate\\states.txt";
-        public int NofTrafficLights = 12;
-        public int NofStates = 4;
-        public HNeuron[] HNeurons { get; set; }
-        public RNeuron[] RNeurons { get; set; }
-        private readonly SNeuron[] SNeurons;
-        public double[,] W1 { get; set; }
         private readonly ICrossroad _crossroad;
-        private string fileWtek;
+        private readonly string fileWtek;
+        private readonly SNeuron[] SNeurons;
+        public int NofStates = 4;
+        public int NofTrafficLights = 12;
 
         public CrossroadControllerReinforcement(ICrossroad crossroad)
         {
             _crossroad = crossroad;
             SNeurons = new SNeuron[NofTrafficLights];
-            for (int i = 0; i < SNeurons.Length; i++)
+            for (var i = 0; i < SNeurons.Length; i++)
             {
                 SNeurons[i] = new SNeuron();
             }
             setTrafficData();
             HNeurons = new HNeuron[NofTrafficLights];
-            for (int i = 0; i < HNeurons.Length; i++)
+            for (var i = 0; i < HNeurons.Length; i++)
             {
                 HNeurons[i] = new HNeuron(NofTrafficLights);
             }
             RNeurons = new RNeuron[NofStates];
-            for (int i = 0; i < RNeurons.Length; i++)
+            for (var i = 0; i < RNeurons.Length; i++)
             {
                 RNeurons[i] = new RNeuron(NofTrafficLights);
             }
             fileWtek = string.Format("d:\\Kate\\Wtek{0}{1}.txt", crossroad.Row, crossroad.Column);
             W0 = new double[NofTrafficLights, NofTrafficLights];
             W1 = new double[NofTrafficLights, NofStates];
-            
+
             if (File.Exists(fileWtek))
             {
                 W_reader(fileWtek);
@@ -52,10 +50,10 @@ namespace Simulator.Neuro.Infrastructure
             {
                 W_reader(fileW0);
                 W_writer(fileWtek);
-            //    EducationWithTeacher(educationFileName);
+                //    EducationWithTeacher(educationFileName);
             }
 
-           /* _crossroad = crossroad;
+            /* _crossroad = crossroad;
             
             SNeurons = new SNeuron[NofTrafficLights];
             HNeurons = new HNeuron[NofTrafficLights];
@@ -76,55 +74,55 @@ namespace Simulator.Neuro.Infrastructure
             W1 = new double[NofTrafficLights, NofStates];*/
         }
 
+        public HNeuron[] HNeurons { get; set; }
+        public RNeuron[] RNeurons { get; set; }
+        public double[,] W1 { get; set; }
         public double[,] W0 { get; set; }
 
         public void Step()
         {
-            for (int i = 0; i < NofTrafficLights; i++)
-            {
-                SNeurons[i].Activation();
-            }
+            /*int flag = 0;
             for (int i = 0; i < NofTrafficLights; i++)
             {
                 for (int j = 0; j < NofTrafficLights; j++)
                 {
- //                   HNeurons[i].dendrits[j] = W0[i, j]*SNeurons[j].axon;
-                    HNeurons[i].dendrits[j] = W0[j, i] * SNeurons[j].axon;
+                    if (W0[i, j] > 1.0) flag++;
+                }
+            }
+
+            if (flag == 144)
+            {
+                for (int i = 0; i < NofTrafficLights; i++)
+                {
+                    for (int j = 0; j < NofTrafficLights; j++)
+                    {
+                        W0[i, j] -= 1;
+                    }
+                }
+            }*/
+            for (var i = 0; i < NofTrafficLights; i++)
+            {
+                SNeurons[i].Activation();
+            }
+            for (var i = 0; i < NofTrafficLights; i++)
+            {
+                for (var j = 0; j < NofTrafficLights; j++)
+                {
+                    //                   HNeurons[i].dendrits[j] = W0[i, j]*SNeurons[j].axon;
+                    HNeurons[i].dendrits[j] = W0[j, i]*SNeurons[j].axon;
                 }
 
                 HNeurons[i].Activation();
             }
-            for (int i = 0; i < NofStates; i++)
+            for (var i = 0; i < NofStates; i++)
             {
-                for (int j = 0; j < NofTrafficLights; j++)
+                for (var j = 0; j < NofTrafficLights; j++)
                 {
                     RNeurons[i].dendrits[j] = W1[j, i]*HNeurons[j].axon;
                 }
                 RNeurons[i].Activation();
             }
             SetTrafficLights();
-        }
-
-        private void W_writer(string fileWtek)
-        {
-            var sw = new StreamWriter(fileWtek);
-            for (int i = 0; i < NofTrafficLights; i++)
-            {
-                for (int j = 0; j < NofTrafficLights; j++)
-                {
-                    sw.Write("{0} ", W0[i, j].ToString(CultureInfo.InvariantCulture));
-                }
-                sw.WriteLine();
-            }
-            for (int i = 0; i < NofTrafficLights; i++)
-            {
-                for (int j = 0; j < NofStates; j++)
-                {
-                    sw.Write("{0} ", W1[i, j].ToString(CultureInfo.InvariantCulture));
-                }
-                sw.WriteLine();
-            }
-            sw.Close();
         }
 
         public void Reinforce(double marck)
@@ -393,7 +391,7 @@ namespace Simulator.Neuro.Infrastructure
                     }
                 }  
             }*/
-            for (int i = 0; i < NofTrafficLights; i++)
+            for (var i = 0; i < NofTrafficLights; i++)
             {
                 /*W0[i, 0] += -0.025*( marck - _crossroad.LeftToUpTrafficData.TrafficDensity);
                 W0[i, 1] += -0.025 * (marck - _crossroad.LeftToRightTrafficData.TrafficDensity);
@@ -407,8 +405,8 @@ namespace Simulator.Neuro.Infrastructure
                 W0[i, 9] += -0.025 * (marck - _crossroad.UpToLeftTrafficData.TrafficDensity);
                 W0[i, 10] += -0.025 * (marck - _crossroad.UpToDownTrafficData.TrafficDensity);
                 W0[i, 11] += -0.025 * (marck - _crossroad.UpToRightTrafficData.TrafficDensity);*/
-                
-               W0[0, i] += 0.025*( marck - _crossroad.LeftToUpTrafficData.TrafficDensity);
+
+                /* W0[0, i] += 0.025*( marck - _crossroad.LeftToUpTrafficData.TrafficDensity);
                W0[1, i] += 0.025 * (marck - _crossroad.LeftToRightTrafficData.TrafficDensity);
                W0[2, i] += 0.025 * (marck - _crossroad.LeftToDownTrafficData.TrafficDensity);
                W0[3, i] += 0.025 * (marck - _crossroad.DownToLeftTrafficData.TrafficDensity);
@@ -419,11 +417,405 @@ namespace Simulator.Neuro.Infrastructure
                W0[8, i] += 0.025 * (marck - _crossroad.RightToUpTrafficData.TrafficDensity);
                W0[9, i] += 0.025 * (marck - _crossroad.UpToLeftTrafficData.TrafficDensity);
                W0[10, i] +=0.025 * (marck - _crossroad.UpToDownTrafficData.TrafficDensity);
-               W0[11, i] +=0.025 * (marck - _crossroad.UpToRightTrafficData.TrafficDensity);
+               W0[11, i] +=0.025 * (marck - _crossroad.UpToRightTrafficData.TrafficDensity);*/
+
+                W0[0, i] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity - marck) + Math.PI/2.0)*0.1;
+                W0[1, i] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity - marck) + Math.PI/2.0)*0.1;
+                W0[2, i] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity - marck) + Math.PI/2.0)*0.1;
+                W0[3, i] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity - marck) + Math.PI/2.0)*0.1;
+                W0[4, i] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity - marck) + Math.PI/2.0)*0.1;
+                W0[5, i] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity - marck) + Math.PI/2.0)*0.1;
+                W0[6, i] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity - marck) + Math.PI/2.0)*0.1;
+                W0[7, i] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity - marck) + Math.PI/2.0)*0.1;
+                W0[8, i] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity - marck) + Math.PI/2.0)*0.1;
+                W0[9, i] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity - marck) + Math.PI/2.0)*0.1;
+                W0[10, i] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity - marck) + Math.PI/2.0)*0.1;
+                W0[11, i] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity - marck) + Math.PI/2.0)*0.1;
+            }
+
+            W_writer(fileWtek);
+        }
+
+        public void Reinforce(double v0, double v1, double v2, double v3, double v4, double v5, double v6, double v7,
+            double v8,
+            double v9, double v10, double v11)
+        {
+            /*for (int i = 0; i < NofTrafficLights; i++)
+            {
+                W0[0, i] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity - marck)+Math.PI/2.0)*0.1;
+                W0[1, i] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity - marck) + Math.PI / 2.0) * 0.1;
+                W0[2, i] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity - marck) + Math.PI / 2.0) * 0.1;
+                W0[3, i] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity - marck) + Math.PI / 2.0) * 0.1;
+                W0[4, i] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity - marck) + Math.PI / 2.0) * 0.1;
+                W0[5, i] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity - marck) + Math.PI / 2.0) * 0.1;
+                W0[6, i] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity - marck) + Math.PI / 2.0) * 0.1;
+                W0[7, i] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity - marck) + Math.PI / 2.0) * 0.1;
+                W0[8, i] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity - marck) + Math.PI / 2.0) * 0.1;
+                W0[9, i] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity - marck) + Math.PI / 2.0) * 0.1;
+                W0[10, i] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity - marck) + Math.PI / 2.0) * 0.1;
+                W0[11, i] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity - marck) + Math.PI / 2.0) * 0.1;
 
             }
             
+            W_writer(fileWtek);*/
+
+            throw new NotImplementedException();
+        }
+
+        public void Reinforce(double[] values)
+        {
+            W0[0, 0] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity + values[0]) + Math.PI / 2.0) * 0.1;
+            W0[0, 1] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity + values[1]) + Math.PI / 2.0) * 0.1;
+            W0[0, 2] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity + values[2]) + Math.PI / 2.0) * 0.1;
+            W0[0, 3] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity + values[9]) + Math.PI / 2.0) * 0.1;
+            W0[0, 4] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity + values[10]) + Math.PI / 2.0) * 0.1;
+            W0[0, 5] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity + values[11]) + Math.PI / 2.0) * 0.1;
+            W0[0, 6] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity + values[8]) + Math.PI / 2.0) * 0.1;
+            W0[0, 7] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity + values[7]) + Math.PI / 2.0) * 0.1;
+            W0[0, 8] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity + values[6]) + Math.PI / 2.0) * 0.1;
+            W0[0, 9] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity + values[3]) + Math.PI / 2.0) * 0.1;
+            W0[0, 10] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity + values[4]) + Math.PI / 2.0) * 0.1;
+            W0[0, 11] += (Math.Atan(_crossroad.LeftToUpTrafficData.TrafficDensity + values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[1, 0] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity + values[0]) + Math.PI / 2.0) * 0.1;
+            W0[1, 1] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity + values[1]) + Math.PI / 2.0) * 0.1;
+            W0[1, 2] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity + values[2]) + Math.PI / 2.0) * 0.1;
+            W0[1, 3] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity + values[9]) + Math.PI / 2.0) * 0.1;
+            W0[1, 4] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity + values[10]) + Math.PI / 2.0) * 0.1;
+            W0[1, 5] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity + values[11]) + Math.PI / 2.0) * 0.1;
+            W0[1, 6] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity + values[8]) + Math.PI / 2.0) * 0.1;
+            W0[1, 7] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity + values[7]) + Math.PI / 2.0) * 0.1;
+            W0[1, 8] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity + values[6]) + Math.PI / 2.0) * 0.1;
+            W0[1, 9] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity + values[3]) + Math.PI / 2.0) * 0.1;
+            W0[1, 10] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity + values[4]) + Math.PI / 2.0) * 0.1;
+            W0[1, 11] += (Math.Atan(_crossroad.LeftToRightTrafficData.TrafficDensity + values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[2, 0] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity + values[0]) + Math.PI / 2.0) * 0.1;
+            W0[2, 1] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity + values[1]) + Math.PI / 2.0) * 0.1;
+            W0[2, 2] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity + values[2]) + Math.PI / 2.0) * 0.1;
+            W0[2, 3] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity + values[9]) + Math.PI / 2.0) * 0.1;
+            W0[2, 4] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity + values[10]) + Math.PI / 2.0) * 0.1;
+            W0[2, 5] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity + values[11]) + Math.PI / 2.0) * 0.1;
+            W0[2, 6] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity + values[8]) + Math.PI / 2.0) * 0.1;
+            W0[2, 7] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity + values[7]) + Math.PI / 2.0) * 0.1;
+            W0[2, 8] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity + values[6]) + Math.PI / 2.0) * 0.1;
+            W0[2, 9] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity + values[3]) + Math.PI / 2.0) * 0.1;
+            W0[2, 10] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity + values[4]) + Math.PI / 2.0) * 0.1;
+            W0[2, 11] += (Math.Atan(_crossroad.LeftToDownTrafficData.TrafficDensity + values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[3, 0] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity + values[0]) + Math.PI / 2.0) * 0.1;
+            W0[3, 1] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity + values[1]) + Math.PI / 2.0) * 0.1;
+            W0[3, 2] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity + values[2]) + Math.PI / 2.0) * 0.1;
+            W0[3, 3] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity + values[9]) + Math.PI / 2.0) * 0.1;
+            W0[3, 4] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity + values[10]) + Math.PI / 2.0) * 0.1;
+            W0[3, 5] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity + values[11]) + Math.PI / 2.0) * 0.1;
+            W0[3, 6] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity + values[8]) + Math.PI / 2.0) * 0.1;
+            W0[3, 7] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity + values[7]) + Math.PI / 2.0) * 0.1;
+            W0[3, 8] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity + values[6]) + Math.PI / 2.0) * 0.1;
+            W0[3, 9] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity + values[3]) + Math.PI / 2.0) * 0.1;
+            W0[3, 10] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity + values[4]) + Math.PI / 2.0) * 0.1;
+            W0[3, 11] += (Math.Atan(_crossroad.DownToLeftTrafficData.TrafficDensity + values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[4, 0] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity + values[0]) + Math.PI / 2.0) * 0.1;
+            W0[4, 1] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity + values[1]) + Math.PI / 2.0) * 0.1;
+            W0[4, 2] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity + values[2]) + Math.PI / 2.0) * 0.1;
+            W0[4, 3] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity + values[9]) + Math.PI / 2.0) * 0.1;
+            W0[4, 4] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity + values[10]) + Math.PI / 2.0) * 0.1;
+            W0[4, 5] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity + values[11]) + Math.PI / 2.0) * 0.1;
+            W0[4, 6] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity + values[8]) + Math.PI / 2.0) * 0.1;
+            W0[4, 7] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity + values[7]) + Math.PI / 2.0) * 0.1;
+            W0[4, 8] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity + values[6]) + Math.PI / 2.0) * 0.1;
+            W0[4, 9] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity + values[3]) + Math.PI / 2.0) * 0.1;
+            W0[4, 10] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity + values[4]) + Math.PI / 2.0) * 0.1;
+            W0[4, 11] += (Math.Atan(_crossroad.DownToUpTrafficData.TrafficDensity + values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[5, 0] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity + values[0]) + Math.PI / 2.0) * 0.1;
+            W0[5, 1] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity + values[1]) + Math.PI / 2.0) * 0.1;
+            W0[5, 2] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity + values[2]) + Math.PI / 2.0) * 0.1;
+            W0[5, 3] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity + values[9]) + Math.PI / 2.0) * 0.1;
+            W0[5, 4] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity + values[10]) + Math.PI / 2.0) * 0.1;
+            W0[5, 5] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity + values[11]) + Math.PI / 2.0) * 0.1;
+            W0[5, 6] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity + values[8]) + Math.PI / 2.0) * 0.1;
+            W0[5, 7] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity + values[7]) + Math.PI / 2.0) * 0.1;
+            W0[5, 8] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity + values[6]) + Math.PI / 2.0) * 0.1;
+            W0[5, 9] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity + values[3]) + Math.PI / 2.0) * 0.1;
+            W0[5, 10] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity + values[4]) + Math.PI / 2.0) * 0.1;
+            W0[5, 11] += (Math.Atan(_crossroad.DownToRightTrafficData.TrafficDensity + values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[6, 0] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity + values[0]) + Math.PI / 2.0) * 0.1;
+            W0[6, 1] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity + values[1]) + Math.PI / 2.0) * 0.1;
+            W0[6, 2] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity + values[2]) + Math.PI / 2.0) * 0.1;
+            W0[6, 3] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity + values[9]) + Math.PI / 2.0) * 0.1;
+            W0[6, 4] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity + values[10]) + Math.PI / 2.0) * 0.1;
+            W0[6, 5] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity + values[11]) + Math.PI / 2.0) * 0.1;
+            W0[6, 6] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity + values[8]) + Math.PI / 2.0) * 0.1;
+            W0[6, 7] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity + values[7]) + Math.PI / 2.0) * 0.1;
+            W0[6, 8] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity + values[6]) + Math.PI / 2.0) * 0.1;
+            W0[6, 9] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity + values[3]) + Math.PI / 2.0) * 0.1;
+            W0[6, 10] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity + values[4]) + Math.PI / 2.0) * 0.1;
+            W0[6, 11] += (Math.Atan(_crossroad.RightToDownTrafficData.TrafficDensity + values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[7, 0] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity + values[0]) + Math.PI / 2.0) * 0.1;
+            W0[7, 1] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity + values[1]) + Math.PI / 2.0) * 0.1;
+            W0[7, 2] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity + values[2]) + Math.PI / 2.0) * 0.1;
+            W0[7, 3] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity + values[9]) + Math.PI / 2.0) * 0.1;
+            W0[7, 4] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity + values[10]) + Math.PI / 2.0) * 0.1;
+            W0[7, 5] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity + values[11]) + Math.PI / 2.0) * 0.1;
+            W0[7, 6] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity + values[8]) + Math.PI / 2.0) * 0.1;
+            W0[7, 7] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity + values[7]) + Math.PI / 2.0) * 0.1;
+            W0[7, 8] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity + values[6]) + Math.PI / 2.0) * 0.1;
+            W0[7, 9] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity + values[3]) + Math.PI / 2.0) * 0.1;
+            W0[7, 10] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity + values[4]) + Math.PI / 2.0) * 0.1;
+            W0[7, 11] += (Math.Atan(_crossroad.RightToLeftTrafficData.TrafficDensity + values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[8, 0] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity + values[0]) + Math.PI / 2.0) * 0.1;
+            W0[8, 1] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity + values[1]) + Math.PI / 2.0) * 0.1;
+            W0[8, 2] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity + values[2]) + Math.PI / 2.0) * 0.1;
+            W0[8, 3] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity + values[9]) + Math.PI / 2.0) * 0.1;
+            W0[8, 4] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity + values[10]) + Math.PI / 2.0) * 0.1;
+            W0[8, 5] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity + values[11]) + Math.PI / 2.0) * 0.1;
+            W0[8, 6] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity + values[8]) + Math.PI / 2.0) * 0.1;
+            W0[8, 7] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity + values[7]) + Math.PI / 2.0) * 0.1;
+            W0[8, 8] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity + values[6]) + Math.PI / 2.0) * 0.1;
+            W0[8, 9] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity + values[3]) + Math.PI / 2.0) * 0.1;
+            W0[8, 10] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity + values[4]) + Math.PI / 2.0) * 0.1;
+            W0[8, 11] += (Math.Atan(_crossroad.RightToUpTrafficData.TrafficDensity + values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[9, 0] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity + values[0]) + Math.PI / 2.0) * 0.1;
+            W0[9, 1] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity + values[1]) + Math.PI / 2.0) * 0.1;
+            W0[9, 2] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity + values[2]) + Math.PI / 2.0) * 0.1;
+            W0[9, 3] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity + values[9]) + Math.PI / 2.0) * 0.1;
+            W0[9, 4] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity + values[10]) + Math.PI / 2.0) * 0.1;
+            W0[9, 5] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity + values[11]) + Math.PI / 2.0) * 0.1;
+            W0[9, 6] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity + values[8]) + Math.PI / 2.0) * 0.1;
+            W0[9, 7] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity + values[7]) + Math.PI / 2.0) * 0.1;
+            W0[9, 8] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity + values[6]) + Math.PI / 2.0) * 0.1;
+            W0[9, 9] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity + values[3]) + Math.PI / 2.0) * 0.1;
+            W0[9, 10] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity + values[4]) + Math.PI / 2.0) * 0.1;
+            W0[9, 11] += (Math.Atan(_crossroad.UpToLeftTrafficData.TrafficDensity + values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[10, 0] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity + values[0]) + Math.PI / 2.0) * 0.1;
+            W0[10, 1] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity + values[1]) + Math.PI / 2.0) * 0.1;
+            W0[10, 2] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity + values[2]) + Math.PI / 2.0) * 0.1;
+            W0[10, 3] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity + values[9]) + Math.PI / 2.0) * 0.1;
+            W0[10, 4] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity + values[10]) + Math.PI / 2.0) * 0.1;
+            W0[10, 5] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity + values[11]) + Math.PI / 2.0) * 0.1;
+            W0[10, 6] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity + values[8]) + Math.PI / 2.0) * 0.1;
+            W0[10, 7] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity + values[7]) + Math.PI / 2.0) * 0.1;
+            W0[10, 8] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity + values[6]) + Math.PI / 2.0) * 0.1;
+            W0[10, 9] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity + values[3]) + Math.PI / 2.0) * 0.1;
+            W0[10, 10] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity + values[4]) + Math.PI / 2.0) * 0.1;
+            W0[10, 11] += (Math.Atan(_crossroad.UpToDownTrafficData.TrafficDensity + values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[11, 0] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity + values[0]) + Math.PI / 2.0) * 0.1;
+            W0[11, 1] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity + values[1]) + Math.PI / 2.0) * 0.1;
+            W0[11, 2] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity + values[2]) + Math.PI / 2.0) * 0.1;
+            W0[11, 3] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity + values[9]) + Math.PI / 2.0) * 0.1;
+            W0[11, 4] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity + values[10]) + Math.PI / 2.0) * 0.1;
+            W0[11, 5] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity + values[11]) + Math.PI / 2.0) * 0.1;
+            W0[11, 6] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity + values[8]) + Math.PI / 2.0) * 0.1;
+            W0[11, 7] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity + values[7]) + Math.PI / 2.0) * 0.1;
+            W0[11, 8] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity + values[6]) + Math.PI / 2.0) * 0.1;
+            W0[11, 9] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity + values[3]) + Math.PI / 2.0) * 0.1;
+            W0[11, 10] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity + values[4]) + Math.PI / 2.0) * 0.1;
+            W0[11, 11] += (Math.Atan(_crossroad.UpToRightTrafficData.TrafficDensity + values[5]) + Math.PI / 2.0) * 0.1;
+
+            /*double max = Double.MinValue;
+            for (int i = 0; i < NofTrafficLights; i++)
+            {
+                for (int j = 0; j < NofTrafficLights; j++)
+                {
+                    if (W0[i, j] > max) max = W0[i, j];
+                }
+            }
+
+            for (int i = 0; i < NofTrafficLights; i++)
+            {
+                for (int j = 0; j < NofTrafficLights; j++)
+                {
+                    W0[i, j] /= max;
+                }
+            }*/
+
+            /*W0[0, 0] += (Math.Atan(values[0]) + Math.PI / 2.0) * 0.1;
+            W0[0, 1] += (Math.Atan(values[1]) + Math.PI / 2.0) * 0.1;
+            W0[0, 2] += (Math.Atan(values[2]) + Math.PI / 2.0) * 0.1;
+            W0[0, 3] += (Math.Atan(values[9]) + Math.PI / 2.0) * 0.1;
+            W0[0, 4] += (Math.Atan(values[10]) + Math.PI / 2.0) * 0.1;
+            W0[0, 5] += (Math.Atan(values[11]) + Math.PI / 2.0) * 0.1;
+            W0[0, 6] += (Math.Atan(values[8]) + Math.PI / 2.0) * 0.1;
+            W0[0, 7] += (Math.Atan(values[7]) + Math.PI / 2.0) * 0.1;
+            W0[0, 8] += (Math.Atan(values[6]) + Math.PI / 2.0) * 0.1;
+            W0[0, 9] += (Math.Atan(values[3]) + Math.PI / 2.0) * 0.1;
+            W0[0, 10] += (Math.Atan(values[4]) + Math.PI / 2.0) * 0.1;
+            W0[0, 11] += (Math.Atan(values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[1, 0] += (Math.Atan(values[0]) + Math.PI / 2.0) * 0.1;
+            W0[1, 1] += (Math.Atan(values[1]) + Math.PI / 2.0) * 0.1;
+            W0[1, 2] += (Math.Atan(values[2]) + Math.PI / 2.0) * 0.1;
+            W0[1, 3] += (Math.Atan(values[9]) + Math.PI / 2.0) * 0.1;
+            W0[1, 4] += (Math.Atan(values[10]) + Math.PI / 2.0) * 0.1;
+            W0[1, 5] += (Math.Atan(values[11]) + Math.PI / 2.0) * 0.1;
+            W0[1, 6] += (Math.Atan(values[8]) + Math.PI / 2.0) * 0.1;
+            W0[1, 7] += (Math.Atan(values[7]) + Math.PI / 2.0) * 0.1;
+            W0[1, 8] += (Math.Atan(values[6]) + Math.PI / 2.0) * 0.1;
+            W0[1, 9] += (Math.Atan(values[3]) + Math.PI / 2.0) * 0.1;
+            W0[1, 10] += (Math.Atan(values[4]) + Math.PI / 2.0) * 0.1;
+            W0[1, 11] += (Math.Atan(values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[2, 0] += (Math.Atan(values[0]) + Math.PI / 2.0) * 0.1;
+            W0[2, 1] += (Math.Atan(values[1]) + Math.PI / 2.0) * 0.1;
+            W0[2, 2] += (Math.Atan(values[2]) + Math.PI / 2.0) * 0.1;
+            W0[2, 3] += (Math.Atan(values[9]) + Math.PI / 2.0) * 0.1;
+            W0[2, 4] += (Math.Atan(values[10]) + Math.PI / 2.0) * 0.1;
+            W0[2, 5] += (Math.Atan(values[11]) + Math.PI / 2.0) * 0.1;
+            W0[2, 6] += (Math.Atan(values[8]) + Math.PI / 2.0) * 0.1;
+            W0[2, 7] += (Math.Atan(values[7]) + Math.PI / 2.0) * 0.1;
+            W0[2, 8] += (Math.Atan(values[6]) + Math.PI / 2.0) * 0.1;
+            W0[2, 9] += (Math.Atan(values[3]) + Math.PI / 2.0) * 0.1;
+            W0[2, 10] += (Math.Atan(values[4]) + Math.PI / 2.0) * 0.1;
+            W0[2, 11] += (Math.Atan(values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[3, 0] += (Math.Atan(values[0]) + Math.PI / 2.0) * 0.1;
+            W0[3, 1] += (Math.Atan(values[1]) + Math.PI / 2.0) * 0.1;
+            W0[3, 2] += (Math.Atan(values[2]) + Math.PI / 2.0) * 0.1;
+            W0[3, 3] += (Math.Atan(values[9]) + Math.PI / 2.0) * 0.1;
+            W0[3, 4] += (Math.Atan(values[10]) + Math.PI / 2.0) * 0.1;
+            W0[3, 5] += (Math.Atan(values[11]) + Math.PI / 2.0) * 0.1;
+            W0[3, 6] += (Math.Atan(values[8]) + Math.PI / 2.0) * 0.1;
+            W0[3, 7] += (Math.Atan(values[7]) + Math.PI / 2.0) * 0.1;
+            W0[3, 8] += (Math.Atan(values[6]) + Math.PI / 2.0) * 0.1;
+            W0[3, 9] += (Math.Atan(values[3]) + Math.PI / 2.0) * 0.1;
+            W0[3, 10] += (Math.Atan(values[4]) + Math.PI / 2.0) * 0.1;
+            W0[3, 11] += (Math.Atan(values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[4, 0] += (Math.Atan(values[0]) + Math.PI / 2.0) * 0.1;
+            W0[4, 1] += (Math.Atan(values[1]) + Math.PI / 2.0) * 0.1;
+            W0[4, 2] += (Math.Atan(values[2]) + Math.PI / 2.0) * 0.1;
+            W0[4, 3] += (Math.Atan(values[9]) + Math.PI / 2.0) * 0.1;
+            W0[4, 4] += (Math.Atan(values[10]) + Math.PI / 2.0) * 0.1;
+            W0[4, 5] += (Math.Atan(values[11]) + Math.PI / 2.0) * 0.1;
+            W0[4, 6] += (Math.Atan(values[8]) + Math.PI / 2.0) * 0.1;
+            W0[4, 7] += (Math.Atan(values[7]) + Math.PI / 2.0) * 0.1;
+            W0[4, 8] += (Math.Atan(values[6]) + Math.PI / 2.0) * 0.1;
+            W0[4, 9] += (Math.Atan(values[3]) + Math.PI / 2.0) * 0.1;
+            W0[4, 10] += (Math.Atan(values[4]) + Math.PI / 2.0) * 0.1;
+            W0[4, 11] += (Math.Atan(values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[5, 0] += (Math.Atan(values[0]) + Math.PI / 2.0) * 0.1;
+            W0[5, 1] += (Math.Atan(values[1]) + Math.PI / 2.0) * 0.1;
+            W0[5, 2] += (Math.Atan(values[2]) + Math.PI / 2.0) * 0.1;
+            W0[5, 3] += (Math.Atan(values[9]) + Math.PI / 2.0) * 0.1;
+            W0[5, 4] += (Math.Atan(values[10]) + Math.PI / 2.0) * 0.1;
+            W0[5, 5] += (Math.Atan(values[11]) + Math.PI / 2.0) * 0.1;
+            W0[5, 6] += (Math.Atan(values[8]) + Math.PI / 2.0) * 0.1;
+            W0[5, 7] += (Math.Atan(values[7]) + Math.PI / 2.0) * 0.1;
+            W0[5, 8] += (Math.Atan(values[6]) + Math.PI / 2.0) * 0.1;
+            W0[5, 9] += (Math.Atan(values[3]) + Math.PI / 2.0) * 0.1;
+            W0[5, 10] += (Math.Atan(values[4]) + Math.PI / 2.0) * 0.1;
+            W0[5, 11] += (Math.Atan(values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[6, 0] += (Math.Atan(values[0]) + Math.PI / 2.0) * 0.1;
+            W0[6, 1] += (Math.Atan(values[1]) + Math.PI / 2.0) * 0.1;
+            W0[6, 2] += (Math.Atan(values[2]) + Math.PI / 2.0) * 0.1;
+            W0[6, 3] += (Math.Atan(values[9]) + Math.PI / 2.0) * 0.1;
+            W0[6, 4] += (Math.Atan(values[10]) + Math.PI / 2.0) * 0.1;
+            W0[6, 5] += (Math.Atan(values[11]) + Math.PI / 2.0) * 0.1;
+            W0[6, 6] += (Math.Atan(values[8]) + Math.PI / 2.0) * 0.1;
+            W0[6, 7] += (Math.Atan(values[7]) + Math.PI / 2.0) * 0.1;
+            W0[6, 8] += (Math.Atan(values[6]) + Math.PI / 2.0) * 0.1;
+            W0[6, 9] += (Math.Atan(values[3]) + Math.PI / 2.0) * 0.1;
+            W0[6, 10] += (Math.Atan(values[4]) + Math.PI / 2.0) * 0.1;
+            W0[6, 11] += (Math.Atan(values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[7, 0] += (Math.Atan(values[0]) + Math.PI / 2.0) * 0.1;
+            W0[7, 1] += (Math.Atan(values[1]) + Math.PI / 2.0) * 0.1;
+            W0[7, 2] += (Math.Atan(values[2]) + Math.PI / 2.0) * 0.1;
+            W0[7, 3] += (Math.Atan(values[9]) + Math.PI / 2.0) * 0.1;
+            W0[7, 4] += (Math.Atan(values[10]) + Math.PI / 2.0) * 0.1;
+            W0[7, 5] += (Math.Atan(values[11]) + Math.PI / 2.0) * 0.1;
+            W0[7, 6] += (Math.Atan(values[8]) + Math.PI / 2.0) * 0.1;
+            W0[7, 7] += (Math.Atan(values[7]) + Math.PI / 2.0) * 0.1;
+            W0[7, 8] += (Math.Atan(values[6]) + Math.PI / 2.0) * 0.1;
+            W0[7, 9] += (Math.Atan(values[3]) + Math.PI / 2.0) * 0.1;
+            W0[7, 10] += (Math.Atan(values[4]) + Math.PI / 2.0) * 0.1;
+            W0[7, 11] += (Math.Atan(values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[8, 0] += (Math.Atan(values[0]) + Math.PI / 2.0) * 0.1;
+            W0[8, 1] += (Math.Atan(values[1]) + Math.PI / 2.0) * 0.1;
+            W0[8, 2] += (Math.Atan(values[2]) + Math.PI / 2.0) * 0.1;
+            W0[8, 3] += (Math.Atan(values[9]) + Math.PI / 2.0) * 0.1;
+            W0[8, 4] += (Math.Atan(values[10]) + Math.PI / 2.0) * 0.1;
+            W0[8, 5] += (Math.Atan(values[11]) + Math.PI / 2.0) * 0.1;
+            W0[8, 6] += (Math.Atan(values[8]) + Math.PI / 2.0) * 0.1;
+            W0[8, 7] += (Math.Atan(values[7]) + Math.PI / 2.0) * 0.1;
+            W0[8, 8] += (Math.Atan(values[6]) + Math.PI / 2.0) * 0.1;
+            W0[8, 9] += (Math.Atan(values[3]) + Math.PI / 2.0) * 0.1;
+            W0[8, 10] += (Math.Atan(values[4]) + Math.PI / 2.0) * 0.1;
+            W0[8, 11] += (Math.Atan(values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[9, 0] += (Math.Atan(values[0]) + Math.PI / 2.0) * 0.1;
+            W0[9, 1] += (Math.Atan(values[1]) + Math.PI / 2.0) * 0.1;
+            W0[9, 2] += (Math.Atan(values[2]) + Math.PI / 2.0) * 0.1;
+            W0[9, 3] += (Math.Atan(values[9]) + Math.PI / 2.0) * 0.1;
+            W0[9, 4] += (Math.Atan(values[10]) + Math.PI / 2.0) * 0.1;
+            W0[9, 5] += (Math.Atan(values[11]) + Math.PI / 2.0) * 0.1;
+            W0[9, 6] += (Math.Atan(values[8]) + Math.PI / 2.0) * 0.1;
+            W0[9, 7] += (Math.Atan(values[7]) + Math.PI / 2.0) * 0.1;
+            W0[9, 8] += (Math.Atan(values[6]) + Math.PI / 2.0) * 0.1;
+            W0[9, 9] += (Math.Atan(values[3]) + Math.PI / 2.0) * 0.1;
+            W0[9, 10] += (Math.Atan(values[4]) + Math.PI / 2.0) * 0.1;
+            W0[9, 11] += (Math.Atan(values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[10, 0] += (Math.Atan(values[0]) + Math.PI / 2.0) * 0.1;
+            W0[10, 1] += (Math.Atan(values[1]) + Math.PI / 2.0) * 0.1;
+            W0[10, 2] += (Math.Atan(values[2]) + Math.PI / 2.0) * 0.1;
+            W0[10, 3] += (Math.Atan(values[9]) + Math.PI / 2.0) * 0.1;
+            W0[10, 4] += (Math.Atan(values[10]) + Math.PI / 2.0) * 0.1;
+            W0[10, 5] += (Math.Atan(values[11]) + Math.PI / 2.0) * 0.1;
+            W0[10, 6] += (Math.Atan(values[8]) + Math.PI / 2.0) * 0.1;
+            W0[10, 7] += (Math.Atan(values[7]) + Math.PI / 2.0) * 0.1;
+            W0[10, 8] += (Math.Atan(values[6]) + Math.PI / 2.0) * 0.1;
+            W0[10, 9] += (Math.Atan(values[3]) + Math.PI / 2.0) * 0.1;
+            W0[10, 10] += (Math.Atan(values[4]) + Math.PI / 2.0) * 0.1;
+            W0[10, 11] += (Math.Atan(values[5]) + Math.PI / 2.0) * 0.1;
+
+            W0[11, 0] += (Math.Atan(values[0]) + Math.PI / 2.0) * 0.1;
+            W0[11, 1] += (Math.Atan(values[1]) + Math.PI / 2.0) * 0.1;
+            W0[11, 2] += (Math.Atan(values[2]) + Math.PI / 2.0) * 0.1;
+            W0[11, 3] += (Math.Atan(values[9]) + Math.PI / 2.0) * 0.1;
+            W0[11, 4] += (Math.Atan(values[10]) + Math.PI / 2.0) * 0.1;
+            W0[11, 5] += (Math.Atan(values[11]) + Math.PI / 2.0) * 0.1;
+            W0[11, 6] += (Math.Atan(values[8]) + Math.PI / 2.0) * 0.1;
+            W0[11, 7] += (Math.Atan(values[7]) + Math.PI / 2.0) * 0.1;
+            W0[11, 8] += (Math.Atan(values[6]) + Math.PI / 2.0) * 0.1;
+            W0[11, 9] += (Math.Atan(values[3]) + Math.PI / 2.0) * 0.1;
+            W0[11, 10] += (Math.Atan(values[4]) + Math.PI / 2.0) * 0.1;
+            W0[11, 11] += (Math.Atan(values[5]) + Math.PI / 2.0) * 0.1;*/
+
             W_writer(fileWtek);
+        }
+
+        private void W_writer(string fileWtek)
+        {
+            var sw = new StreamWriter(fileWtek);
+            for (var i = 0; i < NofTrafficLights; i++)
+            {
+                for (var j = 0; j < NofTrafficLights; j++)
+                {
+                    sw.Write("{0} ", W0[i, j].ToString(CultureInfo.InvariantCulture));
+                }
+                sw.WriteLine();
+            }
+            for (var i = 0; i < NofTrafficLights; i++)
+            {
+                for (var j = 0; j < NofStates; j++)
+                {
+                    sw.Write("{0} ", W1[i, j].ToString(CultureInfo.InvariantCulture));
+                }
+                sw.WriteLine();
+            }
+            sw.Close();
         }
 
         private void setTrafficData()
@@ -453,7 +845,6 @@ namespace Simulator.Neuro.Infrastructure
             SNeurons[9].TrafficLight = _crossroad.UpToRightTrafficLight;
             SNeurons[10].TrafficLight = _crossroad.UpToDownTrafficLight;
             SNeurons[11].TrafficLight = _crossroad.UpToLeftTrafficLight;
-        
         }
 
         public void W_reader(string f_name)
@@ -462,24 +853,24 @@ namespace Simulator.Neuro.Infrastructure
             if (File.Exists(f_name))
             {
                 //Read states
-                StreamReader sr = File.OpenText(f_name);
-                for (int j = 0; j < NofTrafficLights; j++)
+                var sr = File.OpenText(f_name);
+                for (var j = 0; j < NofTrafficLights; j++)
                 {
-                    string s = "";
+                    var s = "";
                     s = sr.ReadLine();
-                    string[] v = s.Split(' ');
-                    for (int i = 0; i < NofTrafficLights; i++)
+                    var v = s.Split(' ');
+                    for (var i = 0; i < NofTrafficLights; i++)
                     {
                         l = double.Parse(v[i], CultureInfo.InvariantCulture);
                         W0[j, i] = l;
                     }
                 }
-                for (int i = 0; i < NofTrafficLights; i++)
+                for (var i = 0; i < NofTrafficLights; i++)
                 {
-                    string s = "";
+                    var s = "";
                     s = sr.ReadLine();
-                    string[] v = s.Split(' ');
-                    for (int j = 0; j < NofStates; j++)
+                    var v = s.Split(' ');
+                    for (var j = 0; j < NofStates; j++)
                     {
                         l = double.Parse(v[j], CultureInfo.InvariantCulture);
                         W1[i, j] = l;
@@ -488,6 +879,7 @@ namespace Simulator.Neuro.Infrastructure
                 sr.Close();
             }
         }
+
         public double ComputePassRate(string[] lines)
         {
             var passRate = 0.0;
@@ -513,7 +905,7 @@ namespace Simulator.Neuro.Infrastructure
                 {
                     for (var j = 0; j < NofTrafficLights; j++)
                     {
-                        RNeurons[i].dendrits[j] = input[j] * W1[j, i];
+                        RNeurons[i].dendrits[j] = input[j]*W1[j, i];
                     }
 
                     RNeurons[i].Activation();
@@ -523,7 +915,6 @@ namespace Simulator.Neuro.Infrastructure
                         isPassed = false;
                         break;
                     }
-
                 }
 
                 if (isPassed)
@@ -532,13 +923,14 @@ namespace Simulator.Neuro.Infrastructure
                 }
             }
 
-            return passRate / lines.Length;
+            return passRate/lines.Length;
         }
+
         private void EducationWithTeacher(string pathToEducationExample)
         {
-           var lines = File.ReadAllLines(pathToEducationExample);
+            var lines = File.ReadAllLines(pathToEducationExample);
 
-            double bestPassRate = ComputePassRate(lines);
+            var bestPassRate = ComputePassRate(lines);
             var bestMatrix = new double[NofTrafficLights, NofStates];
             CopyMatrix(W1, bestMatrix, NofTrafficLights, NofStates);
 
@@ -580,17 +972,16 @@ namespace Simulator.Neuro.Infrastructure
                         //           crossroadController.RNeurons[i].axon * (1 - crossroadController.RNeurons[i].axon);
                         for (var j = 0; j < NofTrafficLights; j++)
                         {
-
                             //crossroadController.W1[j, i] += 0.01 * (input[j] - crossroadController.W1[j, i]);
-                            W1[j, i] = W1[j, i] +(output[i] - RNeurons[i].axon)*input[j];
+                            W1[j, i] = W1[j, i] + (output[i] - RNeurons[i].axon)*input[j];
                             //    crossroadController.W1[j, i] = crossroadController.W1[j, i] + 0.025*e*input[j];
                         }
 
-                        double newPassRate = ComputePassRate(lines);
+                        var newPassRate = ComputePassRate(lines);
                         if (newPassRate > bestPassRate)
                         {
                             bestPassRate = newPassRate;
-                            CopyMatrix(W1, bestMatrix, NofTrafficLights,NofStates);
+                            CopyMatrix(W1, bestMatrix, NofTrafficLights, NofStates);
                         }
 
                         i--;
@@ -605,6 +996,7 @@ namespace Simulator.Neuro.Infrastructure
             CopyMatrix(bestMatrix, W1, NofTrafficLights, NofStates);
             W_reader(fileWtek);
         }
+
         public static void CopyMatrix(double[,] from, double[,] to, int nofRows, int nofOfColumns)
         {
             for (var i = 0; i < nofRows; i++)
@@ -615,17 +1007,18 @@ namespace Simulator.Neuro.Infrastructure
                 }
             }
         }
+
         private void SetTrafficLights()
         {
             double x = 0;
-            for (int i = 0; i < NofStates; i++)
+            for (var i = 0; i < NofStates; i++)
             {
                 x += RNeurons[i].atan;
             }
-            double T = x/NofStates;
-            for (int i = 0; i < NofStates; i++)
+            var T = x/NofStates;
+            for (var i = 0; i < NofStates; i++)
             {
-                if (RNeurons[i].axon < T)
+                if (RNeurons[i].atan < T)
                 {
                     RNeurons[i].axonState = TrafficLightState.Red;
                 }
@@ -636,17 +1029,17 @@ namespace Simulator.Neuro.Infrastructure
                 }
             }
 
-            StreamReader sr = File.OpenText(fileState);
-            for (int i = 0; i < NofStates; i++)
+            var sr = File.OpenText(fileState);
+            for (var i = 0; i < NofStates; i++)
             {
-                string s = "";
+                var s = "";
                 s = sr.ReadLine();
-                string[] v = s.Split(' ');
+                var v = s.Split(' ');
                 var mas = new TrafficLightState[NofTrafficLights];
                 if (RNeurons[i].axonState == TrafficLightState.Green &&
                     (double.Parse(v[i], CultureInfo.InvariantCulture) - 1) < 0.0001)
                 {
-                    for (int j = 0; j < NofTrafficLights; j++)
+                    for (var j = 0; j < NofTrafficLights; j++)
                     {
                         if (int.Parse(v[j + NofStates]) != 0)
                         {
