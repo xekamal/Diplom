@@ -20,12 +20,12 @@ namespace Simulator.Neuro.Infrastructure
             {
                 if (dendrits != null) X += dendrits[i];
             };
-            //	X=0-X;
+           	X=0-X;
  //           double a = 1.57;
             double a = 1.57;
             double e = 2.71828;
-            //	float result = 1/(1+pow(e,X*a));
-            double result = Math.Atan(X) / a;
+           	double result = 1/(1+Math.Pow(e,X));
+            //double result = Math.Atan(X) / a;
             _memAxon = axon;
             axon=result;
         }

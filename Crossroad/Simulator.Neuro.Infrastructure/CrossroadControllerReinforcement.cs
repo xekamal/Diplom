@@ -464,6 +464,13 @@ namespace Simulator.Neuro.Infrastructure
 
         public void Reinforce(double[] values)
         {
+            for (int i=0;i<NofTrafficLights;i++)
+            {
+                if (values[i] < 0)
+                {
+                    values[i] = 0;
+                }
+            }
             W0[0, 0] += values[0] + values[0];
             W0[0, 1] += values[0]+ values[1];
             W0[0, 2] += values[0] + values[2];
@@ -620,7 +627,7 @@ namespace Simulator.Neuro.Infrastructure
             W0[11, 10] +=values[5] + values[4];
             W0[11, 11] += values[5] + values[5];
 
-            /*double max = Double.MinValue;
+            double max = Double.MinValue;
             for (int i = 0; i < NofTrafficLights; i++)
             {
                 for (int j = 0; j < NofTrafficLights; j++)
@@ -635,7 +642,7 @@ namespace Simulator.Neuro.Infrastructure
                 {
                     W0[i, j] /= max;
                 }
-            }*/
+            }
 
             /*W0[0, 0] += (Math.Atan(values[0]) + Math.PI / 2.0) * 0.1;
             W0[0, 1] += (Math.Atan(values[1]) + Math.PI / 2.0) * 0.1;
@@ -1063,6 +1070,7 @@ namespace Simulator.Neuro.Infrastructure
                     _crossroad.UpToRightTrafficLight.SetTrafficLightState(mas[9]);
                     _crossroad.UpToDownTrafficLight.SetTrafficLightState(mas[10]);
                     _crossroad.UpToLeftTrafficLight.SetTrafficLightState(mas[11]);
+                    break;
                 }
             }
             sr.Close();
