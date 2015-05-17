@@ -43,6 +43,7 @@ namespace Modeller.WindowsApplication
         private bool _isTrafficFlowConfigure;
         private bool _simulationFlag;
         private ISimulatorEngine _simulatorEngine;
+        private int _stepNo = 0;
 
         public ModellerWindow()
         {
@@ -491,8 +492,9 @@ namespace Modeller.WindowsApplication
         public void WriteLog()
         {
             var logger = Logger.Instance;
-            logger.WriteMessage("======================================================================");
-            logger.WriteMessage("===============================  STEP  ===============================");
+            logger.WriteMessage("========================================================================");
+            //logger.WriteMessage("===============================  STEP  ===============================");
+            logger.WriteMessage(string.Format("============================== STEP {0}  ===============================", _stepNo++));
             logger.WriteMessage("======================================================================");
 
             for (var i = 0; i < _workingFieldNofRows; i++)
