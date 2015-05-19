@@ -464,170 +464,59 @@ namespace Simulator.Neuro.Infrastructure
 
         public void Reinforce(double[] values)
         {
+            double a = 0.25;
+            double max = Double.MinValue;
+            int max_I = 0;
             for (int i=0;i<NofTrafficLights;i++)
             {
-                if (values[i] < 0)
+                if (values[i] > max)
                 {
-                    values[i] = 0;
+                    max=values[i];
+                    max_I = i;
                 }
             }
-            W0[0, 0] += values[0] + values[0];
-            W0[0, 1] += values[0]+ values[1];
-            W0[0, 2] += values[0] + values[2];
-            W0[0, 3] += values[0] + values[9];
-            W0[0, 4] += values[0]+ values[10];
-            W0[0, 5] += values[0] + values[11];
-            W0[0, 6] += values[0] + values[8];
-            W0[0, 7] += values[0] + values[7];
-            W0[0, 8] +=values[0]+ values[6];
-            W0[0, 9] +=values[0]+ values[3];
-            W0[0, 10] +=values[0] + values[4];
-            W0[0, 11] +=values[0] + values[5];
 
-            W0[1, 0] += values[1] + values[0];
-            W0[1, 1] += values[1]+ values[1];
-            W0[1, 2] += values[1] + values[2];
-            W0[1, 3] += values[1] + values[9];
-            W0[1, 4] +=values[1] + values[10];
-            W0[1, 5] +=values[1] + values[11];
-            W0[1, 6] +=values[1] + values[8];
-            W0[1, 7] += values[1] + values[7];
-            W0[1, 8] +=values[1] + values[6];
-            W0[1, 9] +=values[1] + values[3];
-            W0[1, 10] +=values[1] + values[4];
-            W0[1, 11] +=values[1] + values[5];
+            if (max_I == 0 || max_I == 10) 
+            {
+                W0[0, 0] += a*(values[0] + values[10]);
+                W0[0, 4] += a * (values[0] + values[10]);
+                W0[4, 0] += a * (values[0] + values[10]);
+                W0[4, 4] += a * (values[0] + values[10]);
+            }
 
-            W0[2, 0] += values[2] + values[0];
-            W0[2, 1] +=values[2] + values[1];
-            W0[2, 2] += values[2] + values[2];
-            W0[2, 3] +=values[2] + values[9];
-            W0[2, 4] +=values[2] + values[10];
-            W0[2, 5] +=values[2] + values[11];
-            W0[2, 6] +=values[2] + values[8];
-            W0[2, 7] +=values[2] + values[7];
-            W0[2, 8] +=values[2]+ values[6];
-            W0[2, 9] +=values[2] + values[3];
-            W0[2, 10] +=values[2] + values[4];
-            W0[2, 11] +=values[2]+ values[5];
+            if (max_I == 1 || max_I == 3)
+            {
+                W0[1, 1] += a*(values[1] + values[3]);
+                W0[1, 9] += a*(values[1] + values[3]);
+                W0[9, 1] += a*(values[1] + values[3]);
+                W0[9, 9] += a*(values[1] + values[3]);
+            }
+            if (max_I == 9 || max_I == 7)
+            {
+                W0[3, 7] += a * (values[9] + values[7]);
+                W0[3, 3] += a * (values[9] + values[7]);
+                W0[7, 3] += a * (values[9] + values[7]);
+                W0[7, 7] += a * (values[9] + values[7]);
+            }
+            if (max_I == 8 || max_I == 4)
+            {
+                W0[6, 10] += a*(values[8] + values[4]);
+                W0[6, 6] += a * (values[8] + values[4]);
+                W0[10, 6] += a * (values[8] + values[4]);
+                W0[10, 10] += a * (values[8] + values[4]);
+            }
+            if (max_I == 2 || max_I == 11 || max_I == 6 || max_I == 5)
+            {
+                for (int i = 0; i < NofTrafficLights; i++)
+                {
+                    for (int j = 0; j < NofTrafficLights; j++)
+                    {
+                        W0[i, j] += a*values[max_I];
+                    }
+                }
+            }
 
-            W0[3, 0] +=values[9]+ values[0];
-            W0[3, 1] +=values[9]+ values[1];
-            W0[3, 2] +=values[9] + values[2];
-            W0[3, 3] +=values[9] + values[9];
-            W0[3, 4] += values[9] + values[10];
-            W0[3, 5] +=values[9]+ values[11];
-            W0[3, 6] +=values[9] + values[8];
-            W0[3, 7] +=values[9] + values[7];
-            W0[3, 8] +=values[9] + values[6];
-            W0[3, 9] +=values[9] + values[3];
-            W0[3, 10] +=values[9] + values[4];
-            W0[3, 11] += values[9] + values[5];
-
-            W0[4, 0] += values[10]+ values[0];
-            W0[4, 1] +=values[10]+ values[1];
-            W0[4, 2] +=values[10]+ values[2];
-            W0[4, 3] +=values[10]+ values[9];
-            W0[4, 4] +=values[10] + values[10];
-            W0[4, 5] +=values[10]+ values[11];
-            W0[4, 6] +=values[10] + values[8];
-            W0[4, 7] +=values[10] + values[7];
-            W0[4, 8] +=values[10]+ values[6];
-            W0[4, 9] +=values[10] + values[3];
-            W0[4, 10] +=values[10]+ values[4];
-            W0[4, 11] +=values[10]+ values[5];
-
-            W0[5, 0] +=values[11] + values[0];
-            W0[5, 1] +=values[11] + values[1];
-            W0[5, 2] +=values[11] + values[2];
-            W0[5, 3] +=values[11] + values[9];
-            W0[5, 4] +=values[11] + values[10];
-            W0[5, 5] +=values[11] + values[11];
-            W0[5, 6] +=values[11] + values[8];
-            W0[5, 7] += values[11] + values[7];
-            W0[5, 8] += values[11] + values[6];
-            W0[5, 9] +=values[11]+ values[3];
-            W0[5, 10] +=values[11]+ values[4];
-            W0[5, 11] +=values[11] + values[5];
-
-            W0[6, 0] +=values[8] + values[0];
-            W0[6, 1] +=values[8] + values[1];
-            W0[6, 2] +=values[8] + values[2];
-            W0[6, 3] +=values[8]+ values[9];
-            W0[6, 4] +=values[8] + values[10];
-            W0[6, 5] +=values[8]+ values[11];
-            W0[6, 6] += values[8] + values[8];
-            W0[6, 7] +=values[8] + values[7];
-            W0[6, 8] +=values[8] + values[6];
-            W0[6, 9] +=values[8]+ values[3];
-            W0[6, 10] +=values[8] + values[4];
-            W0[6, 11] += values[8] + values[5];
-
-            W0[7, 0] +=values[7] + values[0];
-            W0[7, 1] +=values[7] + values[1];
-            W0[7, 2] +=values[7] + values[2];
-            W0[7, 3] +=values[7] + values[9];
-            W0[7, 4] +=values[7] + values[10];
-            W0[7, 5] += values[7] + values[11];
-            W0[7, 6] +=values[7] + values[8];
-            W0[7, 7] +=values[7]+ values[7];
-            W0[7, 8] += values[7]+ values[6];
-            W0[7, 9] += values[7]+ values[3];
-            W0[7, 10] +=values[7] + values[4];
-            W0[7, 11] +=values[7]+ values[5];
-
-            W0[8, 0] +=values[6]+ values[0];
-            W0[8, 1] +=values[6] + values[1];
-            W0[8, 2] +=values[6] + values[2];
-            W0[8, 3] +=values[6] + values[9];
-            W0[8, 4] +=values[6] + values[10];
-            W0[8, 5] +=values[6]+ values[11];
-            W0[8, 6] +=values[6]+ values[8];
-            W0[8, 7] +=values[6]+ values[7];
-            W0[8, 8] += values[6] + values[6];
-            W0[8, 9] +=values[6] + values[3];
-            W0[8, 10] +=values[6] + values[4];
-            W0[8, 11] +=values[6] + values[5];
-
-            W0[9, 0] +=values[3]+ values[0];
-            W0[9, 1] +=values[3] + values[1];
-            W0[9, 2] += values[3]+ values[2];
-            W0[9, 3] +=values[3]+ values[9];
-            W0[9, 4] +=values[3]+ values[10];
-            W0[9, 5] +=values[3]+ values[11];
-            W0[9, 6] +=values[3] + values[8];
-            W0[9, 7] +=values[3]+ values[7];
-            W0[9, 8] +=values[3]+ values[6];
-            W0[9, 9] +=values[3]+ values[3];
-            W0[9, 10] +=values[3]+ values[4];
-            W0[9, 11] +=values[3]+ values[5];
-
-            W0[10, 0] += values[4] + values[0];
-            W0[10, 1] +=values[4]+ values[1];
-            W0[10, 2] +=values[4] + values[2];
-            W0[10, 3] +=values[4]+ values[9];
-            W0[10, 4] +=values[4]+ values[10];
-            W0[10, 5] +=values[4]+ values[11];
-            W0[10, 6] +=values[4] + values[8];
-            W0[10, 7] +=values[4] + values[7];
-            W0[10, 8] +=values[4] + values[6];
-            W0[10, 9] +=values[4]+ values[3];
-            W0[10, 10] += values[4] + values[4];
-            W0[10, 11] +=values[4]+ values[5];
-
-            W0[11, 0] += values[5] + values[0];
-            W0[11, 1] += values[5] + values[1];
-            W0[11, 2] += values[5] + values[2];
-            W0[11, 3] += values[5]+ values[9];
-            W0[11, 4] += values[5]+ values[10];
-            W0[11, 5] +=values[5] + values[11];
-            W0[11, 6] += values[5] + values[8];
-            W0[11, 7] +=values[5] + values[7];
-            W0[11, 8] +=values[5] + values[6];
-            W0[11, 9] += values[5] + values[3];
-            W0[11, 10] +=values[5] + values[4];
-            W0[11, 11] += values[5] + values[5];
-
-            double max = Double.MinValue;
+            max = Double.MinValue;
             for (int i = 0; i < NofTrafficLights; i++)
             {
                 for (int j = 0; j < NofTrafficLights; j++)
@@ -635,12 +524,14 @@ namespace Simulator.Neuro.Infrastructure
                     if (W0[i, j] > max) max = W0[i, j];
                 }
             }
-
-            for (int i = 0; i < NofTrafficLights; i++)
+            if (max > 1)
             {
-                for (int j = 0; j < NofTrafficLights; j++)
+                for (int i = 0; i < NofTrafficLights; i++)
                 {
-                    W0[i, j] /= max;
+                    for (int j = 0; j < NofTrafficLights; j++)
+                    {
+                        W0[i, j] /= max;
+                    }
                 }
             }
 

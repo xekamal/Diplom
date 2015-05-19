@@ -264,7 +264,8 @@ namespace Simulator.Traffic.Infrastructure
 
                     for (var i = 0; i < 12; i++)
                     {
-                        diff[i] = mark12[i] - marks3d[row, column, i];
+                     //   diff[i] = mark12[i] - marks3d[row, column, i];
+                        diff[i] = mark12[i];
                         marks3d[row, column, i] = 0;
                     }
 
@@ -275,6 +276,7 @@ namespace Simulator.Traffic.Infrastructure
                     }*/
 
                     crossroad.CrossroadController.Reinforce(diff);
+               
                     marks[row, column] = 0;
                 }
             }
@@ -532,10 +534,10 @@ namespace Simulator.Traffic.Infrastructure
         private void UpdateDensityAndSpeed(ITrafficLight trafficLight, ITrafficData oldTrafficData,
             ITrafficData trafficData, double seconds)
         {
-            if (Math.Abs(trafficData.TrafficDensity) < Epsilon)
+            /*if (Math.Abs(trafficData.TrafficDensity) < Epsilon)
             {
                 return;
-            }
+            }*/
 
             if (trafficLight.State == TrafficLightState.Red)
             {
