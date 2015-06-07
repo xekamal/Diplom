@@ -45,35 +45,38 @@ namespace Simulator.Traffic.Infrastructure
                         continue;
                     }
 
-                    var crossroadLocation = new Location(row, column);
-                    var crossroad = roadElement as ICrossroad;
-                    ZeroCrossroadTrafficData(crossroad);
+                    SetAverageSpeedAndTotalDensity(roadElement as ICrossroad, new Location(row, column));
+                }
+            }
+        }
 
-                    foreach (var trafficFlow in _trafficFlows)
+        private void SetAverageSpeedAndTotalDensity(ICrossroad crossroad, ILocation location)
+        {
+            ZeroCrossroadTrafficData(crossroad);
+
+            foreach (var trafficFlow in _trafficFlows)
+            {
+                if (trafficFlow.Path.Contains(location))
+                {
+                    for (var pathIndex = 0; pathIndex < trafficFlow.Path.Count; pathIndex++)
                     {
-                        if (trafficFlow.Path.Contains(crossroadLocation))
+                        var pathElementLocation = trafficFlow.Path[pathIndex];
+                        var pathElement = _map.GetElement(pathElementLocation.Row,
+                            pathElementLocation.Column);
+
+                        if (pathElement is ICrossroad)
                         {
-                            for (var pathIndex = 0; pathIndex < trafficFlow.Path.Count; pathIndex++)
+                            if (crossroad == pathElement || location.Equals(pathElementLocation))
                             {
-                                var pathElementLocation = trafficFlow.Path[pathIndex];
-                                var pathElement = _map.GetElement(pathElementLocation.Row,
-                                    pathElementLocation.Column);
+                                AddCrossroadTrafficData(trafficFlow.Path[pathIndex - 1], pathElementLocation,
+                                    trafficFlow.Path[pathIndex + 1], crossroad, trafficFlow);
+                                break;
+                            }
 
-                                if (pathElement is ICrossroad)
-                                {
-                                    if (crossroad == pathElement)
-                                    {
-                                        AddCrossroadTrafficData(trafficFlow.Path[pathIndex - 1], pathElementLocation,
-                                            trafficFlow.Path[pathIndex + 1], crossroad, trafficFlow);
-                                        break;
-                                    }
-
-                                    if (!IsPathOpen(trafficFlow.Path[pathIndex - 1], pathElementLocation,
-                                        trafficFlow.Path[pathIndex + 1], (ICrossroad) pathElement))
-                                    {
-                                        break;
-                                    }
-                                }
+                            if (!IsPathOpen(trafficFlow.Path[pathIndex - 1], pathElementLocation,
+                                trafficFlow.Path[pathIndex + 1], (ICrossroad) pathElement))
+                            {
+                                break;
                             }
                         }
                     }
@@ -168,54 +171,57 @@ namespace Simulator.Traffic.Infrastructure
                     }
 
                     var crossroad = roadElement as ICrossroad;
+                    ICrossroad crossroadCopy = crossroad.Clone() as ICrossroad;
+                    
+                    SetAverageSpeedAndTotalDensity(crossroadCopy, new Location(row, column));
 
                     if (crossroad.LeftToUpTrafficLight.State == TrafficLightState.Green)
                     {
-                        crossroad.LeftToUpNofPassedCars += GetNofCars(crossroad.LeftToUpTrafficData, seconds);
+                        crossroad.LeftToUpNofPassedCars += GetNofCars(crossroadCopy.LeftToUpTrafficData, seconds);
                     }
                     if (crossroad.LeftToRightTrafficLight.State == TrafficLightState.Green)
                     {
-                        crossroad.LeftToRightNofPassedCars += GetNofCars(crossroad.LeftToRightTrafficData, seconds);
+                        crossroad.LeftToRightNofPassedCars += GetNofCars(crossroadCopy.LeftToRightTrafficData, seconds);
                     }
                     if (crossroad.LeftToDownTrafficLight.State == TrafficLightState.Green)
                     {
-                        crossroad.LeftToDownNofPassedCars += GetNofCars(crossroad.LeftToDownTrafficData, seconds);
+                        crossroad.LeftToDownNofPassedCars += GetNofCars(crossroadCopy.LeftToDownTrafficData, seconds);
                     }
                     if (crossroad.RightToLeftTrafficLight.State == TrafficLightState.Green)
                     {
-                        crossroad.RightToLeftNofPassedCars += GetNofCars(crossroad.RightToLeftTrafficData, seconds);
+                        crossroad.RightToLeftNofPassedCars += GetNofCars(crossroadCopy.RightToLeftTrafficData, seconds);
                     }
                     if (crossroad.RightToDownTrafficLight.State == TrafficLightState.Green)
                     {
-                        crossroad.RightToDownNofPassedCars += GetNofCars(crossroad.RightToDownTrafficData, seconds);
+                        crossroad.RightToDownNofPassedCars += GetNofCars(crossroadCopy.RightToDownTrafficData, seconds);
                     }
                     if (crossroad.RightToUpTrafficLight.State == TrafficLightState.Green)
                     {
-                        crossroad.RightToUpNofPassedCars += GetNofCars(crossroad.RightToUpTrafficData, seconds);
+                        crossroad.RightToUpNofPassedCars += GetNofCars(crossroadCopy.RightToUpTrafficData, seconds);
                     }
                     if (crossroad.UpToLeftTrafficLight.State == TrafficLightState.Green)
                     {
-                        crossroad.UpToLeftNofPassedCars += GetNofCars(crossroad.UpToLeftTrafficData, seconds);
+                        crossroad.UpToLeftNofPassedCars += GetNofCars(crossroadCopy.UpToLeftTrafficData, seconds);
                     }
                     if (crossroad.UpToDownTrafficLight.State == TrafficLightState.Green)
                     {
-                        crossroad.UpToDownNofPassedCars += GetNofCars(crossroad.UpToDownTrafficData, seconds);
+                        crossroad.UpToDownNofPassedCars += GetNofCars(crossroadCopy.UpToDownTrafficData, seconds);
                     }
                     if (crossroad.UpToRightTrafficLight.State == TrafficLightState.Green)
                     {
-                        crossroad.UpToRightNofPassedCars += GetNofCars(crossroad.UpToRightTrafficData, seconds);
+                        crossroad.UpToRightNofPassedCars += GetNofCars(crossroadCopy.UpToRightTrafficData, seconds);
                     }
                     if (crossroad.DownToLeftTrafficLight.State == TrafficLightState.Green)
                     {
-                        crossroad.DownToLeftNofPassedCars += GetNofCars(crossroad.DownToLeftTrafficData, seconds);
+                        crossroad.DownToLeftNofPassedCars += GetNofCars(crossroadCopy.DownToLeftTrafficData, seconds);
                     }
                     if (crossroad.DownToUpTrafficLight.State == TrafficLightState.Green)
                     {
-                        crossroad.DownToUpNofPassedCars += GetNofCars(crossroad.DownToUpTrafficData, seconds);
+                        crossroad.DownToUpNofPassedCars += GetNofCars(crossroadCopy.DownToUpTrafficData, seconds);
                     }
                     if (crossroad.DownToRightTrafficLight.State == TrafficLightState.Green)
                     {
-                        crossroad.DownToRightNofPassedCars += GetNofCars(crossroad.DownToRightTrafficData, seconds);
+                        crossroad.DownToRightNofPassedCars += GetNofCars(crossroadCopy.DownToRightTrafficData, seconds);
                     }
                 }
             }
