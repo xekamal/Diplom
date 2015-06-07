@@ -33,7 +33,8 @@ namespace Simulator.Map.Infrastructure
             DownToUpTrafficData = new TrafficData();
             DownToRightTrafficData = new TrafficData();
 
-            CrossroadController = new CrossroadControllerReinforcement(this);
+            //CrossroadController = new CrossroadControllerReinforcement(this);
+            CrossroadController = new CrossroadControllerStaticTimer(this);
         }
         public Crossroad(int row, int column)
         {
@@ -66,7 +67,8 @@ namespace Simulator.Map.Infrastructure
             DownToUpTrafficData = new TrafficData();
             DownToRightTrafficData = new TrafficData();
 
-            CrossroadController = new CrossroadControllerReinforcement(this);
+            //rossroadController = new CrossroadControllerReinforcement(this);
+            CrossroadController = new CrossroadControllerStaticTimer(this);
         }
 
         public double Length { get; set; }

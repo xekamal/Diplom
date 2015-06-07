@@ -514,50 +514,57 @@ namespace Modeller.WindowsApplication
                     logger.WriteMessage("MATRIX W0:");
                     logger.WriteMessage("");
 
-                    var m0 = ((CrossroadControllerReinforcement) element.CrossroadController).W0;
-                    var ccr = (CrossroadControllerReinforcement) element.CrossroadController;
-                    for (var k = 0; k < 12; k++)
+                    var ccr = element.CrossroadController as CrossroadControllerReinforcement;
+                    if (ccr != null)
                     {
-                        var str =
-                            string.Format(
-                                "{0,9:0.0000}  {1,9:0.0000}  {2,9:0.0000}  {3,9:0.0000}  {4,9:0.0000}  {5,9:0.0000}  {6,9:0.0000}  {7,9:0.0000}  {8,9:0.0000}  {9,9:0.0000}  {10,9:0.0000}  {11,9:0.0000}",
-                                m0[k, 0], m0[k, 1], m0[k, 2], m0[k, 3], m0[k, 4], m0[k, 5], m0[k, 6], m0[k, 7], m0[k, 8],
-                                m0[k, 9], m0[k, 10], m0[k, 11]);
-                        logger.WriteMessage(str);
+                        var m0 = ((CrossroadControllerReinforcement)element.CrossroadController).W0;
+
+                        for (var k = 0; k < 12; k++)
+                        {
+                            var str =
+                                string.Format(
+                                    "{0,9:0.0000}  {1,9:0.0000}  {2,9:0.0000}  {3,9:0.0000}  {4,9:0.0000}  {5,9:0.0000}  {6,9:0.0000}  {7,9:0.0000}  {8,9:0.0000}  {9,9:0.0000}  {10,9:0.0000}  {11,9:0.0000}",
+                                    m0[k, 0], m0[k, 1], m0[k, 2], m0[k, 3], m0[k, 4], m0[k, 5], m0[k, 6], m0[k, 7], m0[k, 8],
+                                    m0[k, 9], m0[k, 10], m0[k, 11]);
+                            logger.WriteMessage(str);
+                        }
                     }
 
                     logger.WriteMessage("");
                     logger.WriteMessage(string.Format("TRAFFIC LIGHTS STATUSES:{0}", GetCrossroadTrafficLightsStatusesAsString(element)));
                     logger.WriteMessage("");
 
-                    logger.WriteMessage(string.Format("LEFT TO UP    TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}", element.LeftToUpTrafficData.TrafficSpeed, element.LeftToUpTrafficData.TrafficDensity));
-                    logger.WriteMessage(string.Format("LEFT TO RIGHT TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}", element.LeftToRightTrafficData.TrafficSpeed, element.LeftToRightTrafficData.TrafficDensity));
-                    logger.WriteMessage(string.Format("LEFT TO DOWN  TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}", element.LeftToDownTrafficData.TrafficSpeed, element.LeftToDownTrafficData.TrafficDensity));
-                    logger.WriteMessage(string.Format("UP TO LEFT    TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}", element.UpToLeftTrafficData.TrafficSpeed, element.UpToLeftTrafficData.TrafficDensity));
-                    logger.WriteMessage(string.Format("UP TO DOWN    TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}", element.UpToDownTrafficData.TrafficSpeed, element.UpToDownTrafficData.TrafficDensity));
-                    logger.WriteMessage(string.Format("UP TO RIGHT   TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}", element.UpToRightTrafficData.TrafficSpeed, element.UpToRightTrafficData.TrafficDensity));
-                    logger.WriteMessage(string.Format("RIGHT TO UP   TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}", element.RightToUpTrafficData.TrafficSpeed, element.RightToUpTrafficData.TrafficDensity));
-                    logger.WriteMessage(string.Format("RIGHT TO LEFT TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}", element.RightToLeftTrafficData.TrafficSpeed, element.RightToLeftTrafficData.TrafficDensity));
-                    logger.WriteMessage(string.Format("RIGHT TO DOWN TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}", element.RightToDownTrafficData.TrafficSpeed, element.RightToDownTrafficData.TrafficDensity));
-                    logger.WriteMessage(string.Format("DOWN TO LEFT  TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}", element.DownToLeftTrafficData.TrafficSpeed, element.DownToLeftTrafficData.TrafficDensity));
-                    logger.WriteMessage(string.Format("DOWN TO UP    TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}", element.DownToUpTrafficData.TrafficSpeed, element.DownToUpTrafficData.TrafficDensity));
-                    logger.WriteMessage(string.Format("DOWN TO RIGHT TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}", element.DownToRightTrafficData.TrafficSpeed, element.DownToRightTrafficData.TrafficDensity));
+                    logger.WriteMessage(string.Format("LEFT TO UP    TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}; NOF PASSED CARS:{2,7:0.0000}", element.LeftToUpTrafficData.TrafficSpeed, element.LeftToUpTrafficData.TrafficDensity, element.LeftToUpNofPassedCars));
+                    logger.WriteMessage(string.Format("LEFT TO RIGHT TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}; NOF PASSED CARS:{2,7:0.0000}", element.LeftToRightTrafficData.TrafficSpeed, element.LeftToRightTrafficData.TrafficDensity, element.LeftToRightNofPassedCars));
+                    logger.WriteMessage(string.Format("LEFT TO DOWN  TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}; NOF PASSED CARS:{2,7:0.0000}", element.LeftToDownTrafficData.TrafficSpeed, element.LeftToDownTrafficData.TrafficDensity, element.LeftToDownNofPassedCars));
+                    logger.WriteMessage(string.Format("UP TO LEFT    TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}; NOF PASSED CARS:{2,7:0.0000}", element.UpToLeftTrafficData.TrafficSpeed, element.UpToLeftTrafficData.TrafficDensity, element.UpToLeftNofPassedCars));
+                    logger.WriteMessage(string.Format("UP TO DOWN    TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}; NOF PASSED CARS:{2,7:0.0000}", element.UpToDownTrafficData.TrafficSpeed, element.UpToDownTrafficData.TrafficDensity, element.UpToDownNofPassedCars));
+                    logger.WriteMessage(string.Format("UP TO RIGHT   TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}; NOF PASSED CARS:{2,7:0.0000}", element.UpToRightTrafficData.TrafficSpeed, element.UpToRightTrafficData.TrafficDensity, element.UpToRightNofPassedCars));
+                    logger.WriteMessage(string.Format("RIGHT TO UP   TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}; NOF PASSED CARS:{2,7:0.0000}", element.RightToUpTrafficData.TrafficSpeed, element.RightToUpTrafficData.TrafficDensity, element.RightToUpNofPassedCars));
+                    logger.WriteMessage(string.Format("RIGHT TO LEFT TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}; NOF PASSED CARS:{2,7:0.0000}", element.RightToLeftTrafficData.TrafficSpeed, element.RightToLeftTrafficData.TrafficDensity, element.RightToLeftNofPassedCars));
+                    logger.WriteMessage(string.Format("RIGHT TO DOWN TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}; NOF PASSED CARS:{2,7:0.0000}", element.RightToDownTrafficData.TrafficSpeed, element.RightToDownTrafficData.TrafficDensity, element.RightToDownNofPassedCars));
+                    logger.WriteMessage(string.Format("DOWN TO LEFT  TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}; NOF PASSED CARS:{2,7:0.0000}", element.DownToLeftTrafficData.TrafficSpeed, element.DownToLeftTrafficData.TrafficDensity, element.DownToLeftNofPassedCars));
+                    logger.WriteMessage(string.Format("DOWN TO UP    TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}; NOF PASSED CARS:{2,7:0.0000}", element.DownToUpTrafficData.TrafficSpeed, element.DownToUpTrafficData.TrafficDensity, element.DownToUpNofPassedCars));
+                    logger.WriteMessage(string.Format("DOWN TO RIGHT TRAFFIC SPEED:{0,7:0.0000}; TRAFFIC DENSITY:{1,7:0.0000}; NOF PASSED CARS:{2,7:0.0000}", element.DownToRightTrafficData.TrafficSpeed, element.DownToRightTrafficData.TrafficDensity, element.DownToRightNofPassedCars));
                     logger.WriteMessage("");
 
-                    for (var k = 0; k < ccr.HNeurons.Length; k++)
+                    if (ccr != null)
                     {
-                        var hNeuron = ccr.HNeurons[k];
-                        logger.WriteMessage(string.Format("H NEURON [{0,2}] DENDRITS:{1}", k, GetNeuronDendritsAsString(hNeuron)));
-                        logger.WriteMessage(string.Format("H NEURON [{0,2}] AXON:{1,7:0.0000}", k, hNeuron.axon));
-                    }
+                        for (var k = 0; k < ccr.HNeurons.Length; k++)
+                        {
+                            var hNeuron = ccr.HNeurons[k];
+                            logger.WriteMessage(string.Format("H NEURON [{0,2}] DENDRITS:{1}", k, GetNeuronDendritsAsString(hNeuron)));
+                            logger.WriteMessage(string.Format("H NEURON [{0,2}] AXON:{1,7:0.0000}", k, hNeuron.axon));
+                        }
 
-                    logger.WriteMessage("");
+                        logger.WriteMessage("");
 
-                    for (int k = 0; k < ccr.RNeurons.Length; k++)
-                    {
-                        RNeuron rNeuron = ccr.RNeurons[k];
-                        logger.WriteMessage(string.Format("R NEURON [{0,2}] DENDRITS:{1}", k, GetNeuronDendritsAsString(rNeuron)));
-                        logger.WriteMessage(string.Format("R NEURON [{0,2}] AXON:{1,7:0.0000}", k, rNeuron.axon));
+                        for (int k = 0; k < ccr.RNeurons.Length; k++)
+                        {
+                            RNeuron rNeuron = ccr.RNeurons[k];
+                            logger.WriteMessage(string.Format("R NEURON [{0,2}] DENDRITS:{1}", k, GetNeuronDendritsAsString(rNeuron)));
+                            logger.WriteMessage(string.Format("R NEURON [{0,2}] AXON:{1,7:0.0000}", k, rNeuron.axon));
+                        }
                     }
                 }
             }

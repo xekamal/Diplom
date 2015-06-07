@@ -33,6 +33,7 @@
   <ItemGroup>
     <Compile Include="CrossroadControllerReinforcement.cs" />
     <Compile Include="CrossroadControllerReinforcementTeacher.cs" />
+    <Compile Include="CrossroadControllerStaticTimer.cs" />
     <Compile Include="HNeuron.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RNeuron.cs" />
@@ -47,6 +48,9 @@
       <Project>{6D5EE7C9-251B-4DF8-BF1D-B700368FAC27}</Project>
       <Name>Simulator.Neuro.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
